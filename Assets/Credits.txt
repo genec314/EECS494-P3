@@ -1,1 +1,2 @@
 Bowling pin model - by eonik under CC attribution, YouTube channel as instructed to put in credits by author: https://www.youtube.com/channel/UCbOaPg1o8yFxjUExbnMJyCQ
+Realistic bowling pin interactions - https://www.youtube.com/watch?v=oKYJ19CoexA&t=594s
