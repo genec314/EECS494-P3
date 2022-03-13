@@ -15,21 +15,6 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 velocity = rb.velocity;
-        velocity.x = Input.GetAxis("Horizontal") * 3;
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            velocity.z = 7.4f;
-            
-        }
-
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            velocity.z = -7.4f;
-
-        }
-
-        rb.velocity = velocity;
     }
 }
