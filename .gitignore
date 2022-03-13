@@ -20,6 +20,7 @@ ExportedObj/
 *.booproj
 *.svd
 .vs/
+.collabignore
 
 # Unity3D generated meta files
 *.pidb.meta
