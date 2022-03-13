@@ -14,10 +14,13 @@ public class RollBall : MonoBehaviour
     private bool rolling = false;
 
     private Rigidbody rb;
+    private Transform tf;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = ball.GetComponent<Rigidbody>();
+        tf = ball.GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -35,7 +38,7 @@ public class RollBall : MonoBehaviour
         {
             windup = false;
             float meter = 10 - Mathf.Sqrt(Mathf.Abs(bar.transform.localPosition.y));
-            rb.AddForce(new Vector3(0, 0, power*meter));
+            rb.AddForce(tf.transform.forward * power * meter);
 
             GetComponent<Image>().enabled = false;
             bar.GetComponent<PowerBar>().Reset();

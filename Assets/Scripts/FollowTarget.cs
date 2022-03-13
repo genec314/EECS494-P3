@@ -20,8 +20,10 @@ public class FollowTarget : MonoBehaviour
 	// Update is called once per frame
 	void LateUpdate()
 	{
+		Vector3 restPos = -transform.forward * 3;
+		restPos += transform.up;
 		if(following)
-			transform.position = Vector3.Lerp(transform.position, target.position + offset, ease_factor);
+			transform.position = Vector3.Lerp(transform.position, target.position + restPos, ease_factor);
 	}
 
 	void OnBallThrown(BallThrownEvent e)
