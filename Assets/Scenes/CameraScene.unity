@@ -3040,6 +3040,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1681502448, guid: b938e30920a5a9147bfa4c4eedbac900, type: 3}
+      propertyPath: bar_velocity
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8176527162343920425, guid: b938e30920a5a9147bfa4c4eedbac900, type: 3}
       propertyPath: m_Pivot.x
       value: 0
