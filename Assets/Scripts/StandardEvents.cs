@@ -15,3 +15,16 @@ public class BallThrownEvent
         return "ball thrown with velocity " + velocity;
     }
 }
+
+public class PinKnockedOverEvent
+{
+    public PinKnockedOverEvent()
+    {
+
+    }
+
+    public override string ToString()
+    {
+        return "pin knocked over";
+    }
+}
