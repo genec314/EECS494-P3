@@ -54,7 +54,7 @@ public class RollBall : MonoBehaviour
 
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
 
         //move bar
