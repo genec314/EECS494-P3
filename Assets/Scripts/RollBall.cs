@@ -106,5 +106,6 @@ public class RollBall : MonoBehaviour
         barTf = bot;
         goingUp = true;
         bar.transform.localPosition = barTf;
+        elapsedFrames = 0;
     }
 }
