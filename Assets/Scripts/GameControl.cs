@@ -9,6 +9,9 @@ public class GameControl : MonoBehaviour
     float first_thrown_time;
     bool ball_thrown;
     Subscription<BallThrownEvent> thrown_subscription;
+    Subscription<LoadNextLevelEvent> level_subscription;
+
+    private int level;
 
     void Start()
     {
@@ -22,6 +25,9 @@ public class GameControl : MonoBehaviour
         }
 
         thrown_subscription = EventBus.Subscribe<BallThrownEvent>(OnBallThrown);
+        level_subscription = EventBus.Subscribe<LoadNextLevelEvent>(OnNewLevel);
+
+        level = SceneManager.GetActiveScene().buildIndex;
     }
 
     void OnDestroy()
@@ -43,5 +49,16 @@ public class GameControl : MonoBehaviour
     {
         ball_thrown = true;
         first_thrown_time = Time.time;
+    }
+
+    void OnNewLevel(LoadNextLevelEvent e)
+    {
+        if (level + 1 == SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(0);
+            return;
+        }
+
+        SceneManager.LoadScene(level + 1);
     }
 }

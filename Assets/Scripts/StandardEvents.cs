@@ -28,3 +28,11 @@ public class PinKnockedOverEvent
         return "pin knocked over";
     }
 }
+
+public class LoadNextLevelEvent
+{
+    public LoadNextLevelEvent()
+    {
+
+    }
+}
