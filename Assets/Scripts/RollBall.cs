@@ -10,13 +10,16 @@ public class RollBall : MonoBehaviour
     public GameObject meter;
 
     public float power = 5f;
+    private float progress = 0;
 
-    public int bar_frames = 120;
+    private float time = 2f;
+    private float initial_time = 0;
 
     private float bar_velocity;
 
     private bool windup = false;
     private bool rolling = false;
+    private bool startMove = false;
 
     private Rigidbody rb;
     private Transform tf;
@@ -55,25 +58,32 @@ public class RollBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //move bar
         if (windup)
         {
-            elapsedFrames++;
+            if (!startMove)
+            {
+                startMove = true;
+                initial_time = Time.time;
+            }
 
             Vector3 barTf = bar.transform.localPosition;
 
+            progress = (Time.time - initial_time) / time;
+
             if (goingUp)
-                barTf = Vector3.Lerp(bot, top, (float)(elapsedFrames) / bar_frames);
+                barTf = Vector3.Lerp(bot, top, progress);
 
             else
-                barTf = Vector3.Lerp(top, bot, (float)(elapsedFrames) / bar_frames);
+                barTf = Vector3.Lerp(top, bot, progress);
 
             bar.transform.localPosition = barTf;
 
-            if(elapsedFrames >= bar_frames)
+            if (progress > 1)
             {
+                startMove = false;
                 goingUp = !goingUp;
-                elapsedFrames = 0;
             }
         }
 
@@ -107,6 +117,6 @@ public class RollBall : MonoBehaviour
         barTf = bot;
         goingUp = true;
         bar.transform.localPosition = barTf;
-        elapsedFrames = 0;
+        startMove = false;
     }
 }
