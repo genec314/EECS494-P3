@@ -118,7 +118,7 @@ MonoBehaviour:
   bar: {fileID: 8176527162344105357}
   meter: {fileID: 8176527162643952552}
   power: 4000
-  bar_velocity: 0.5
+  bar_frames: 500
 --- !u!1 &8176527162344105357
 GameObject:
   m_ObjectHideFlags: 0
