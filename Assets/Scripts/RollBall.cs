@@ -11,7 +11,7 @@ public class RollBall : MonoBehaviour
 
     public float power = 5f;
 
-    public float bar_time = 2.5f;
+    public int bar_frames = 120;
 
     private float bar_velocity;
 
@@ -23,8 +23,9 @@ public class RollBall : MonoBehaviour
 
 
     bool goingUp = true;
-    float top;
-    float bot;
+    Vector3 top;
+    Vector3 bot;
+    int elapsedFrames = 0;
 
     RollBall instance;
     // Start is called before the first frame update
@@ -44,10 +45,8 @@ public class RollBall : MonoBehaviour
 
         RectTransform rt = meter.GetComponentInChildren<RectTransform>();
 
-        top = rt.rect.height;
-        bot = -top;
-
-        bar_velocity = (top - bot) / bar_time;
+        top = new Vector3(200, rt.rect.height, 0);
+        bot = new Vector3(200, -rt.rect.height, 0);
 
         ResetBar();
     }
@@ -56,25 +55,25 @@ public class RollBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        elapsedFrames++;
         //move bar
         if (windup)
         {
             Vector3 barTf = bar.transform.localPosition;
 
             if (goingUp)
-                barTf.y += bar_velocity;
+                barTf = Vector3.Lerp(bot, top, (float)(elapsedFrames) / bar_frames);
 
             else
-                barTf.y -= bar_velocity;
+                barTf = Vector3.Lerp(top, bot, (float)(elapsedFrames) / bar_frames);
 
             bar.transform.localPosition = barTf;
 
-            if (barTf.y >= top)
-                goingUp = false;
-
-            else if (barTf.y <= bot)
-                goingUp = true;
+            if(elapsedFrames >= bar_frames)
+            {
+                goingUp = !goingUp;
+                elapsedFrames = 0;
+            }
         }
 
         //show meter
@@ -104,7 +103,7 @@ public class RollBall : MonoBehaviour
     private void ResetBar()
     {
         Vector3 barTf = bar.transform.localPosition;
-        barTf.y = bot;
+        barTf = bot;
         goingUp = true;
         bar.transform.localPosition = barTf;
     }
