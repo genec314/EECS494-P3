@@ -25,7 +25,5 @@ public class RotateAroundTarget : MonoBehaviour
         }
 
         target.transform.forward = tf.transform.forward;
-        Debug.Log(tf.transform.forward);
-        Debug.Log(target.transform.forward);
     }
 }

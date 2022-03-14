@@ -7,8 +7,10 @@ public class RollBall : MonoBehaviour
 {
     public GameObject ball;
     public GameObject bar;
+    public GameObject meter;
 
     public float power = 5f;
+    public float bar_velocity;
 
     private bool windup = false;
     private bool rolling = false;
@@ -16,35 +18,88 @@ public class RollBall : MonoBehaviour
     private Rigidbody rb;
     private Transform tf;
 
+
+    bool goingUp = true;
+    float top;
+    float bot;
+
+    RollBall instance;
     // Start is called before the first frame update
     void Start()
     {
+
+
+        meter.SetActive(false);
+        bar.SetActive(false);
+
+        if (!ball)
+        {
+            ball = GameObject.Find("Ball");
+        }
         rb = ball.GetComponent<Rigidbody>();
         tf = ball.GetComponent<Transform>();
+
+        RectTransform rt = meter.GetComponentInChildren<RectTransform>();
+
+        top = rt.rect.height;
+        bot = -top;
+
+        ResetBar();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!windup && Input.GetKeyDown(KeyCode.Space))
+
+        //move bar
+        if (windup)
         {
-            GetComponent<Image>().enabled = true;
-            Image i = gameObject.GetComponentInChildren<Image>();
-            Debug.Log(i);
+            Vector3 barTf = bar.transform.localPosition;
+
+            if (goingUp)
+                barTf.y += bar_velocity;
+
+            else
+                barTf.y -= bar_velocity;
+
+            bar.transform.localPosition = barTf;
+
+            if (barTf.y >= top)
+                goingUp = false;
+
+            else if (barTf.y <= bot)
+                goingUp = true;
+        }
+
+        //show meter
+        if (!windup && Input.GetKeyDown(KeyCode.Space))
+        {
+            meter.SetActive(true);
             bar.SetActive(true);
             windup = true;
         }
-        else if(windup && Input.GetKeyUp(KeyCode.Space))
+
+        //throw ball
+        else if (windup && Input.GetKeyUp(KeyCode.Space))
         {
             windup = false;
-            float meter = 10 - Mathf.Sqrt(Mathf.Abs(bar.transform.localPosition.y));
-            rb.AddForce(tf.transform.forward * power * meter);
 
-            GetComponent<Image>().enabled = false;
-            bar.GetComponent<PowerBar>().Reset();
+            float force = 10 - Mathf.Sqrt(Mathf.Abs(bar.transform.localPosition.y));
+            rb.AddForce(tf.transform.forward * power * force);
+
+            ResetBar();
+            meter.SetActive(false);
             bar.SetActive(false);
 
-            EventBus.Publish(new BallThrownEvent(power * meter));
+            EventBus.Publish(new BallThrownEvent(power * force));
         }
+    }
+
+    private void ResetBar()
+    {
+        Vector3 barTf = bar.transform.localPosition;
+        barTf.y = bot;
+        goingUp = true;
+        bar.transform.localPosition = barTf;
     }
 }
