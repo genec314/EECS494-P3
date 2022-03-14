@@ -55,10 +55,11 @@ public class RollBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        elapsedFrames++;
         //move bar
         if (windup)
         {
+            elapsedFrames++;
+
             Vector3 barTf = bar.transform.localPosition;
 
             if (goingUp)
