@@ -782,10 +782,10 @@ MonoBehaviour:
   m_Text: 'How to Play:
 
 
-    Use space to throw the ball.
+    Use space to throw the ball and arrow keys to aim.
 
-    Knock down all the
-    pins to proceed!'
+    Knock
+    down all the pins to proceed!'
 --- !u!222 &2012531729
 CanvasRenderer:
   m_ObjectHideFlags: 0
