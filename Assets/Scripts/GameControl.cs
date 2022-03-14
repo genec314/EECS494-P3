@@ -38,10 +38,7 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ball_thrown && first_thrown_time + 5f < Time.time)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+
     }
 
 
