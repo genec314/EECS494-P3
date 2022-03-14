@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/title.unity
+    guid: a29d00c087bab469db859b3871db933d
+  - enabled: 1
     path: Assets/Scenes/RollBallLab.unity
     guid: cbd34c0729bba4e4aa71b0d4fc561af4
   - enabled: 1

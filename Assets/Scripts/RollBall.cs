@@ -10,7 +10,10 @@ public class RollBall : MonoBehaviour
     public GameObject meter;
 
     public float power = 5f;
-    public float bar_velocity;
+
+    public float bar_time = 2.5f;
+
+    private float bar_velocity;
 
     private bool windup = false;
     private bool rolling = false;
@@ -43,6 +46,8 @@ public class RollBall : MonoBehaviour
 
         top = rt.rect.height;
         bot = -top;
+
+        bar_velocity = (top - bot) / bar_time;
 
         ResetBar();
     }

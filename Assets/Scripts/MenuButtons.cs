@@ -5,10 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuButtons : MonoBehaviour
 {
-    public string level1name = "RollBallLab";
-
-    public void PlayLevel1()
+    public void FirstLevel()
     {
-        SceneManager.LoadScene(level1name);
+        EventBus.Publish(new LoadNextLevelEvent());
     }
 }
