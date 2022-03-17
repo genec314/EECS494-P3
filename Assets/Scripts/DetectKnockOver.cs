@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DetectKnockOver : MonoBehaviour
 {
+    public int pin_id;
+
     Transform tf;
     bool knockedOver = false;
 
@@ -19,7 +21,7 @@ public class DetectKnockOver : MonoBehaviour
         if (!knockedOver && tf.up.y < 0.5f)
         {
             knockedOver = true;
-            PinKnockedOverEvent knock = new PinKnockedOverEvent();
+            PinKnockedOverEvent knock = new PinKnockedOverEvent(pin_id);
             EventBus.Publish(knock);
         }
     }
