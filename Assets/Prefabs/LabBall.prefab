@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 768819490641859164}
   - component: {fileID: 2553491122512750631}
   - component: {fileID: 4148546843224160583}
-  - component: {fileID: 3600233896388268049}
   m_Layer: 0
   m_Name: LabBall
   m_TagString: Ball
@@ -113,20 +112,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3600233896388268049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8625950222128772248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a88579667aec9654fa61879aa9e040db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ball: {fileID: 0}
-  bar: {fileID: 0}
-  meter: {fileID: 0}
-  power: 5
-  bar_time: 2.5
