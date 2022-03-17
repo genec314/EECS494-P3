@@ -752,6 +752,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6791579155835933302}
     m_Modifications:
+    - target: {fileID: 6815476688178658925, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
+      propertyPath: pin_id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6815476688349231260, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
+      propertyPath: pin_id
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6815476688579318797, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
+      propertyPath: pin_id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6815476688605013711, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
+      propertyPath: pin_id
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6815476688742917136, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
+      propertyPath: pin_id
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6815476689379671242, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
       propertyPath: m_Name
       value: Pins

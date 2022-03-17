@@ -18,14 +18,15 @@ public class BallThrownEvent
 
 public class PinKnockedOverEvent
 {
-    public PinKnockedOverEvent()
+    public int id;
+    public PinKnockedOverEvent(int _id)
     {
-
+        id = _id;
     }
 
     public override string ToString()
     {
-        return "pin knocked over";
+        return "pin #" + id + " knocked over";
     }
 }
 
