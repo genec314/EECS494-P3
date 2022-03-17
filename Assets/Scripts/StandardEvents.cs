@@ -36,3 +36,15 @@ public class LoadNextLevelEvent
 
     }
 }
+
+public class ElectrostaticForceEvent
+{
+    public float charge;
+    public Vector3 position;
+
+    public ElectrostaticForceEvent(float _charge, Vector3 _position)
+    {
+        charge = _charge;
+        position = _position;
+    }
+}
