@@ -1,3 +1,4 @@
 Bowling pin model - by eonik under CC attribution, YouTube channel as instructed to put in credits by author: https://www.youtube.com/channel/UCbOaPg1o8yFxjUExbnMJyCQ
 Realistic bowling pin interactions - https://www.youtube.com/watch?v=oKYJ19CoexA&t=594s
 How to detect that a bowling pin fell over - https://answers.unity.com/questions/168443/detect-falling-over-in-bowling.html
+Bowling neon sign- https://www.everythingneon.com/proddetail.php?prod=n105-0113-bowling-neon-sign
