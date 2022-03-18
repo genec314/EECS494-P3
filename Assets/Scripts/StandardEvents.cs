@@ -41,3 +41,8 @@ public class LoadNextLevelEvent
 
     }
 }
+
+public class ReloadLevelEvent
+{
+    public ReloadLevelEvent() {}
+}

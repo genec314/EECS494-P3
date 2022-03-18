@@ -48,8 +48,8 @@ public class RollBall : MonoBehaviour
 
         RectTransform rt = meter.GetComponentInChildren<RectTransform>();
 
-        top = new Vector3(rt.localPosition.x, rt.rect.height - 4, 0);
-        bot = new Vector3(rt.localPosition.x, -rt.rect.height + 4, 0);
+        top = new Vector3(rt.localPosition.x, rt.rect.height - 10, 0);
+        bot = new Vector3(rt.localPosition.x, -rt.rect.height + 5, 0);
 
         ResetBar();
 
@@ -120,7 +120,7 @@ public class RollBall : MonoBehaviour
 
             bar.transform.localPosition = barTf;
 
-            if (progress > 1)
+            if (progress >= 1)
             {
                 startMove = false;
                 goingUp = !goingUp;
