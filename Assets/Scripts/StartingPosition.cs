@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HasCharge : MonoBehaviour
+public class StartingPosition : MonoBehaviour
 {
-    [SerializeField] float charge = 0f;
-
+    [SerializeField] Transform target;
     Transform tf;
 
     // Start is called before the first frame update
     void Awake()
     {
         tf = this.GetComponent<Transform>();
+        tf.position = target.position + new Vector3(0, 6.5f, -10);
     }
 
-    public void BroadcastCharge()
+    // Update is called once per frame
+    void Update()
     {
-        EventBus.Publish(new ElectrostaticForceEvent(charge, tf.position));
+        
     }
 }
