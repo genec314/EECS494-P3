@@ -16,6 +16,11 @@ public class BallThrownEvent
     }
 }
 
+public class BallAtRestEvent
+{
+    public BallAtRestEvent() {}
+}
+
 public class PinKnockedOverEvent
 {
     public PinKnockedOverEvent()

@@ -114,11 +114,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a88579667aec9654fa61879aa9e040db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 0}
   bar: {fileID: 8176527162344105357}
   meter: {fileID: 8176527162643952552}
   power: 4000
-  bar_frames: 500
+  time: 2
 --- !u!1 &8176527162344105357
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class Move : MonoBehaviour
 {
     Rigidbody rb;
     Transform tf;
+    float last_thrown_time;
     Subscription<BallThrownEvent> thrown_subscription;
 
     // Start is called before the first frame update
@@ -13,6 +14,7 @@ public class Move : MonoBehaviour
     {
         rb = this.GetComponent<Rigidbody>();
         tf = this.GetComponent<Transform>();
+        last_thrown_time = Time.time - 1;
         thrown_subscription = EventBus.Subscribe<BallThrownEvent>(ThrowBall);
     }
 
@@ -21,14 +23,18 @@ public class Move : MonoBehaviour
         EventBus.Unsubscribe<BallThrownEvent>(thrown_subscription);
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
+        if (!RollBall.canMove && Time.time > last_thrown_time + 0.5f && rb.velocity.magnitude < 0.25f)
+        {
+            rb.velocity = Vector3.zero;
+            EventBus.Publish<BallAtRestEvent>(new BallAtRestEvent());
+        }
     }
 
     void ThrowBall(BallThrownEvent e)
     {
-        // rb.AddForce(tf.transform.forward * e.velocity);
+        rb.AddForce(tf.transform.forward * e.velocity);
+        last_thrown_time = Time.time;
     }
 }

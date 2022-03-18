@@ -7,6 +7,8 @@ public class RollBall : MonoBehaviour
 {
     public GameObject bar;
     public GameObject meter;
+    public static bool canMove = true;
+    private float last_thrown;
 
     public float power = 5f;
     private float progress = 0;
@@ -17,7 +19,6 @@ public class RollBall : MonoBehaviour
     private float bar_velocity;
 
     private bool windup = false;
-    private bool rolling = false;
     private bool startMove = false;
 
     bool goingUp = true;
@@ -25,9 +26,23 @@ public class RollBall : MonoBehaviour
     Vector3 bot;
 
     RollBall instance;
+
+    Subscription<BallAtRestEvent> rest_subscription;
+    
     // Start is called before the first frame update
     void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(this);
+        }
+        DontDestroyOnLoad(this);
+
+        canMove = true;
         meter.SetActive(false);
         bar.SetActive(false);
 
@@ -37,14 +52,25 @@ public class RollBall : MonoBehaviour
         bot = new Vector3(rt.localPosition.x, -rt.rect.height + 4, 0);
 
         ResetBar();
+
+        rest_subscription = EventBus.Subscribe<BallAtRestEvent>(CheckForMove);
     }
 
+    void OnDestroy()
+    {
+        EventBus.Unsubscribe<BallAtRestEvent>(rest_subscription);
+    }
 
     // Update is called once per frame
     void Update()
     {
         MoveBar();
-        ControlBar();
+        if (canMove) ControlBar();
+    }
+
+    void CheckForMove(BallAtRestEvent e)
+    {
+        canMove = true;
     }
 
     private void ControlBar()
@@ -61,8 +87,9 @@ public class RollBall : MonoBehaviour
         {
             windup = false;
 
-            float force = ((bar.transform.localPosition.y - bot.y)/(top.y - bot.y))*10;
+            float force = ((bar.transform.localPosition.y - bot.y)/(top.y - bot.y))*10 + 1;
             EventBus.Publish(new BallThrownEvent(power * force));
+            canMove = false;
             
             meter.SetActive(false);
             bar.SetActive(false);
