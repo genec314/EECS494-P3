@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3220587, g: 0.3536289, b: 0.35525087, a: 1}
+  m_IndirectSpecularColor: {r: 0.3220584, g: 0.3536311, b: 0.35524917, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -584,6 +584,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 195259120}
+  - component: {fileID: 195259121}
   m_Layer: 0
   m_Name: Hole4
   m_TagString: Untagged
@@ -613,6 +614,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &195259121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195259119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1234cf9e7ed1b4896f8a8408394fcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialBallPos: {x: 5, y: 0.5, z: -18}
+  initialCameraPos: {x: -5, y: 7, z: -18}
+  initalCameraRotation: {x: 20, y: 90, z: 0}
+  numPins: 10
+  numberOfShots: 3
+  ball: {fileID: 0}
+  holeNumber: 4
+  nextHole: {fileID: 0}
+  current_hole: 0
 --- !u!4 &234212367 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4709078218262832373, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
@@ -769,11 +791,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialBallPos: {x: 0, y: 0, z: 0}
   initialCameraPos: {x: 0, y: 0, z: 0}
-  numPins: 0
-  numberOfShots: 0
-  holeNumber: 0
-  nextHole: {fileID: 0}
-  current_hole: 0
+  initalCameraRotation: {x: 0, y: 0, z: 0}
+  numPins: 10
+  numberOfShots: 3
+  ball: {fileID: 0}
+  holeNumber: 1
+  nextHole: {fileID: 344530052}
+  current_hole: 1
 --- !u!1 &344530052
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,6 +807,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 344530053}
+  - component: {fileID: 344530054}
   m_Layer: 0
   m_Name: Hole2
   m_TagString: Untagged
@@ -811,6 +836,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &344530054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344530052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1234cf9e7ed1b4896f8a8408394fcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialBallPos: {x: 7, y: 0.5, z: 14.5}
+  initialCameraPos: {x: 7, y: 7, z: 4.5}
+  initalCameraRotation: {x: 20, y: 0, z: 0}
+  numPins: 10
+  numberOfShots: 3
+  ball: {fileID: 0}
+  holeNumber: 2
+  nextHole: {fileID: 739087192}
+  current_hole: 0
 --- !u!1 &373465982
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,19 +1026,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8625950222128772248, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
   m_PrefabInstance: {fileID: 1120467533}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &462504314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462504313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767feb9dc3d524feeb123059bb5746ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  charge: -10
 --- !u!4 &462504320 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8508937397985018120, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
@@ -1536,6 +1569,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 739087193}
+  - component: {fileID: 739087194}
   m_Layer: 0
   m_Name: Hole3
   m_TagString: Untagged
@@ -1564,6 +1598,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &739087194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739087192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1234cf9e7ed1b4896f8a8408394fcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialBallPos: {x: 25, y: 0.5, z: 5}
+  initialCameraPos: {x: 35, y: 7, z: 5}
+  initalCameraRotation: {x: 20, y: -90, z: 0}
+  numPins: 10
+  numberOfShots: 3
+  ball: {fileID: 0}
+  holeNumber: 3
+  nextHole: {fileID: 195259119}
+  current_hole: 0
 --- !u!1 &747007570
 GameObject:
   m_ObjectHideFlags: 0
@@ -2037,6 +2092,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bowling_Pin (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6874944393703304282, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
 --- !u!4 &956839600 stripped
@@ -2271,25 +2330,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 768819490641859164, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b75a38301b0f44ff2b45e121b66db18c, type: 2}
-    - target: {fileID: 2553491122512750631, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 34bbc06b4eaa14c01be03d833d2138b5, type: 2}
-    - target: {fileID: 4148546843224160583, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
-      propertyPath: m_Mass
-      value: 150
-      objectReference: {fileID: 0}
     - target: {fileID: 8508937397985018120, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8508937397985018120, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 8508937397985018120, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2297,7 +2344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8508937397985018120, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5
+      value: -8.5
       objectReference: {fileID: 0}
     - target: {fileID: 8508937397985018120, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2332,7 +2379,7 @@ PrefabInstance:
       value: LabBall
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 0}
+    - {fileID: -6016023198912660834, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
 --- !u!1 &1133460593
 GameObject:
@@ -2913,6 +2960,10 @@ PrefabInstance:
     - target: {fileID: 6874944393703304282, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
       propertyPath: m_Name
       value: Bowling_Pin (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6874944393703304282, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
@@ -3545,6 +3596,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bowling_Pin (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6874944393703304282, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
 --- !u!1 &1838192585
@@ -3710,6 +3765,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bowling_Pin
       objectReference: {fileID: 0}
+    - target: {fileID: 6874944393703304282, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
 --- !u!1 &1934062348
@@ -3797,6 +3856,7 @@ GameObject:
   - component: {fileID: 2035566199}
   - component: {fileID: 2035566198}
   - component: {fileID: 2035566200}
+  - component: {fileID: 2035566201}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3910,6 +3970,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 462504320}
+--- !u!114 &2035566201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035566194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1150f514071e4b7a98536b689f568e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2050423034 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4170733765206873763, guid: 0c899d4f74fb3489e9c684ec99668bc3, type: 3}
@@ -4083,7 +4155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4170733766034975960, guid: 0c899d4f74fb3489e9c684ec99668bc3, type: 3}
       propertyPath: m_Size.z
-      value: 3.2
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4170733766034975960, guid: 0c899d4f74fb3489e9c684ec99668bc3, type: 3}
       propertyPath: m_Center.x
@@ -4091,7 +4163,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4170733766034975960, guid: 0c899d4f74fb3489e9c684ec99668bc3, type: 3}
       propertyPath: m_Center.z
-      value: 2
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 4170733766034975960, guid: 0c899d4f74fb3489e9c684ec99668bc3, type: 3}
       propertyPath: m_IsTrigger
@@ -4166,6 +4238,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bowling_Pin (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6874944393703304282, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
 --- !u!1001 &4170733765632385884
@@ -4226,6 +4302,22 @@ PrefabInstance:
     - target: {fileID: 4170733765206873767, guid: 0c899d4f74fb3489e9c684ec99668bc3, type: 3}
       propertyPath: charge
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4170733766034975960, guid: 0c899d4f74fb3489e9c684ec99668bc3, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4170733766034975960, guid: 0c899d4f74fb3489e9c684ec99668bc3, type: 3}
+      propertyPath: m_Size.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4170733766034975960, guid: 0c899d4f74fb3489e9c684ec99668bc3, type: 3}
+      propertyPath: m_Center.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4170733766034975960, guid: 0c899d4f74fb3489e9c684ec99668bc3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c899d4f74fb3489e9c684ec99668bc3, type: 3}

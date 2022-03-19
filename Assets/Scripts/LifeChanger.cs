@@ -7,13 +7,15 @@ public class LifeChanger : MonoBehaviour
 
     public int currentLives = 3;
     UnityEngine.UI.Text text;
-    
 
     Subscription<BallThrownEvent> thrown_subscription;
+    Subscription<NewHoleEvent> new_hole_subscription;
+
     // Start is called before the first frame update
     void Awake()
     {
         thrown_subscription = EventBus.Subscribe<BallThrownEvent>(DecreaseLives);
+        new_hole_subscription = EventBus.Subscribe<NewHoleEvent>(NewHole);
         text = GetComponentInChildren<UnityEngine.UI.Text>();
     }
 
@@ -31,7 +33,11 @@ public class LifeChanger : MonoBehaviour
         {
             EventBus.Publish(new RanOutOfLivesEvent()); //I think we would need to set a bool in Gene's code for shots so that it moves to next hole after this shot
         }
+    }
 
-
+    private void NewHole(NewHoleEvent e)
+    {
+        currentLives = e.nextHole.GetNumShots();
+        text.text = "x " + currentLives;
     }
 }

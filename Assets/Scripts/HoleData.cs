@@ -6,6 +6,7 @@ public class HoleData : MonoBehaviour
 {
     [SerializeField] Vector3 initialBallPos;
     [SerializeField] Vector3 initialCameraPos;
+    [SerializeField] Vector3 initalCameraRotation;
     [SerializeField] int numPins;
     [SerializeField] int numberOfShots;
     [SerializeField] GameObject ball;
@@ -52,10 +53,9 @@ public class HoleData : MonoBehaviour
 
         //We should make a toast system and send it "strike, spare etc depending on how many shots it took
 
-        //Wait some time to linger on the final shot
+        yield return new WaitForSeconds(3f);
 
-        //Lerp Camera to next hole's starting pos
-        ball.transform.position = nextHole.GetComponent<HoleData>().initialBallPos;
+        EventBus.Publish(new NewHoleEvent(nextHole.GetComponent<HoleData>()));
 
         yield return null;
     }
@@ -65,9 +65,28 @@ public class HoleData : MonoBehaviour
     {
         if (current_hole)
         {
-            shots_taken++;
-            
+            shots_taken++; 
         }
+    }
+
+    public Vector3 GetInitialBallPosition()
+    {
+        return initialBallPos;
+    }
+
+    public Vector3 GetInitialCameraPosition()
+    {
+        return initialCameraPos;
+    }
+
+    public Vector3 GetInitialCameraRotation()
+    {
+        return initalCameraRotation;
+    }
+
+    public int GetNumShots()
+    {
+        return numberOfShots;
     }
 
 }

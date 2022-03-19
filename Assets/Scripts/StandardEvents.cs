@@ -60,3 +60,12 @@ public class RanOutOfLivesEvent
     }
 }
 
+public class NewHoleEvent
+{
+    public HoleData nextHole;
+
+    public NewHoleEvent(HoleData _nextHole)
+    {
+        nextHole = _nextHole;
+    }
+}
