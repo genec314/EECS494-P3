@@ -49,3 +49,14 @@ public class ElectrostaticForceEvent
         position = _position;
     }
 }
+
+public class RanOutOfLivesEvent
+{
+   
+
+    public RanOutOfLivesEvent()
+    {
+       
+    }
+}
+
