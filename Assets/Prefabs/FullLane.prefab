@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810588583}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.78, y: -8.34747, z: -17.31}
-  m_LocalScale: {x: 0.26728937, y: 1, z: 3.4122941}
+  m_LocalPosition: {x: 5.78, y: -8.34747, z: -17.98}
+  m_LocalScale: {x: 0.26728937, y: 1, z: 3.027626}
   m_Children: []
   m_Father: {fileID: 6791579155835933302}
   m_RootOrder: 5
@@ -578,8 +578,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4693495486909995227}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.77, y: -8.34747, z: -17.31}
-  m_LocalScale: {x: 0.26728937, y: 1, z: 3.4122941}
+  m_LocalPosition: {x: -6.77, y: -8.34747, z: -18.7}
+  m_LocalScale: {x: 0.26728937, y: 1, z: 3.2420888}
   m_Children: []
   m_Father: {fileID: 6791579155835933302}
   m_RootOrder: 4
@@ -684,23 +684,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f8e6e25424144c6458ce1b3cab826b66, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.49992153
+      value: 0.5042651
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f8e6e25424144c6458ce1b3cab826b66, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.49992153
+      value: -0.49553987
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f8e6e25424144c6458ce1b3cab826b66, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.5000785
+      value: -0.49569547
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f8e6e25424144c6458ce1b3cab826b66, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.5000785
+      value: -0.5044234
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f8e6e25424144c6458ce1b3cab826b66, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
+      value: -89
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f8e6e25424144c6458ce1b3cab826b66, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -738,7 +738,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2186366156392730312}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9b41c7d5bd7e0714296f8f4e077218a9, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -876,23 +876,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f8e6e25424144c6458ce1b3cab826b66, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.49992153
+      value: 0.5042651
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f8e6e25424144c6458ce1b3cab826b66, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.49992153
+      value: -0.49553987
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f8e6e25424144c6458ce1b3cab826b66, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.5000785
+      value: -0.49569547
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f8e6e25424144c6458ce1b3cab826b66, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.5000785
+      value: -0.5044234
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f8e6e25424144c6458ce1b3cab826b66, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
+      value: -89
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f8e6e25424144c6458ce1b3cab826b66, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -930,7 +930,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3507863740067284771}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9b41c7d5bd7e0714296f8f4e077218a9, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4

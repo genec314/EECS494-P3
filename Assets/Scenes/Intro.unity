@@ -809,7 +809,7 @@ PrefabInstance:
       objectReference: {fileID: 462504313}
     - target: {fileID: 1681502448, guid: b938e30920a5a9147bfa4c4eedbac900, type: 3}
       propertyPath: power
-      value: 15000
+      value: 20000
       objectReference: {fileID: 0}
     - target: {fileID: 1681502448, guid: b938e30920a5a9147bfa4c4eedbac900, type: 3}
       propertyPath: bar_velocity
@@ -1233,6 +1233,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72ef117baef0443b09abe49b7f86f91d, type: 3}
+--- !u!4 &1414823832 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5477378039698630452, guid: 722df9bdba6aef448a1ff3aae2c2d422, type: 3}
+  m_PrefabInstance: {fileID: 1339506149483607882}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1743841465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,6 +1406,7 @@ GameObject:
   - component: {fileID: 2035566195}
   - component: {fileID: 2035566199}
   - component: {fileID: 2035566198}
+  - component: {fileID: 2035566200}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1493,13 +1499,30 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2035566194}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14a9b14af4478514b9656f2b0c9686de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 462504320}
   offset: {x: 0, y: 0.7, z: 0}
+  ease_factor: 0.01
+--- !u!114 &2035566200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035566194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdfabc1efd2d8b0489416ea5c44c1f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 462504320}
+  pins: {fileID: 1414823832}
+  offset: {x: 0, y: 0.7, z: 0}
+  stopDist: 1
   ease_factor: 0.01
 --- !u!1001 &1339506149483607882
 PrefabInstance:
