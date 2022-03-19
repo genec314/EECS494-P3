@@ -34,6 +34,16 @@ public class PinKnockedOverEvent
     }
 }
 
+public class PowerBarWindupEvent
+{
+    public PowerBarWindupEvent() {}
+}
+
+public class PowerBarReleaseEvent
+{
+    public PowerBarReleaseEvent() {}
+}
+
 public class LoadNextLevelEvent
 {
     public LoadNextLevelEvent()
