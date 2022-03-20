@@ -23,6 +23,7 @@ public class ChangeBallPosition : MonoBehaviour
         tf.position = e.nextHole.GetInitialBallPosition();
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        RollBall.canMove = true;
     }
 
 }
