@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CameraScene.unity
     guid: 333343d00c7ff4fa19db72e23b4da3bb
+  - enabled: 1
+    path: Assets/Scenes/MagnetismLab.unity
+    guid: dad1a2632fb7d4c59995cd14e4012805
   m_configObjects: {}

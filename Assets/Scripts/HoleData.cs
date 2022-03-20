@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+// waiting on gene to publish data when shot ended
 
 public class HoleData : MonoBehaviour
 {
@@ -23,7 +26,6 @@ public class HoleData : MonoBehaviour
     {
         pin_subscription = EventBus.Subscribe<PinKnockedOverEvent>(DecreasePins);
         thrown_subscription = EventBus.Subscribe<BallThrownEvent>(IncreaseShots);
-
     }
 
     // Update is called once per frame
@@ -49,13 +51,24 @@ public class HoleData : MonoBehaviour
     IEnumerator GoToNextHole() // Make a more generalizable public function that also calls this
     {
         current_hole = false;
-        nextHole.GetComponent<HoleData>().current_hole = true;
+
+        if (nextHole != null)
+        {
+            nextHole.GetComponent<HoleData>().current_hole = true;
+        }
 
         //We should make a toast system and send it "strike, spare etc depending on how many shots it took
+        EventBus.Publish(new EndHoleEvent(this));
 
         yield return new WaitForSeconds(3f);
 
-        EventBus.Publish(new NewHoleEvent(nextHole.GetComponent<HoleData>()));
+        if (nextHole == null)
+        {
+            SceneManager.LoadScene(0);
+        } else
+        {
+            EventBus.Publish(new NewHoleEvent(nextHole.GetComponent<HoleData>()));
+        }
 
         yield return null;
     }
@@ -87,6 +100,21 @@ public class HoleData : MonoBehaviour
     public int GetNumShots()
     {
         return numberOfShots;
+    }
+
+    public int GetShotsTaken()
+    {
+        return shots_taken;
+    }
+
+    public int GetPinsRemaining()
+    {
+        return numPins;
+    }
+
+    public int GetHoleNumber()
+    {
+        return holeNumber;
     }
 
 }
