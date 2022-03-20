@@ -16,6 +16,11 @@ public class BallThrownEvent
     }
 }
 
+public class BallAtRestEvent
+{
+    public BallAtRestEvent() {}
+}
+
 public class PinKnockedOverEvent
 {
     public int id;
@@ -30,12 +35,27 @@ public class PinKnockedOverEvent
     }
 }
 
+public class PowerBarWindupEvent
+{
+    public PowerBarWindupEvent() {}
+}
+
+public class PowerBarReleaseEvent
+{
+    public PowerBarReleaseEvent() {}
+}
+
 public class LoadNextLevelEvent
 {
     public LoadNextLevelEvent()
     {
 
     }
+}
+
+public class ReloadLevelEvent
+{
+    public ReloadLevelEvent() {}
 }
 
 public class ElectrostaticForceEvent
@@ -47,5 +67,35 @@ public class ElectrostaticForceEvent
     {
         charge = _charge;
         position = _position;
+    }
+}
+
+public class RanOutOfLivesEvent
+{
+   
+
+    public RanOutOfLivesEvent()
+    {
+       
+    }
+}
+
+public class EndHoleEvent
+{
+    public HoleData currentHole;
+
+    public EndHoleEvent(HoleData _currentHole)
+    {
+        currentHole = _currentHole;
+    }
+}
+
+public class NewHoleEvent
+{
+    public HoleData nextHole;
+
+    public NewHoleEvent(HoleData _nextHole)
+    {
+        nextHole = _nextHole;
     }
 }

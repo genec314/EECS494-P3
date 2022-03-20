@@ -12,12 +12,15 @@ public class PinUpdater : MonoBehaviour
     public Sprite downPin;
 
     public List<Image> pins;
+
     Subscription<PinKnockedOverEvent> pin_knock_sub;
+    Subscription<NewHoleEvent> new_hole_subscription;
 
     // Start is called before the first frame update
     void Awake()
     {
         pin_knock_sub = EventBus.Subscribe<PinKnockedOverEvent>(OnPinKnock);
+        new_hole_subscription = EventBus.Subscribe<NewHoleEvent>(NewHole);
     }
 
     // Update is called once per frame
@@ -29,14 +32,13 @@ public class PinUpdater : MonoBehaviour
     void OnPinKnock(PinKnockedOverEvent e)
     {
         pins[e.id].sprite = downPin;
+    }
 
-        if (startingPins == 0)
+    private void NewHole(NewHoleEvent e)
+    {
+        for (int i = 0; i < pins.Count; ++i)
         {
-            EventBus.Publish(new LoadNextLevelEvent());
-            for(int i = 0; i < pins.Count; i++)
-            {
-                pins[e.id].sprite = upPin;
-            }
+            pins[i].sprite = upPin;
         }
     }
 }

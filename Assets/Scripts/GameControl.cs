@@ -10,6 +10,7 @@ public class GameControl : MonoBehaviour
     bool ball_thrown;
     Subscription<BallThrownEvent> thrown_subscription;
     Subscription<LoadNextLevelEvent> level_subscription;
+    Subscription<ReloadLevelEvent> reload_subscription;
 
     private int level;
 
@@ -26,6 +27,7 @@ public class GameControl : MonoBehaviour
 
         thrown_subscription = EventBus.Subscribe<BallThrownEvent>(OnBallThrown);
         level_subscription = EventBus.Subscribe<LoadNextLevelEvent>(OnNewLevel);
+        reload_subscription = EventBus.Subscribe<ReloadLevelEvent>(OnReloadLevel);
 
         level = SceneManager.GetActiveScene().buildIndex;
     }
@@ -52,10 +54,21 @@ public class GameControl : MonoBehaviour
     {
         if (level + 1 == SceneManager.sceneCountInBuildSettings)
         {
-            SceneManager.LoadScene(0);
+            WaitThenLoadLevel(0);
             return;
         }
 
-        SceneManager.LoadScene(level + 1);
+        WaitThenLoadLevel(level + 1);
+    }
+
+    void OnReloadLevel(ReloadLevelEvent e)
+    {
+        WaitThenLoadLevel(level);
+    }
+
+    IEnumerator WaitThenLoadLevel(int level_num)
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(level_num);
     }
 }
