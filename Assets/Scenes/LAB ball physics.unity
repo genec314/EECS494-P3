@@ -288,6 +288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3600233896388268049, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+    - {fileID: -6016023198912660834, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
 --- !u!4 &96339949 stripped
 Transform:
@@ -1169,7 +1170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25aa2ccc57159204392bd4e518990802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throws_count: 0
+  max_throws: 99
 --- !u!1 &1513659233
 GameObject:
   m_ObjectHideFlags: 0

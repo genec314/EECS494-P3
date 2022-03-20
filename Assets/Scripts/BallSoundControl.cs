@@ -50,7 +50,7 @@ public class BallSoundControl : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.CompareTag("Pin") && is_moving)
+        if (collision.collider.gameObject.CompareTag("Pin") && is_moving && collision.collider.gameObject.transform.up.y >= 0.5f)
         {
             AudioSource.PlayClipAtPoint(pin_knockdown_sound, transform.position, 0.25f);
         }
