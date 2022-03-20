@@ -6,6 +6,7 @@ public class ChangeBallPosition : MonoBehaviour
 {
     Transform tf;
     Rigidbody rb;
+    LineRenderer lr;
 
     Subscription<NewHoleEvent> new_hole_subscription;
 
@@ -14,6 +15,7 @@ public class ChangeBallPosition : MonoBehaviour
     {
         tf = this.GetComponent<Transform>();
         rb = this.GetComponent<Rigidbody>();
+        lr = this.GetComponent<LineRenderer>();
 
         new_hole_subscription = EventBus.Subscribe<NewHoleEvent>(NewHole);
     }

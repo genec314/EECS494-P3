@@ -52,7 +52,7 @@ public class HoleData : MonoBehaviour
 
     private void BallRest(BallAtRestEvent e)
     {
-        if (numberOfShots == shots_taken)
+        if (numberOfShots == shots_taken && current_hole)
         {
             StartCoroutine(GoToNextHole());
         }
@@ -90,7 +90,8 @@ public class HoleData : MonoBehaviour
     {
         if (current_hole)
         {
-            shots_taken++; 
+            shots_taken++;
+            Debug.Log("1. " + shots_taken);
         }
     }
 
