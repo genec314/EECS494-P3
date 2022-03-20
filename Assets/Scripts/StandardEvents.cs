@@ -49,3 +49,33 @@ public class ElectrostaticForceEvent
         position = _position;
     }
 }
+
+public class RanOutOfLivesEvent
+{
+   
+
+    public RanOutOfLivesEvent()
+    {
+       
+    }
+}
+
+public class EndHoleEvent
+{
+    public HoleData currentHole;
+
+    public EndHoleEvent(HoleData _currentHole)
+    {
+        currentHole = _currentHole;
+    }
+}
+
+public class NewHoleEvent
+{
+    public HoleData nextHole;
+
+    public NewHoleEvent(HoleData _nextHole)
+    {
+        nextHole = _nextHole;
+    }
+}
