@@ -809,7 +809,7 @@ PrefabInstance:
       objectReference: {fileID: 462504313}
     - target: {fileID: 1681502448, guid: b938e30920a5a9147bfa4c4eedbac900, type: 3}
       propertyPath: power
-      value: 20000
+      value: 1e+9
       objectReference: {fileID: 0}
     - target: {fileID: 1681502448, guid: b938e30920a5a9147bfa4c4eedbac900, type: 3}
       propertyPath: bar_velocity
@@ -1505,7 +1505,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 462504320}
-  offset: {x: 0, y: 0.7, z: 0}
+  shot_offset: {x: 0, y: 0, z: 0}
+  follow_offset: {x: 0, y: 0, z: 0}
   ease_factor: 0.01
 --- !u!114 &2035566200
 MonoBehaviour:
