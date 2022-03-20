@@ -23,14 +23,15 @@ public class BallAtRestEvent
 
 public class PinKnockedOverEvent
 {
-    public PinKnockedOverEvent()
+    public int id;
+    public PinKnockedOverEvent(int _id)
     {
-
+        id = _id;
     }
 
     public override string ToString()
     {
-        return "pin knocked over";
+        return "pin #" + id + " knocked over";
     }
 }
 
@@ -55,4 +56,46 @@ public class LoadNextLevelEvent
 public class ReloadLevelEvent
 {
     public ReloadLevelEvent() {}
+}
+
+public class ElectrostaticForceEvent
+{
+    public float charge;
+    public Vector3 position;
+
+    public ElectrostaticForceEvent(float _charge, Vector3 _position)
+    {
+        charge = _charge;
+        position = _position;
+    }
+}
+
+public class RanOutOfLivesEvent
+{
+   
+
+    public RanOutOfLivesEvent()
+    {
+       
+    }
+}
+
+public class EndHoleEvent
+{
+    public HoleData currentHole;
+
+    public EndHoleEvent(HoleData _currentHole)
+    {
+        currentHole = _currentHole;
+    }
+}
+
+public class NewHoleEvent
+{
+    public HoleData nextHole;
+
+    public NewHoleEvent(HoleData _nextHole)
+    {
+        nextHole = _nextHole;
+    }
 }

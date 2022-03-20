@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 768819490641859164}
   - component: {fileID: 2553491122512750631}
   - component: {fileID: 4148546843224160583}
-  - component: {fileID: 3600233896388268049}
+  - component: {fileID: 462504314}
+  - component: {fileID: 462504315}
+  - component: {fileID: -6016023198912660834}
   m_Layer: 0
   m_Name: LabBall
   m_TagString: Ball
@@ -113,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3600233896388268049
+--- !u!114 &462504314
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,10 +124,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 8625950222128772248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a88579667aec9654fa61879aa9e040db, type: 3}
+  m_Script: {fileID: 11500000, guid: 767feb9dc3d524feeb123059bb5746ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 0}
-  bar: {fileID: 0}
-  meter: {fileID: 0}
-  power: 5
+  charge: -10
+--- !u!114 &462504315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8625950222128772248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f13ececc5bed847d4bf4eb74e535d4c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6016023198912660834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8625950222128772248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04c6cca9825a5476796e99bcb7e73736, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

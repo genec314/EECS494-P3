@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bar: {fileID: 8176527162344105357}
   meter: {fileID: 8176527162643952552}
-  power: 4000
+  power: 10000
   time: 2
 --- !u!1 &8176527162344105357
 GameObject:
