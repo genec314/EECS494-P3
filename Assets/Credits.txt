@@ -4,3 +4,4 @@ How to detect that a bowling pin fell over - https://answers.unity.com/questions
 
 bowling ball rolling sound - https://www.youtube.com/watch?v=X3B1SntxO6I
 beep sound - https://www.youtube.com/watch?v=B14L61fYZlc
+bowling pin knockdown sound - https://www.youtube.com/watch?v=14WcHFPaJio

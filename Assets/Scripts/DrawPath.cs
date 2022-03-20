@@ -5,6 +5,7 @@ using UnityEngine;
 public class DrawPath : MonoBehaviour
 {
     public float length = 1.25f;
+    public LayerMask pinsLayer;
     LineRenderer line;
     Transform tf;
     Subscription<BallAtRestEvent> rest_sub;
@@ -25,7 +26,7 @@ public class DrawPath : MonoBehaviour
     {
         RaycastHit[] hits;
         Vector3 globalForward = Vector3.ProjectOnPlane(tf.forward, Vector3.up);
-        hits = Physics.RaycastAll(tf.position, globalForward, length);
+        hits = Physics.RaycastAll(tf.position, globalForward, length, ~pinsLayer);
 
         List<Vector3> positions = new List<Vector3>();
         positions.Add(transform.position);

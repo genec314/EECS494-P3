@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Should be renamed to something like "Power Bar Controller"
+// This only handles the power bar UI and sending events. It does not directly control the movement of the ball; that is in Move.
 public class RollBall : MonoBehaviour
 {
     public GameObject bar;
