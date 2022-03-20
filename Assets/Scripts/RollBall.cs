@@ -22,6 +22,7 @@ public class RollBall : MonoBehaviour
 
     private bool windup = false;
     private bool startMove = false;
+    private bool holeTransition = false;
 
     bool goingUp = true;
     Vector3 top;
@@ -30,6 +31,8 @@ public class RollBall : MonoBehaviour
     RollBall instance;
 
     Subscription<BallAtRestEvent> rest_subscription;
+    Subscription<EndHoleEvent> end_hole_subscription;
+    Subscription<NewHoleEvent> new_hole_subscription;
     
     // Start is called before the first frame update
     void Start()
@@ -56,6 +59,8 @@ public class RollBall : MonoBehaviour
         ResetBar();
 
         rest_subscription = EventBus.Subscribe<BallAtRestEvent>(CheckForMove);
+        end_hole_subscription = EventBus.Subscribe<EndHoleEvent>(EndHole);
+        new_hole_subscription = EventBus.Subscribe<NewHoleEvent>(NewHole);
     }
 
     void OnDestroy()
@@ -67,12 +72,22 @@ public class RollBall : MonoBehaviour
     void Update()
     {
         MoveBar();
-        if (canMove) ControlBar();
+        if (canMove && !holeTransition) ControlBar();
     }
 
     void CheckForMove(BallAtRestEvent e)
     {
         canMove = true;
+    }
+
+    private void EndHole(EndHoleEvent e)
+    {
+        holeTransition = true;
+    }
+
+    private void NewHole(NewHoleEvent e)
+    {
+        holeTransition = false;
     }
 
     private void ControlBar()
