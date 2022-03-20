@@ -50,17 +50,18 @@ public class HoleData : MonoBehaviour
     
     IEnumerator GoToNextHole() // Make a more generalizable public function that also calls this
     {
+
+        //We should make a toast system and send it "strike, spare etc depending on how many shots it took
+        EventBus.Publish(new EndHoleEvent(this));
+
+        yield return new WaitForSeconds(3f);
+
         current_hole = false;
 
         if (nextHole != null)
         {
             nextHole.GetComponent<HoleData>().current_hole = true;
         }
-
-        //We should make a toast system and send it "strike, spare etc depending on how many shots it took
-        EventBus.Publish(new EndHoleEvent(this));
-
-        yield return new WaitForSeconds(3f);
 
         if (nextHole == null)
         {

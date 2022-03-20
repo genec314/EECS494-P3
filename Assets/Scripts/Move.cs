@@ -25,9 +25,10 @@ public class Move : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!RollBall.canMove && Time.time > last_thrown_time + 0.5f && rb.velocity.magnitude < 0.1f)
+        if (!RollBall.canMove && Time.time > last_thrown_time + 0.5f && rb.velocity.magnitude < 1f)
         {
             rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
             EventBus.Publish<BallAtRestEvent>(new BallAtRestEvent());
         }
     }
