@@ -99,3 +99,9 @@ public class NewHoleEvent
         nextHole = _nextHole;
     }
 }
+
+public class TutorialStrikeEvent
+{
+    public TutorialStrikeEvent() { }
+
+}
