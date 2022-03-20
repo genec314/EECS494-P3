@@ -16,6 +16,11 @@ public class BallThrownEvent
     }
 }
 
+public class BallAtRestEvent
+{
+    public BallAtRestEvent() {}
+}
+
 public class PinKnockedOverEvent
 {
     public PinKnockedOverEvent()
@@ -29,10 +34,25 @@ public class PinKnockedOverEvent
     }
 }
 
+public class PowerBarWindupEvent
+{
+    public PowerBarWindupEvent() {}
+}
+
+public class PowerBarReleaseEvent
+{
+    public PowerBarReleaseEvent() {}
+}
+
 public class LoadNextLevelEvent
 {
     public LoadNextLevelEvent()
     {
 
     }
+}
+
+public class ReloadLevelEvent
+{
+    public ReloadLevelEvent() {}
 }

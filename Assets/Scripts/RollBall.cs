@@ -3,62 +3,104 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Should be renamed to something like "Power Bar Controller"
+// This only handles the power bar UI and sending events. It does not directly control the movement of the ball; that is in Move.
 public class RollBall : MonoBehaviour
 {
-    public GameObject ball;
     public GameObject bar;
     public GameObject meter;
+    public static bool canMove = true;
+    private float last_thrown;
 
     public float power = 5f;
     private float progress = 0;
 
-    private float time = 2f;
+    public float time = 2f;
     private float initial_time = 0;
 
     private float bar_velocity;
 
     private bool windup = false;
-    private bool rolling = false;
     private bool startMove = false;
-
-    private Rigidbody rb;
-    private Transform tf;
-
 
     bool goingUp = true;
     Vector3 top;
     Vector3 bot;
-    int elapsedFrames = 0;
 
     RollBall instance;
+
+    Subscription<BallAtRestEvent> rest_subscription;
+    
     // Start is called before the first frame update
     void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(this);
+        }
+        DontDestroyOnLoad(this);
 
-
+        canMove = true;
         meter.SetActive(false);
         bar.SetActive(false);
 
-        if (!ball)
-        {
-            ball = GameObject.Find("Ball");
-        }
-        rb = ball.GetComponent<Rigidbody>();
-        tf = ball.GetComponent<Transform>();
-
         RectTransform rt = meter.GetComponentInChildren<RectTransform>();
 
-        top = new Vector3(200, rt.rect.height, 0);
-        bot = new Vector3(200, -rt.rect.height, 0);
+        top = new Vector3(rt.localPosition.x, rt.rect.height - 10, 0);
+        bot = new Vector3(rt.localPosition.x, -rt.rect.height + 5, 0);
 
         ResetBar();
+
+        rest_subscription = EventBus.Subscribe<BallAtRestEvent>(CheckForMove);
     }
 
+    void OnDestroy()
+    {
+        EventBus.Unsubscribe<BallAtRestEvent>(rest_subscription);
+    }
 
     // Update is called once per frame
     void Update()
     {
+        MoveBar();
+        if (canMove) ControlBar();
+    }
 
+    void CheckForMove(BallAtRestEvent e)
+    {
+        canMove = true;
+    }
+
+    private void ControlBar()
+    {
+        //show meter
+        if (!windup && Input.GetKeyDown(KeyCode.Space))
+        {
+            meter.SetActive(true);
+            bar.SetActive(true);
+            windup = true;
+        }
+        //throw ball
+        else if (windup && Input.GetKeyUp(KeyCode.Space))
+        {
+            windup = false;
+
+            float force = ((bar.transform.localPosition.y - bot.y)/(top.y - bot.y))*10 + 1;
+            EventBus.Publish(new BallThrownEvent(power * force));
+            canMove = false;
+            
+            meter.SetActive(false);
+            bar.SetActive(false);
+            ResetBar();
+        }
+    }
+
+    private void MoveBar()
+    {
         //move bar
         if (windup)
         {
@@ -80,34 +122,11 @@ public class RollBall : MonoBehaviour
 
             bar.transform.localPosition = barTf;
 
-            if (progress > 1)
+            if (progress >= 1)
             {
                 startMove = false;
                 goingUp = !goingUp;
             }
-        }
-
-        //show meter
-        if (!windup && Input.GetKeyDown(KeyCode.Space))
-        {
-            meter.SetActive(true);
-            bar.SetActive(true);
-            windup = true;
-        }
-
-        //throw ball
-        else if (windup && Input.GetKeyUp(KeyCode.Space))
-        {
-            windup = false;
-
-            float force = 10 - Mathf.Sqrt(Mathf.Abs(bar.transform.localPosition.y));
-            rb.AddForce(tf.transform.forward * power * force);
-
-            ResetBar();
-            meter.SetActive(false);
-            bar.SetActive(false);
-
-            EventBus.Publish(new BallThrownEvent(power * force));
         }
     }
 
