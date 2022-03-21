@@ -6,7 +6,9 @@ public class ChangeBallPosition : MonoBehaviour
 {
     Transform tf;
     Rigidbody rb;
-    LineRenderer lr;
+    TrailRenderer tr;
+
+    private float time;
 
     Subscription<NewHoleEvent> new_hole_subscription;
 
@@ -15,17 +17,30 @@ public class ChangeBallPosition : MonoBehaviour
     {
         tf = this.GetComponent<Transform>();
         rb = this.GetComponent<Rigidbody>();
-        lr = this.GetComponent<LineRenderer>();
+        tr = this.GetComponent<TrailRenderer>();
 
         new_hole_subscription = EventBus.Subscribe<NewHoleEvent>(NewHole);
     }
 
     private void NewHole(NewHoleEvent e)
     {
+        tr.time = 0;
         tf.position = e.nextHole.GetInitialBallPosition();
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        RollBall.canMove = true;
+        time = Time.time;
+        StartCoroutine(TwoSeconds());
+    }
+
+    IEnumerator TwoSeconds()
+    {
+        while (Time.time - time < 2f)
+        {
+            tr.time = Time.time - time;
+            yield return null;
+        }
+
+        tr.time = 2;
     }
 
 }

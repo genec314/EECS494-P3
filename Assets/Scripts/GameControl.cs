@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour
 {
-    GameControl instance;
+    public static GameControl instance;
     float first_thrown_time;
     bool ball_thrown;
     Subscription<BallThrownEvent> thrown_subscription;
@@ -22,12 +22,14 @@ public class GameControl : MonoBehaviour
         }
         else if (instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
 
         thrown_subscription = EventBus.Subscribe<BallThrownEvent>(OnBallThrown);
         level_subscription = EventBus.Subscribe<LoadNextLevelEvent>(OnNewLevel);
         reload_subscription = EventBus.Subscribe<ReloadLevelEvent>(OnReloadLevel);
+
 
         level = SceneManager.GetActiveScene().buildIndex;
     }
@@ -54,11 +56,12 @@ public class GameControl : MonoBehaviour
     {
         if (level + 1 == SceneManager.sceneCountInBuildSettings)
         {
-            WaitThenLoadLevel(0);
+            level = 0;
+            StartCoroutine(WaitThenLoadLevel(0));
             return;
         }
 
-        WaitThenLoadLevel(level + 1);
+        StartCoroutine(WaitThenLoadLevel(level++ + 1));
     }
 
     void OnReloadLevel(ReloadLevelEvent e)

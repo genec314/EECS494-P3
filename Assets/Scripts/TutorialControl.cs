@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class TutorialControl : MonoBehaviour
 {
 
     Subscription<BallThrownEvent> ball_thrown_sub;
     Subscription<PinKnockedOverEvent> pin_knocked_sub;
+    Subscription<BallAtRestEvent> ball_rest_subscription;
 
     GameObject UI;
-    GameObject cube;
 
     private int pins_down = 0;
     private int attempts = 0;
@@ -27,10 +28,8 @@ public class TutorialControl : MonoBehaviour
         instance = this.gameObject;
         ball_thrown_sub = EventBus.Subscribe<BallThrownEvent>(_OnBallThrown);
         pin_knocked_sub = EventBus.Subscribe<PinKnockedOverEvent>(_OnPinKnocked);
+        ball_rest_subscription = EventBus.Subscribe<BallAtRestEvent>(_OnBallRest);
         UI = GameObject.Find("TutorialUI");
-        cube = GameObject.Find("ChargedCube");
-        UI.SetActive(false);
-        cube.SetActive(false);
     }
 
     // Update is called once per frame
@@ -53,12 +52,32 @@ public class TutorialControl : MonoBehaviour
         }
     }
 
+    void _OnBallRest(BallAtRestEvent e)
+    {
+        if (pins_down < 10)
+        {
+            StartCoroutine(ResetScene());
+        }
+    }
+
     void SetNextStage()
     {
-        pins_down = 0;
-        attempts = 0;
-        cube.SetActive(true);
         UI.SetActive(true);
+        UI.GetComponentInChildren<TextMeshProUGUI>().text = "Hey, you're pretty good! But what about this magnetic challenge?";
+
+        StartCoroutine(NextLevel(3f));
+    }
+
+    IEnumerator NextLevel(float time)
+    {
+        yield return new WaitForSeconds(time);
+        EventBus.Publish(new LoadNextLevelEvent());
+    }
+
+    IEnumerator ResetScene()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(0);
     }
 
 }

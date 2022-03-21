@@ -748,6 +748,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6791579155835933302}
     m_Modifications:
+    - target: {fileID: 5552367415087073971, guid: 991ceb2c16067854396f78cf31e5c74a, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 2534964839176971238, guid: 32a7fb7df402a4e208c182980a3f0a77, type: 3}
+    - target: {fileID: 8052009427583622376, guid: 991ceb2c16067854396f78cf31e5c74a, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 2534964839176971238, guid: 32a7fb7df402a4e208c182980a3f0a77, type: 3}
     - target: {fileID: 8208359556234305452, guid: 991ceb2c16067854396f78cf31e5c74a, type: 3}
       propertyPath: m_Name
       value: gutter (2)
@@ -810,6 +818,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6791579155835933302}
     m_Modifications:
+    - target: {fileID: 5552367415087073971, guid: 991ceb2c16067854396f78cf31e5c74a, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 2534964839176971238, guid: 32a7fb7df402a4e208c182980a3f0a77, type: 3}
+    - target: {fileID: 8052009427583622376, guid: 991ceb2c16067854396f78cf31e5c74a, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 2534964839176971238, guid: 32a7fb7df402a4e208c182980a3f0a77, type: 3}
     - target: {fileID: 8208359556234305452, guid: 991ceb2c16067854396f78cf31e5c74a, type: 3}
       propertyPath: m_Name
       value: gutter

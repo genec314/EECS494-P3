@@ -20,6 +20,9 @@ public class HoleData : MonoBehaviour
     Subscription<BallThrownEvent> thrown_subscription;
     Subscription<BallAtRestEvent> ball_rest_subscription;
     public bool current_hole = false;
+    private bool inTransition = false;
+
+    private int[] pointsOnShot = new int[3];
 
 
     // Start is called before the first frame update
@@ -46,26 +49,49 @@ public class HoleData : MonoBehaviour
         numPins--;
         if(numPins == 0)
         {
-            StartCoroutine(GoToNextHole());
+            if (!inTransition)
+            {
+                StartCoroutine(GoToNextHole());
+            }
         }
     }
 
     private void BallRest(BallAtRestEvent e)
     {
+        // takes into account that shots_taken was already incremented
+        if (current_hole)
+        {
+            if (shots_taken == 1)
+            {
+                pointsOnShot[shots_taken - 1] = 10 - numPins;
+            }
+            else if (shots_taken == 2)
+            {
+                pointsOnShot[shots_taken - 1] = 10 - pointsOnShot[0] - numPins;
+            }
+            else if (shots_taken == 3)
+            {
+                pointsOnShot[shots_taken - 1] = 10 - pointsOnShot[0] - pointsOnShot[1] - numPins;
+            }
+        }
+
         if (numberOfShots == shots_taken && current_hole)
         {
-            StartCoroutine(GoToNextHole());
+            if (!inTransition)
+            {
+                StartCoroutine(GoToNextHole());
+            }
         }
 
     }
     
     IEnumerator GoToNextHole() // Make a more generalizable public function that also calls this
     {
-
+        inTransition = true;
         //We should make a toast system and send it "strike, spare etc depending on how many shots it took
         EventBus.Publish(new EndHoleEvent(this));
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
 
         current_hole = false;
 
@@ -76,7 +102,7 @@ public class HoleData : MonoBehaviour
 
         if (nextHole == null)
         {
-            SceneManager.LoadScene(0);
+            EventBus.Publish(new LoadNextLevelEvent());
         } else
         {
             EventBus.Publish(new NewHoleEvent(nextHole.GetComponent<HoleData>()));
@@ -91,7 +117,6 @@ public class HoleData : MonoBehaviour
         if (current_hole)
         {
             shots_taken++;
-            Debug.Log("1. " + shots_taken);
         }
     }
 
@@ -130,4 +155,8 @@ public class HoleData : MonoBehaviour
         return holeNumber;
     }
 
+    public int[] GetScoresByShot()
+    {
+        return pointsOnShot;
+    }
 }
