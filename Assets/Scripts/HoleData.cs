@@ -88,6 +88,23 @@ public class HoleData : MonoBehaviour
     IEnumerator GoToNextHole() // Make a more generalizable public function that also calls this
     {
         inTransition = true;
+
+        if (current_hole)
+        {
+            if (shots_taken == 1)
+            {
+                pointsOnShot[shots_taken - 1] = 10 - numPins;
+            }
+            else if (shots_taken == 2)
+            {
+                pointsOnShot[shots_taken - 1] = 10 - pointsOnShot[0] - numPins;
+            }
+            else if (shots_taken == 3)
+            {
+                pointsOnShot[shots_taken - 1] = 10 - pointsOnShot[0] - pointsOnShot[1] - numPins;
+            }
+        }
+
         //We should make a toast system and send it "strike, spare etc depending on how many shots it took
         EventBus.Publish(new EndHoleEvent(this));
 

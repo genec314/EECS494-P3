@@ -78,6 +78,6 @@ public class TutorialControl : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(0);
+        UI.GetComponentInChildren<TextMeshProUGUI>().text = "Welcome to my bowling alley! Hold Space to Shoot!";
     }
-
 }
