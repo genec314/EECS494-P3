@@ -38,7 +38,7 @@ public class FollowTarget : MonoBehaviour
 
 	void UpdateOffsets()
 	{
-		shot_offset = -3.5f * transform.forward + 0.75f * Vector3.up;
+		shot_offset = -10f * transform.forward + 3f * Vector3.up;
 		follow_offset = -2f * transform.forward + 0.4f * Vector3.up;
 	}
 
