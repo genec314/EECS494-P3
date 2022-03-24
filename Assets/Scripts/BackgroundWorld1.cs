@@ -41,7 +41,6 @@ public class BackgroundWorld1 : MonoBehaviour
             float x = Random.Range(-dist, dist);
             float z = Random.Range(-dist, dist);
             Vector3 startPos = new Vector3(x, Random.Range(20, 50), z);
-            Debug.Log(startPos);
             Vector3 endPos = new Vector3(startPos.x, 0, startPos.z);
 
             bolt.Trigger(startPos, endPos);
