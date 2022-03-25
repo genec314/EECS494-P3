@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 4170733765206873760}
   - component: {fileID: 4170733765206873767}
   m_Layer: 0
-  m_Name: ChargedCube
+  m_Name: PositiveCube
   m_TagString: Magnet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
