@@ -9,6 +9,7 @@ public class CanSplit : MonoBehaviour
     public GameObject secondBall;
     GameObject secondBall1;
     [SerializeField] float joinSpeed = 5;
+    bool needtoDie = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +23,9 @@ public class CanSplit : MonoBehaviour
         {
             if (isSplit)
             {
+                needtoDie = true;
                 //Bring them back together
-                GetComponent<Rigidbody>().velocity = (secondBall1.transform.position - transform.position) * joinSpeed ;
+                //GetComponent<Rigidbody>().velocity = (secondBall1.transform.position - transform.position) * joinSpeed ;
                 secondBall1.GetComponent<Rigidbody>().velocity = (transform.position - secondBall1.transform.position) * joinSpeed;
                 
             }
@@ -32,13 +34,13 @@ public class CanSplit : MonoBehaviour
                 isSplit = true;
                 Vector3 vel = GetComponent<Rigidbody>().velocity;
                 secondBall1 = Instantiate(secondBall);
-                secondBall1.transform.position = transform.position - new Vector3(3, 0, 0);
+                secondBall1.transform.position = transform.position;
                 Rigidbody rb = secondBall1.GetComponent<Rigidbody>();
                 //rb = GetComponent<Rigidbody>();
-                rb.velocity = vel;
-                GetComponent<Rigidbody>().velocity = vel;
-                transform.position = transform.position + new Vector3(3, 0, 0);
-                GetComponent<Rigidbody>().velocity = vel;
+                rb.velocity = vel - new Vector3(5, 0, 0);
+                
+                //transform.position = transform.position + new Vector3(3, 0, 0);
+                GetComponent<Rigidbody>().velocity = vel + new Vector3(5, 0, 0);
             }
         }
     }
@@ -46,7 +48,7 @@ public class CanSplit : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.tag == "Ball")
+        if(collision.collider.tag == "Ball" && needtoDie)
         {
             Destroy(secondBall1);
             GetComponent<Rigidbody>().velocity = Vector3.zero;
