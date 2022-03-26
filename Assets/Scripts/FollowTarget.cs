@@ -13,6 +13,9 @@ public class FollowTarget : MonoBehaviour
 	bool following = false;
 	Subscription<BallThrownEvent> ball_thrown_sub;
 	Subscription<BallAtRestEvent> ball_rest_sub;
+	Subscription<TeleportEvent> teleport_sub;
+	Subscription<UpdateCameraRotationEvent> camera_rotation_subcription;
+
 
 	// Use this for initialization
 	void Start()
@@ -20,6 +23,8 @@ public class FollowTarget : MonoBehaviour
 		UpdateOffsets();
 		ball_thrown_sub = EventBus.Subscribe<BallThrownEvent>(OnBallThrown);
 		ball_rest_sub = EventBus.Subscribe<BallAtRestEvent>(OnBallAtRest);
+		teleport_sub = EventBus.Subscribe<TeleportEvent>(OnTeleport);
+		camera_rotation_subcription = EventBus.Subscribe<UpdateCameraRotationEvent>(OnUpdateCamera);
 	}
 
 	void OnDestroy()
@@ -50,5 +55,18 @@ public class FollowTarget : MonoBehaviour
 	void OnBallAtRest(BallAtRestEvent e)
 	{
 		following = false;
+	}
+
+	void OnTeleport(TeleportEvent e)
+    {
+		if (e.t1 != null)
+        {
+			Camera.main.transform.position = e.t2.position + follow_offset;
+        }
+    }
+
+	void OnUpdateCamera(UpdateCameraRotationEvent e)
+	{
+		
 	}
 }
