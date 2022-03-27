@@ -38,8 +38,8 @@ public class FollowTarget : MonoBehaviour
 
 	void UpdateOffsets()
 	{
-		shot_offset = -4.5f * transform.forward + 2f * Vector3.up;
-		follow_offset = -2.5f * transform.forward + 1f * Vector3.up;
+		shot_offset = -7.5f * transform.forward + 2.5f * Vector3.up;
+		follow_offset = -4.5f * transform.forward + 1.5f * Vector3.up;
 	}
 
 	void OnBallThrown(BallThrownEvent e)

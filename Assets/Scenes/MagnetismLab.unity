@@ -4973,7 +4973,7 @@ MonoBehaviour:
   target: {fileID: 133742049}
   shot_offset: {x: 0, y: 0, z: 0}
   follow_offset: {x: 0, y: 0, z: 0}
-  ease_factor: 0.1
+  ease_factor: 0.05
 --- !u!114 &2035566200
 MonoBehaviour:
   m_ObjectHideFlags: 0
