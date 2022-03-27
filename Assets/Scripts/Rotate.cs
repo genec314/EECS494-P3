@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rotate : MonoBehaviour
 {
-    public float degreesPerSecond;
+    public float degreesPerFrame;
 
     Transform tf;
 
@@ -17,6 +17,7 @@ public class Rotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        tf.Rotate(0, degreesPerSecond, 0);
+        tf.Rotate(0, degreesPerFrame * Time.deltaTime, 0);
+        Debug.Log(Time.deltaTime);
     }
 }
