@@ -8,7 +8,7 @@ public class DrawPath : MonoBehaviour
     public LayerMask pinsLayer;
     LineRenderer line;
     Transform tf;
-    Subscription<BallAtRestEvent> rest_sub;
+    Subscription<BallReadyEvent> ready_sub;
     Subscription<BallThrownEvent> throw_sub;
 
     // Start is called before the first frame update
@@ -17,7 +17,7 @@ public class DrawPath : MonoBehaviour
         line = GetComponent<LineRenderer>();
         tf = GetComponent<Transform>();
 
-        rest_sub = EventBus.Subscribe<BallAtRestEvent>(EnableAtRest);
+        ready_sub = EventBus.Subscribe<BallReadyEvent>(EnableAtReady);
         throw_sub = EventBus.Subscribe<BallThrownEvent>(DisableAtThrow);
     }
 
@@ -48,7 +48,7 @@ public class DrawPath : MonoBehaviour
         line.SetPositions(positions.ToArray());
     }
 
-    void EnableAtRest(BallAtRestEvent e)
+    void EnableAtReady(BallReadyEvent e)
     {
         line.enabled = true;
     }

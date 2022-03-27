@@ -21,6 +21,11 @@ public class BallAtRestEvent
     public BallAtRestEvent() {}
 }
 
+public class BallReadyEvent
+{
+    public BallReadyEvent() {}
+}
+
 public class PinKnockedOverEvent
 {
     public int id;

@@ -13,6 +13,7 @@ public class BallSoundControl : MonoBehaviour
 
     Subscription<BallThrownEvent> throw_sub;
     Subscription<BallAtRestEvent> rest_sub;
+    Subscription<BallReadyEvent> ready_sub;
     bool is_moving = false;
 
     // Start is called before the first frame update
@@ -21,6 +22,7 @@ public class BallSoundControl : MonoBehaviour
         audiosource = GetComponent<AudioSource>();
         throw_sub = EventBus.Subscribe<BallThrownEvent>(OnBallThrown);
         rest_sub = EventBus.Subscribe<BallAtRestEvent>(OnBallAtRest);
+        ready_sub = EventBus.Subscribe<BallReadyEvent>(OnBallReady);
     }
 
     void OnBallThrown(BallThrownEvent e)
@@ -35,6 +37,10 @@ public class BallSoundControl : MonoBehaviour
         is_moving = false;
         audiosource.enabled = false;
         audiosource.loop = false;
+    }
+
+    void OnBallReady(BallReadyEvent e)
+    {
         AudioSource.PlayClipAtPoint(ready, Camera.main.transform.position);
     }
 

@@ -12,20 +12,20 @@ public class FollowTarget : MonoBehaviour
 
 	bool following = false;
 	Subscription<BallThrownEvent> ball_thrown_sub;
-	Subscription<BallAtRestEvent> ball_rest_sub;
+	Subscription<BallReadyEvent> ball_ready_sub;
 
 	// Use this for initialization
 	void Start()
 	{
 		UpdateOffsets();
 		ball_thrown_sub = EventBus.Subscribe<BallThrownEvent>(OnBallThrown);
-		ball_rest_sub = EventBus.Subscribe<BallAtRestEvent>(OnBallAtRest);
+		ball_ready_sub = EventBus.Subscribe<BallReadyEvent>(OnBallReady);
 	}
 
 	void OnDestroy()
 	{
 		EventBus.Unsubscribe<BallThrownEvent>(ball_thrown_sub);
-		EventBus.Unsubscribe<BallAtRestEvent>(ball_rest_sub);
+		EventBus.Unsubscribe<BallReadyEvent>(ball_ready_sub);
 	}
 
 	// Update is called once per frame
@@ -38,8 +38,8 @@ public class FollowTarget : MonoBehaviour
 
 	void UpdateOffsets()
 	{
-		shot_offset = -3.5f * transform.forward + 0.75f * Vector3.up;
-		follow_offset = -2f * transform.forward + 0.4f * Vector3.up;
+		shot_offset = -4.5f * transform.forward + 2f * Vector3.up;
+		follow_offset = -2.5f * transform.forward + 1f * Vector3.up;
 	}
 
 	void OnBallThrown(BallThrownEvent e)
@@ -47,7 +47,7 @@ public class FollowTarget : MonoBehaviour
 		following = true;
     }
 
-	void OnBallAtRest(BallAtRestEvent e)
+	void OnBallReady(BallReadyEvent e)
 	{
 		following = false;
 	}

@@ -30,7 +30,7 @@ public class RollBall : MonoBehaviour
 
     RollBall instance;
 
-    Subscription<BallAtRestEvent> rest_subscription;
+    Subscription<BallReadyEvent> ready_subscription;
     Subscription<EndHoleEvent> end_hole_subscription;
     Subscription<NewHoleEvent> new_hole_subscription;
     
@@ -58,14 +58,14 @@ public class RollBall : MonoBehaviour
 
         ResetBar();
 
-        rest_subscription = EventBus.Subscribe<BallAtRestEvent>(CheckForMove);
+        ready_subscription = EventBus.Subscribe<BallReadyEvent>(CheckForMove);
         end_hole_subscription = EventBus.Subscribe<EndHoleEvent>(EndHole);
         new_hole_subscription = EventBus.Subscribe<NewHoleEvent>(NewHole);
     }
 
     void OnDestroy()
     {
-        EventBus.Unsubscribe<BallAtRestEvent>(rest_subscription);
+        EventBus.Unsubscribe<BallReadyEvent>(ready_subscription);
     }
 
     // Update is called once per frame
@@ -75,7 +75,7 @@ public class RollBall : MonoBehaviour
         if (canMove && !holeTransition) ControlBar();
     }
 
-    void CheckForMove(BallAtRestEvent e)
+    void CheckForMove(BallReadyEvent e)
     {
         canMove = true;
     }

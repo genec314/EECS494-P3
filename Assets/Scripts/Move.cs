@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
+    public float ready_delay = 2f;
     Rigidbody rb;
     Transform tf;
     float last_thrown_time;
+    bool at_rest = true;
     Subscription<BallThrownEvent> thrown_subscription;
 
     // Start is called before the first frame update
@@ -25,11 +27,13 @@ public class Move : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!RollBall.canMove && Time.time > last_thrown_time + 0.5f && rb.velocity.magnitude < 1f)
+        if (!at_rest && Time.time > last_thrown_time + 0.5f && rb.velocity.magnitude < 1f)
         {
+            at_rest = true;
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             EventBus.Publish<BallAtRestEvent>(new BallAtRestEvent());
+            StartCoroutine(WaitThenPublishEvent());
         }
     }
 
@@ -37,5 +41,12 @@ public class Move : MonoBehaviour
     {
         rb.AddForce(tf.transform.forward * e.velocity);
         last_thrown_time = Time.time;
+        at_rest = false;
+    }
+
+    IEnumerator WaitThenPublishEvent()
+    {
+        yield return new WaitForSeconds(ready_delay);
+        EventBus.Publish<BallReadyEvent>(new BallReadyEvent());
     }
 }
