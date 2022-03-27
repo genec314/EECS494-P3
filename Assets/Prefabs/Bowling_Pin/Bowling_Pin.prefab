@@ -302,6 +302,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c358d31e424241fe9b22eafdb3420d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pin_id: 0
+  fadeSpeed: 1
+  knockdown_sound: {fileID: 8300000, guid: 850bb19e5bf806d4e84162f493f09e36, type: 3}
 --- !u!1 &5279766482888338030
 GameObject:
   m_ObjectHideFlags: 0

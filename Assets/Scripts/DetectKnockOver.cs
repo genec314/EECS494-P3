@@ -5,7 +5,8 @@ using UnityEngine;
 public class DetectKnockOver : MonoBehaviour
 {
     public int pin_id;
-    public float fadeSpeed = 5f;
+    public float fadeSpeed = 1f;
+    public AudioClip knockdown_sound;
     Transform tf;
     bool knockedOver = false;
     MeshRenderer[] pin_renderers;
@@ -27,6 +28,7 @@ public class DetectKnockOver : MonoBehaviour
             knockedOver = true;
             PinKnockedOverEvent knock = new PinKnockedOverEvent(pin_id);
             EventBus.Publish(knock);
+            AudioSource.PlayClipAtPoint(knockdown_sound, transform.position, 0.25f);
         }
     }
 
@@ -34,7 +36,6 @@ public class DetectKnockOver : MonoBehaviour
     {
         if (knockedOver && GetComponent<MeshCollider>().enabled == true)
         {
-            GetComponent<MeshCollider>().enabled = false;
             for (int i = 0; i < pin_renderers.Length; i++)
             {
                 StartCoroutine(FadeOut(pin_renderers[i]));
@@ -53,5 +54,6 @@ public class DetectKnockOver : MonoBehaviour
             renderer.material.color = objectColor;
             yield return null;
         }
+        GetComponent<MeshCollider>().enabled = false;
     }
 }

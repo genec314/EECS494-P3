@@ -7,10 +7,78 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 487161534, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 487161534, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.22223401
+      objectReference: {fileID: 0}
+    - target: {fileID: 487161534, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 487161534, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].inSlope
+      value: -0.26063257
+      objectReference: {fileID: 0}
+    - target: {fileID: 487161534, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].inSlope
+      value: -0.19737007
+      objectReference: {fileID: 0}
+    - target: {fileID: 487161534, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].outSlope
+      value: -0.26063257
+      objectReference: {fileID: 0}
+    - target: {fileID: 487161534, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].inWeight
+      value: 0.08661425
+      objectReference: {fileID: 0}
+    - target: {fileID: 487161534, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].outSlope
+      value: -0.19737007
+      objectReference: {fileID: 0}
+    - target: {fileID: 487161534, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].outWeight
+      value: 0.098425195
+      objectReference: {fileID: 0}
+    - target: {fileID: 487161538, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.4038912
+      objectReference: {fileID: 0}
+    - target: {fileID: 487161538, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].inSlope
+      value: -0.3197046
+      objectReference: {fileID: 0}
+    - target: {fileID: 487161538, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].inSlope
+      value: -0.32333127
+      objectReference: {fileID: 0}
+    - target: {fileID: 487161538, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].outSlope
+      value: -0.3197046
+      objectReference: {fileID: 0}
+    - target: {fileID: 487161538, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].inWeight
+      value: 0.09251976
+      objectReference: {fileID: 0}
+    - target: {fileID: 487161538, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].outSlope
+      value: -0.32333127
+      objectReference: {fileID: 0}
+    - target: {fileID: 487161538, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].outWeight
+      value: 0.1003937
+      objectReference: {fileID: 0}
     - target: {fileID: 768819490641859164, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b75a38301b0f44ff2b45e121b66db18c, type: 2}
+    - target: {fileID: 4148546843224160583, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Drag
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8508937397985018120, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -69,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8625950222128772248, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
       propertyPath: m_Name
-      value: ElectricBall
+      value: ElectricBall Variant
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6016023198912660834, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
@@ -79,18 +147,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8625950222128772248, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
   m_PrefabInstance: {fileID: 7552832299938196052}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &462504314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2262079094571556556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c15272b5219214b84a256e0299a6c42b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &567049513177805869
 MonoBehaviour:
   m_ObjectHideFlags: 0

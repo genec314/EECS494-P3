@@ -225,6 +225,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!4 &46468868 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2217140522337086300, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
+  m_PrefabInstance: {fileID: 2011438618}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &75966934
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,6 +1593,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1277246534, guid: 72ef117baef0443b09abe49b7f86f91d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 180992215317405148, guid: 72ef117baef0443b09abe49b7f86f91d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 277202520986882489, guid: 72ef117baef0443b09abe49b7f86f91d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 631144761837328802, guid: 72ef117baef0443b09abe49b7f86f91d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 746048943683545026, guid: 72ef117baef0443b09abe49b7f86f91d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1675,6 +1696,30 @@ PrefabInstance:
     - target: {fileID: 746048943683545030, guid: 72ef117baef0443b09abe49b7f86f91d, type: 3}
       propertyPath: m_Name
       value: PinsRemainingUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575871546914578111, guid: 72ef117baef0443b09abe49b7f86f91d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5264042644311461350, guid: 72ef117baef0443b09abe49b7f86f91d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329927132802040125, guid: 72ef117baef0443b09abe49b7f86f91d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807992783621348577, guid: 72ef117baef0443b09abe49b7f86f91d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6668287958371728094, guid: 72ef117baef0443b09abe49b7f86f91d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139909007910653357, guid: 72ef117baef0443b09abe49b7f86f91d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72ef117baef0443b09abe49b7f86f91d, type: 3}
@@ -1893,8 +1938,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: ElectricBall Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 462504314, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
 --- !u!1 &2035566194
 GameObject:
@@ -1994,7 +2038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61c36eafa5a440c29a5ecc9b9dfcc30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 462504320}
+  target: {fileID: 46468868}
 --- !u!114 &2035566199
 MonoBehaviour:
   m_ObjectHideFlags: 0

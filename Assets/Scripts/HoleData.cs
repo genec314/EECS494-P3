@@ -75,7 +75,7 @@ public class HoleData : MonoBehaviour
             }
         }
 
-        if (numberOfShots == shots_taken && current_hole)
+        if ((numberOfShots == shots_taken || numPins == 0) && current_hole)
         {
             if (!inTransition)
             {
