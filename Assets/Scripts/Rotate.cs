@@ -18,6 +18,5 @@ public class Rotate : MonoBehaviour
     void Update()
     {
         tf.Rotate(0, degreesPerFrame * Time.deltaTime, 0);
-        Debug.Log(Time.deltaTime);
     }
 }
