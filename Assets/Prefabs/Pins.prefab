@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 6815476689379671242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.15, y: 0.5, z: 0.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 2292171960540123057}
   - {fileID: 2292171960047162828}
@@ -151,7 +151,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1551175508, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
       propertyPath: pin_id
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 705806897293211581, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
       propertyPath: m_Layer
@@ -453,7 +453,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1551175508, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
       propertyPath: pin_id
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 705806897293211581, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
       propertyPath: m_Layer
@@ -555,7 +555,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1551175508, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
       propertyPath: pin_id
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 705806897293211581, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
       propertyPath: m_Layer
@@ -657,7 +657,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1551175508, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
       propertyPath: pin_id
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 705806897293211581, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
       propertyPath: m_Layer
@@ -861,7 +861,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1551175508, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
       propertyPath: pin_id
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 705806897293211581, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
       propertyPath: m_Layer

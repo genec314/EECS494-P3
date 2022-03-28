@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3220584, g: 0.3536311, b: 0.35524917, a: 1}
+  m_IndirectSpecularColor: {r: 0.3220587, g: 0.3536289, b: 0.35525087, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6729,7 +6729,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0ae565aa8cfd44a43878d5406be68669, type: 2}
+  - {fileID: 2100000, guid: cbfe26970e2306a4a9c85df7a9145542, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9244,18 +9244,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6815476689379671243, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6815476689379671243, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6815476689379671243, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6815476689379671243, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
       propertyPath: m_LocalPosition.x
       value: -19.807476
       objectReference: {fileID: 0}
@@ -9575,6 +9563,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1932702095}
     m_Modifications:
+    - target: {fileID: 6815476687726920503, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
+      propertyPath: pin_id
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6815476688107630622, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
+      propertyPath: pin_id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6815476688178658925, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
+      propertyPath: pin_id
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6815476688303793887, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
+      propertyPath: pin_id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6815476688542065501, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
+      propertyPath: pin_id
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6815476688579318797, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
+      propertyPath: pin_id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6815476688605013711, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
+      propertyPath: pin_id
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6815476688742917136, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
+      propertyPath: pin_id
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6815476689218062263, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
+      propertyPath: pin_id
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6815476689379671242, guid: 3b4fcec7fa873e8478677ea0897ba490, type: 3}
       propertyPath: m_Name
       value: Pins
