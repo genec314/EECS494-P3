@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c4aeaff36baf4be5adf11d8d359bc21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialUI: {fileID: 0}
+  tutorialUI: {fileID: 321731481}
 --- !u!4 &33253629
 Transform:
   m_ObjectHideFlags: 0
@@ -1150,7 +1150,7 @@ MonoBehaviour:
   numPins: 10
   numberOfShots: 3
   ball: {fileID: 0}
-  holeNumber: 2
+  holeNumber: 3
   nextHole: {fileID: 0}
   current_hole: 0
 --- !u!4 &591873620
