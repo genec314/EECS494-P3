@@ -19,6 +19,7 @@ public class HoleData : MonoBehaviour
     Subscription<PinKnockedOverEvent> pin_subscription;
     Subscription<BallThrownEvent> thrown_subscription;
     Subscription<BallAtRestEvent> ball_rest_subscription;
+    Subscription<ResetShotEvent> reset_shot_subscription;
     public bool current_hole = false;
     private bool inTransition = false;
 
@@ -31,6 +32,7 @@ public class HoleData : MonoBehaviour
         pin_subscription = EventBus.Subscribe<PinKnockedOverEvent>(DecreasePins);
         thrown_subscription = EventBus.Subscribe<BallThrownEvent>(IncreaseShots);
         ball_rest_subscription = EventBus.Subscribe<BallAtRestEvent>(BallRest);
+        reset_shot_subscription = EventBus.Subscribe<ResetShotEvent>(ResetShot);
     }
 
     // Update is called once per frame
@@ -175,5 +177,14 @@ public class HoleData : MonoBehaviour
     public int[] GetScoresByShot()
     {
         return pointsOnShot;
+    }
+
+    private void ResetShot(ResetShotEvent e)
+    {
+        Debug.Log("Here1");
+        if (current_hole && e.position.x == -999)
+        {
+            EventBus.Publish(new ResetShotEvent(initialBallPos));
+        }
     }
 }

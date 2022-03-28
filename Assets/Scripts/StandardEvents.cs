@@ -130,3 +130,18 @@ public class UpdateCameraRotationEvent
 
     }
 }
+
+public class ResetShotEvent {
+
+    public Vector3 position = new Vector3(-999, -999, -999);
+
+    public ResetShotEvent()
+    {
+
+    }
+
+    public ResetShotEvent(Vector3 _position)
+    {
+        position = _position;
+    }
+}
