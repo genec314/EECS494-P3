@@ -613,7 +613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2217140522337086300, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2217140522337086300, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
       propertyPath: m_LocalPosition.y
@@ -621,7 +621,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2217140522337086300, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.5
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 2217140522337086300, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
       propertyPath: m_LocalRotation.w
@@ -656,8 +656,16 @@ PrefabInstance:
       value: ElectricBall
       objectReference: {fileID: 0}
     - target: {fileID: 5855688499794547475, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
+      propertyPath: m_Drag
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5855688499794547475, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
       propertyPath: m_UseGravity
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5855688499794547475, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7552832299987948695, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
       propertyPath: length
@@ -1136,8 +1144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f1234cf9e7ed1b4896f8a8408394fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBallPos: {x: 40, y: 0.5, z: 7.4}
-  initialCameraPos: {x: 22, y: 5, z: -2.5}
+  initialBallPos: {x: 40, y: 0.5, z: 7.5}
+  initialCameraPos: {x: 40, y: 5, z: -2.5}
   initalCameraRotation: {x: 20, y: 0, z: 0}
   numPins: 10
   numberOfShots: 3
@@ -1695,7 +1703,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 97.5}
+  m_AnchoredPosition: {x: 0, y: 85}
   m_SizeDelta: {x: 275, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1109933209
@@ -1718,7 +1726,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Use A/D or the arrow keys to aim your shot!
+  m_text: Here are some concept holes with unfinished mechanics!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 712130399272e3943a0407bac896d796, type: 2}
   m_sharedMaterial: {fileID: -8894326751415071028, guid: 712130399272e3943a0407bac896d796, type: 2}

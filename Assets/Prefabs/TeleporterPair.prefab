@@ -47,6 +47,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeleporterContainer1
       objectReference: {fileID: 0}
+    - target: {fileID: 6347728707654292469, guid: 0a30229279ffb461aa3d0e0a945aa29f, type: 3}
+      propertyPath: m_Size.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347728707654292469, guid: 0a30229279ffb461aa3d0e0a945aa29f, type: 3}
+      propertyPath: m_Size.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347728707654292469, guid: 0a30229279ffb461aa3d0e0a945aa29f, type: 3}
+      propertyPath: m_Size.z
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 9077215555505102886, guid: 0a30229279ffb461aa3d0e0a945aa29f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -117,6 +129,18 @@ PrefabInstance:
     - target: {fileID: 5586350305849665035, guid: 0a30229279ffb461aa3d0e0a945aa29f, type: 3}
       propertyPath: m_Name
       value: TeleporterContainer2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347728707654292469, guid: 0a30229279ffb461aa3d0e0a945aa29f, type: 3}
+      propertyPath: m_Size.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347728707654292469, guid: 0a30229279ffb461aa3d0e0a945aa29f, type: 3}
+      propertyPath: m_Size.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6347728707654292469, guid: 0a30229279ffb461aa3d0e0a945aa29f, type: 3}
+      propertyPath: m_Size.z
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 9077215555505102886, guid: 0a30229279ffb461aa3d0e0a945aa29f, type: 3}
       propertyPath: m_RootOrder
