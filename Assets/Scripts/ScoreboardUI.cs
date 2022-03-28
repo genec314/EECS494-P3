@@ -22,8 +22,8 @@ public class ScoreboardUI : MonoBehaviour
     private bool strikeOnLastHole = false;
     private bool strikeBeforeLastHole = false;
     private bool spareOnLastHole = false;
-    private int[] scores = new int[10] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    private GameObject[] textScores = new GameObject[5];
+    private int[] scores = new int[11] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private GameObject[] textScores = new GameObject[11];
 
     private int totalScore;
     private int currentHoleScore;
@@ -158,7 +158,7 @@ public class ScoreboardUI : MonoBehaviour
         }
 
         // HARDCODED FOR NOW
-        textScores[4].GetComponent<TextMeshProUGUI>().text = sum.ToString();
+        textScores[10].GetComponent<TextMeshProUGUI>().text = sum.ToString();
     }
 
     IEnumerator ShowText(GameObject gameObject)

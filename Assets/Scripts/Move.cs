@@ -8,6 +8,7 @@ public class Move : MonoBehaviour
     Transform tf;
     float last_thrown_time;
     Subscription<BallThrownEvent> thrown_subscription;
+    Subscription<ResetShotEvent> reset_shot_subscription;
 
     // Start is called before the first frame update
     void Awake()
@@ -16,6 +17,7 @@ public class Move : MonoBehaviour
         tf = this.GetComponent<Transform>();
         last_thrown_time = Time.time - 1;
         thrown_subscription = EventBus.Subscribe<BallThrownEvent>(ThrowBall);
+        reset_shot_subscription = EventBus.Subscribe<ResetShotEvent>(ResetShot);
     }
 
     void OnDestroy()
@@ -37,5 +39,16 @@ public class Move : MonoBehaviour
     {
         rb.AddForce(tf.transform.forward * e.velocity);
         last_thrown_time = Time.time;
+    }
+
+    void ResetShot(ResetShotEvent e)
+    {
+        Debug.Log("Here2");
+        if (e.position.x != -999)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            tf.position = e.position;
+        }
     }
 }
