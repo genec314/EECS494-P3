@@ -119,6 +119,9 @@ public class HoleData : MonoBehaviour
             nextHole.GetComponent<HoleData>().current_hole = true;
         }
 
+        // so justTeleported = false	
+        EventBus.Publish(new TeleportEvent());
+
         if (nextHole == null)
         {
             EventBus.Publish(new LoadNextLevelEvent());
