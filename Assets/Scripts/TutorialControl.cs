@@ -10,7 +10,7 @@ public class TutorialControl : MonoBehaviour
 
     Subscription<BallThrownEvent> ball_thrown_sub;
     Subscription<PinKnockedOverEvent> pin_knocked_sub;
-    Subscription<BallAtRestEvent> ball_rest_subscription;
+    Subscription<BallReadyEvent> ball_ready_subscription;
 
     GameObject UI;
 
@@ -28,7 +28,7 @@ public class TutorialControl : MonoBehaviour
         instance = this.gameObject;
         ball_thrown_sub = EventBus.Subscribe<BallThrownEvent>(_OnBallThrown);
         pin_knocked_sub = EventBus.Subscribe<PinKnockedOverEvent>(_OnPinKnocked);
-        ball_rest_subscription = EventBus.Subscribe<BallAtRestEvent>(_OnBallRest);
+        ball_ready_subscription = EventBus.Subscribe<BallReadyEvent>(_OnBallReady);
         UI = GameObject.Find("TutorialUI");
     }
 
@@ -52,7 +52,7 @@ public class TutorialControl : MonoBehaviour
         }
     }
 
-    void _OnBallRest(BallAtRestEvent e)
+    void _OnBallReady(BallReadyEvent e)
     {
         if (pins_down < 10)
         {
