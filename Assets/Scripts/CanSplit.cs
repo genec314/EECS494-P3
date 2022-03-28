@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class CanSplit : MonoBehaviour
 {
-
     bool isSplit = false;
     public GameObject secondBall;
     GameObject secondBall1;
     [SerializeField] float joinSpeed = 5;
     bool needtoDie = false;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         
     }
@@ -19,14 +18,21 @@ public class CanSplit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (needtoDie)
+        {
+            secondBall1.GetComponent<Rigidbody>().velocity = (transform.position - secondBall1.transform.position).normalized * joinSpeed;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && !needtoDie)
         {
             if (isSplit)
             {
                 needtoDie = true;
+                secondBall1.GetComponent<Rigidbody>().useGravity = false;
+                secondBall1.gameObject.layer = 7;
                 //Bring them back together
                 //GetComponent<Rigidbody>().velocity = (secondBall1.transform.position - transform.position) * joinSpeed ;
-                secondBall1.GetComponent<Rigidbody>().velocity = (transform.position - secondBall1.transform.position) * joinSpeed;
+                secondBall1.GetComponent<Rigidbody>().velocity = (transform.position - secondBall1.transform.position).normalized * joinSpeed;
                 
             }
             else
@@ -46,12 +52,12 @@ public class CanSplit : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.collider.tag == "Ball" && needtoDie)
+        if(other.transform.parent.CompareTag("Ball") && needtoDie)
         {
             Destroy(secondBall1);
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            // GetComponent<Rigidbody>().velocity = Vector3.zero;
             this.enabled = false;
         }
     }
