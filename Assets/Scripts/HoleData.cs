@@ -18,8 +18,8 @@ public class HoleData : MonoBehaviour
     [SerializeField] GameObject nextHole;
     Subscription<PinKnockedOverEvent> pin_subscription;
     Subscription<BallThrownEvent> thrown_subscription;
-    Subscription<BallAtRestEvent> ball_rest_subscription;
     Subscription<ResetShotEvent> reset_shot_subscription;
+    Subscription<BallReadyEvent> ball_ready_subscription;
     public bool current_hole = false;
     private bool inTransition = false;
 
@@ -31,8 +31,8 @@ public class HoleData : MonoBehaviour
     {
         pin_subscription = EventBus.Subscribe<PinKnockedOverEvent>(DecreasePins);
         thrown_subscription = EventBus.Subscribe<BallThrownEvent>(IncreaseShots);
-        ball_rest_subscription = EventBus.Subscribe<BallAtRestEvent>(BallRest);
         reset_shot_subscription = EventBus.Subscribe<ResetShotEvent>(ResetShot);
+        ball_ready_subscription = EventBus.Subscribe<BallReadyEvent>(BallReady);
     }
 
     // Update is called once per frame
@@ -49,16 +49,16 @@ public class HoleData : MonoBehaviour
         }
 
         numPins--;
-        if(numPins == 0)
-        {
-            if (!inTransition)
-            {
-                StartCoroutine(GoToNextHole());
-            }
-        }
+        // if(numPins == 0)
+        // {
+        //     if (!inTransition)
+        //     {
+        //         StartCoroutine(GoToNextHole());
+        //     }
+        // }
     }
 
-    private void BallRest(BallAtRestEvent e)
+    private void BallReady(BallReadyEvent e)
     {
         // takes into account that shots_taken was already incremented
         if (current_hole)
@@ -77,7 +77,7 @@ public class HoleData : MonoBehaviour
             }
         }
 
-        if (numberOfShots == shots_taken && current_hole)
+        if ((numberOfShots == shots_taken || numPins == 0) && current_hole)
         {
             if (!inTransition)
             {

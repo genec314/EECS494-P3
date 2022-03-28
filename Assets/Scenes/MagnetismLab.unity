@@ -4973,7 +4973,7 @@ MonoBehaviour:
   target: {fileID: 133742049}
   shot_offset: {x: 0, y: 0, z: 0}
   follow_offset: {x: 0, y: 0, z: 0}
-  ease_factor: 0.01
+  ease_factor: 0.05
 --- !u!114 &2035566200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5315,6 +5315,18 @@ PrefabInstance:
     - target: {fileID: 2262079094571556556, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
       propertyPath: m_Name
       value: ElectricBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5855688499794547475, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
+      propertyPath: m_Drag
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5855688499794547475, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5855688499794547475, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7552832299987948695, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
       propertyPath: length

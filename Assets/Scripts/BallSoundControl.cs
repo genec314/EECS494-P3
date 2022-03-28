@@ -13,7 +13,7 @@ public class BallSoundControl : MonoBehaviour
 
     Subscription<BallThrownEvent> throw_sub;
     Subscription<BallAtRestEvent> rest_sub;
-    bool is_moving = false;
+    Subscription<BallReadyEvent> ready_sub;
 
     // Start is called before the first frame update
     void Start()
@@ -21,20 +21,23 @@ public class BallSoundControl : MonoBehaviour
         audiosource = GetComponent<AudioSource>();
         throw_sub = EventBus.Subscribe<BallThrownEvent>(OnBallThrown);
         rest_sub = EventBus.Subscribe<BallAtRestEvent>(OnBallAtRest);
+        ready_sub = EventBus.Subscribe<BallReadyEvent>(OnBallReady);
     }
 
     void OnBallThrown(BallThrownEvent e)
     {
-        is_moving = true;
         audiosource.enabled = true;
         StartCoroutine(PlayRollSound());
     }
 
     void OnBallAtRest(BallAtRestEvent e)
     {
-        is_moving = false;
         audiosource.enabled = false;
         audiosource.loop = false;
+    }
+
+    void OnBallReady(BallReadyEvent e)
+    {
         AudioSource.PlayClipAtPoint(ready, Camera.main.transform.position);
     }
 
@@ -46,13 +49,5 @@ public class BallSoundControl : MonoBehaviour
         audiosource.clip = roll_loop;
         audiosource.loop = true;
         audiosource.Play();
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.gameObject.CompareTag("Pin") && is_moving && collision.collider.gameObject.transform.up.y >= 0.5f)
-        {
-            AudioSource.PlayClipAtPoint(pin_knockdown_sound, transform.position, 0.25f);
-        }
     }
 }

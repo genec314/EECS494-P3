@@ -7,3 +7,4 @@ bowling pin knockdown sound - https://www.youtube.com/watch?v=14WcHFPaJio
 Bowling neon sign- https://www.everythingneon.com/proddetail.php?prod=n105-0113-bowling-neon-sign
 Icon made from http://www.onlinewebfonts.com/icon. Icon Fonts is licensed by CC BY 3.0 - plus sign and minus sign
 Lightning bolt aesthetics and controller - https://assetstore.unity.com/packages/tools/particles-effects/lightning-bolt-effect-for-unity-59471
+bowling pin fade out - https://owlcation.com/stem/How-to-fade-out-a-GameObject-in-Unity
