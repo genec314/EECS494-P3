@@ -1136,8 +1136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f1234cf9e7ed1b4896f8a8408394fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBallPos: {x: 22, y: 0.5, z: 8}
-  initialCameraPos: {x: 22, y: 5, z: -8}
+  initialBallPos: {x: 40, y: 0.5, z: 7.4}
+  initialCameraPos: {x: 22, y: 5, z: -2.5}
   initalCameraRotation: {x: 20, y: 0, z: 0}
   numPins: 10
   numberOfShots: 3
