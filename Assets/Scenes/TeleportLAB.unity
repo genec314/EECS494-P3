@@ -2361,7 +2361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1681502448, guid: b938e30920a5a9147bfa4c4eedbac900, type: 3}
       propertyPath: power
-      value: 10000
+      value: 15000
       objectReference: {fileID: 0}
     - target: {fileID: 1681502448, guid: b938e30920a5a9147bfa4c4eedbac900, type: 3}
       propertyPath: bar_velocity
