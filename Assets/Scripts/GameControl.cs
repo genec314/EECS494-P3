@@ -14,6 +14,7 @@ public class GameControl : MonoBehaviour
 
     private int level;
 
+
     void Start()
     {
         if (instance == null)
@@ -74,4 +75,7 @@ public class GameControl : MonoBehaviour
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(level_num);
     }
+
+
 }
+

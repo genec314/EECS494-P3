@@ -29,6 +29,7 @@ public class RollBall : MonoBehaviour
     Vector3 bot;
 
     RollBall instance;
+    HomeWorldControl hwc;
 
     Subscription<BallReadyEvent> ready_subscription;
     Subscription<EndHoleEvent> end_hole_subscription;
@@ -51,6 +52,7 @@ public class RollBall : MonoBehaviour
         meter.SetActive(false);
         bar.SetActive(false);
 
+        hwc = GameObject.Find("HomeWorldManager").GetComponent<HomeWorldControl>();
         RectTransform rt = meter.GetComponentInChildren<RectTransform>();
 
         top = new Vector3(rt.localPosition.x, rt.rect.height - 10, 0);
