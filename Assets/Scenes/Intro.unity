@@ -518,7 +518,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a8164e82ee0379e4c92c6681a99e0381, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c928c89ffc979f4997f00fe130723c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -901,6 +901,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284247462}
   m_CullTransparentMesh: 1
+--- !u!1 &304099272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 304099273}
+  - component: {fileID: 304099275}
+  - component: {fileID: 304099274}
+  m_Layer: 5
+  m_Name: Check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &304099273
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304099272}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 248616149}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 180, y: 0}
+  m_SizeDelta: {x: 40, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &304099274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304099272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 1c8d767d92861334e82a02c049927359, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &304099275
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304099272}
+  m_CullTransparentMesh: 1
 --- !u!1 &423815900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,6 +1339,7 @@ GameObject:
   m_Component:
   - component: {fileID: 624687355}
   - component: {fileID: 624687354}
+  - component: {fileID: 624687356}
   m_Layer: 0
   m_Name: GameControl
   m_TagString: Untagged
@@ -1297,6 +1373,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &624687356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624687353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53ec9085da07d8048a78c631186edbfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &702670592
 GameObject:
   m_ObjectHideFlags: 0
@@ -7211,7 +7299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.42745098, g: 0.68235296, b: 0.85882354, a: 0.7137255}
+  m_Color: {r: 0.3189747, g: 0.3980711, b: 0.4528302, a: 0.7137255}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7475,6 +7563,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BowlingBallBlue
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: aed9708bbbe48e34cb9780171321b1cd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aed9708bbbe48e34cb9780171321b1cd, type: 3}
 --- !u!4 &1833080487 stripped
@@ -7718,6 +7810,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7096100389286803464, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 03e767f8efc524e4785646ea0e9085d8, type: 2}
     - target: {fileID: 7552832299987948694, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -8100,6 +8196,7 @@ MonoBehaviour:
   - {fileID: 1407359274}
   - {fileID: 2046119992}
   arrow: {fileID: 1896049564}
+  check: {fileID: 304099274}
   num_balls: 4
 --- !u!1001 &2116830398
 PrefabInstance:
@@ -8179,6 +8276,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1817ee314420a014fbcbc15d26973a5a, type: 3}
       propertyPath: m_Name
       value: BowlingBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1817ee314420a014fbcbc15d26973a5a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1817ee314420a014fbcbc15d26973a5a, type: 3}

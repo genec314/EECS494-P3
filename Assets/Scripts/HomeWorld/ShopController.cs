@@ -9,6 +9,7 @@ public class ShopController : MonoBehaviour
     public GameObject[] balls;
 
     public Image arrow;
+    public Image check;
     public int num_balls = 4;
     
     struct Ball
@@ -67,12 +68,19 @@ public class ShopController : MonoBehaviour
         {
             if (inventory[cur_ball].purchased)
             {
+                check.gameObject.SetActive(true);
+                check.transform.SetParent(balls[cur_ball].transform);
+                check.transform.localPosition = new Vector3(130, 0, 0);
                 return;
             }
             balls[cur_ball].GetComponentInChildren<TextMeshProUGUI>().text = "Owned";
             inventory[cur_ball].purchased = true;
             GameObject pin = balls[cur_ball].transform.Find("Pin").gameObject;
             pin.SetActive(false);
+
+            check.gameObject.SetActive(true);
+            check.transform.SetParent(balls[cur_ball].transform);
+            check.transform.localPosition = new Vector3(130, 0, 0);
 
         }
     }
