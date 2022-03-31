@@ -1042,6 +1042,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6874944393703304282, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6874944393703304282, guid: 5f9c6b7aa1c7041b68687078e43d3f83, type: 3}
       propertyPath: m_TagString
       value: Pin
       objectReference: {fileID: 0}
