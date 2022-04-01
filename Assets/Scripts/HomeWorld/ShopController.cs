@@ -52,13 +52,13 @@ public class ShopController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.DownArrow) && cur_ball < 3)
+        if((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) && cur_ball < 3)
         {
             cur_ball += 1;
             arrow.transform.SetParent(balls[cur_ball].transform);
             arrow.transform.localPosition = new Vector3(-120, 0, 0);
         }
-        else if (Input.GetKeyDown(KeyCode.UpArrow) && cur_ball > 0)
+        else if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && cur_ball > 0)
         {
             cur_ball -= 1;
             arrow.transform.SetParent(balls[cur_ball].transform);
@@ -68,9 +68,8 @@ public class ShopController : MonoBehaviour
         {
             if (inventory[cur_ball].purchased)
             {
-                check.gameObject.SetActive(true);
-                check.transform.SetParent(balls[cur_ball].transform);
-                check.transform.localPosition = new Vector3(130, 0, 0);
+                ChangeActiveBall(cur_ball);
+
                 return;
             }
             balls[cur_ball].GetComponentInChildren<TextMeshProUGUI>().text = "Owned";
@@ -78,10 +77,20 @@ public class ShopController : MonoBehaviour
             GameObject pin = balls[cur_ball].transform.Find("Pin").gameObject;
             pin.SetActive(false);
 
-            check.gameObject.SetActive(true);
-            check.transform.SetParent(balls[cur_ball].transform);
-            check.transform.localPosition = new Vector3(130, 0, 0);
+            ChangeActiveBall(cur_ball);
 
         }
+    }
+
+    void ChangeActiveBall(int index)
+    {
+        check.gameObject.SetActive(true);
+        check.transform.SetParent(balls[cur_ball].transform);
+        check.transform.localPosition = new Vector3(130, 0, 0);
+
+        MeshRenderer ball = GameObject.Find("Player").GetComponent<MeshRenderer>();
+        string path = "Materials/Balls/" + inventory[index].color;
+        Material mat = (Material)Resources.Load(path);
+        ball.material = mat;
     }
 }

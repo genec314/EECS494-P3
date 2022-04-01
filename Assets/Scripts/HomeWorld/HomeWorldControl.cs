@@ -12,13 +12,14 @@ public class HomeWorldControl : MonoBehaviour
     Subscription<PinKnockedOverEvent> pin_knocked_sub;
     Subscription<BallReadyEvent> ball_ready_subscription;
 
-    GameObject UI;
+    public GameObject tutorial_UI;
 
     private int pins_down = 0;
     private int attempts = 0;
 
     GameObject instance;
     GameObject main_cam;
+    public GameObject fpc;
     GameObject player;
 
     private bool can_shoot = true;
@@ -38,7 +39,7 @@ public class HomeWorldControl : MonoBehaviour
         ball_ready_subscription = EventBus.Subscribe<BallReadyEvent>(_OnBallReady);
         main_cam = GameObject.Find("Main Camera");
         player = GameObject.Find("Player");
-        UI = GameObject.Find("TutorialUI");
+        tutorial_UI = GameObject.Find("TutorialUI");
     }
 
     // Update is called once per frame
@@ -49,7 +50,7 @@ public class HomeWorldControl : MonoBehaviour
 
     void _OnBallThrown(BallThrownEvent e)
     {
-        UI.SetActive(false);
+        tutorial_UI.SetActive(false);
     }
 
     void _OnPinKnocked(PinKnockedOverEvent e)
@@ -72,8 +73,8 @@ public class HomeWorldControl : MonoBehaviour
 
     void SetNextStage()
     {
-        UI.SetActive(true);
-        UI.GetComponentInChildren<TextMeshProUGUI>().text = "Hey, you're pretty good! But what about this magnetic challenge?";
+        tutorial_UI.SetActive(true);
+        tutorial_UI.GetComponentInChildren<TextMeshProUGUI>().text = "Hey, you're pretty good! But what about this magnetic challenge?";
 
         StartCoroutine(NextLevel(3f));
     }
@@ -83,7 +84,9 @@ public class HomeWorldControl : MonoBehaviour
         can_free_move = true;
         can_shoot = false;
         main_cam.SetActive(false);
+        fpc.SetActive(true);
     }
+
     IEnumerator NextLevel(float time)
     {
         yield return new WaitForSeconds(time);
@@ -94,7 +97,7 @@ public class HomeWorldControl : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(0);
-        UI.GetComponentInChildren<TextMeshProUGUI>().text = "Welcome to my bowling alley! Hold Space to Shoot!";
+        tutorial_UI.GetComponentInChildren<TextMeshProUGUI>().text = "Welcome to my bowling alley! Hold Space to Shoot!";
     }
 
     public bool CanShoot()

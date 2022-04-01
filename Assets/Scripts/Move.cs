@@ -54,7 +54,6 @@ public class Move : MonoBehaviour
 
     void ResetShot(ResetShotEvent e)
     {
-        Debug.Log("Here2");
         if (e.position.x != -999)
         {
             rb.velocity = Vector3.zero;

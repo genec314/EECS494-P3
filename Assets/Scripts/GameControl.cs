@@ -76,6 +76,9 @@ public class GameControl : MonoBehaviour
         SceneManager.LoadScene(level_num);
     }
 
-
+    public bool InTutorial()
+    {
+        return level == 0;
+    }
 }
 
