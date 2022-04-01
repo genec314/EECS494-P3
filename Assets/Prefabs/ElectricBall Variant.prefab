@@ -43,6 +43,10 @@ PrefabInstance:
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].outWeight
       value: 0.098425195
       objectReference: {fileID: 0}
+    - target: {fileID: 487161535, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 487161538, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
       value: 0.4038912

@@ -7,7 +7,6 @@ public class BallSoundControl : MonoBehaviour
     public AudioClip ready;
     public AudioClip roll_intro;
     public AudioClip roll_loop;
-    public AudioClip pin_knockdown_sound;
 
     AudioSource audiosource;
 
@@ -38,7 +37,7 @@ public class BallSoundControl : MonoBehaviour
 
     void OnBallReady(BallReadyEvent e)
     {
-        AudioSource.PlayClipAtPoint(ready, Camera.main.transform.position);
+        AudioSource.PlayClipAtPoint(ready, Camera.main.transform.position, 0.5f);
     }
 
     IEnumerator PlayRollSound()
