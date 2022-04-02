@@ -17,15 +17,23 @@ public class HomeWorldControl : MonoBehaviour
     private int pins_down = 0;
     private int attempts = 0;
 
-    GameObject instance;
+    static HomeWorldControl instance;
     GameObject main_cam;
     public GameObject fpc;
     GameObject player;
+    Vector3 playerStartPos;
 
     private bool can_shoot = true;
     public bool can_free_move = true;
     private float sensitivity = 500f;
 
+    [SerializeField]
+    public GameObject[] pinReset;
+
+    HomeWorldData data;
+    //true if the world that lane is unlocked
+    bool[] activeLanes;
+    private int cur_lane = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,13 +41,18 @@ public class HomeWorldControl : MonoBehaviour
         {
             return;
         }
-        instance = this.gameObject;
+        instance = this;
+
         ball_thrown_sub = EventBus.Subscribe<BallThrownEvent>(_OnBallThrown);
         pin_knocked_sub = EventBus.Subscribe<PinKnockedOverEvent>(_OnPinKnocked);
         ball_ready_subscription = EventBus.Subscribe<BallReadyEvent>(_OnBallReady);
         main_cam = GameObject.Find("Main Camera");
         player = GameObject.Find("Player");
+        playerStartPos = player.transform.position;
         tutorial_UI = GameObject.Find("TutorialUI");
+
+        data = GetComponent<HomeWorldData>();
+        activeLanes = data.GetActiveLanes();
     }
 
     // Update is called once per frame
@@ -58,8 +71,15 @@ public class HomeWorldControl : MonoBehaviour
         pins_down++;
         if(pins_down >= 10)
         {
-            EventBus.Publish(new TutorialStrikeEvent());
-            ExitTutorial();
+            if (activeLanes[cur_lane])
+            {
+                StartCoroutine(NextLevel(3f));
+            }
+            else
+            {
+                StartCoroutine(ExitTutorial());
+            }
+            
         }
     }
 
@@ -67,24 +87,22 @@ public class HomeWorldControl : MonoBehaviour
     {
         if (pins_down < 10)
         {
-            StartCoroutine(ResetScene());
+            EventBus.Publish(new ResetPinsEvent());
+            pins_down = 0;
+            player.transform.position = playerStartPos;
+
         }
     }
 
-    void SetNextStage()
+    IEnumerator ExitTutorial()
     {
-        tutorial_UI.SetActive(true);
-        tutorial_UI.GetComponentInChildren<TextMeshProUGUI>().text = "Hey, you're pretty good! But what about this magnetic challenge?";
-
-        StartCoroutine(NextLevel(3f));
-    }
-
-    void ExitTutorial()
-    {
+        yield return new WaitForSeconds(1.5f);
+        EventBus.Publish(new TutorialStrikeEvent());
         can_free_move = true;
         can_shoot = false;
         main_cam.SetActive(false);
         fpc.SetActive(true);
+        EventBus.Publish(new ResetPinsEvent());
     }
 
     IEnumerator NextLevel(float time)
@@ -129,4 +147,6 @@ public class HomeWorldControl : MonoBehaviour
     {
         sensitivity = _in;
     }
+
+
 }

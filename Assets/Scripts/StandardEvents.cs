@@ -150,3 +150,11 @@ public class ResetShotEvent {
         position = _position;
     }
 }
+
+public class ResetPinsEvent
+{
+    public ResetPinsEvent()
+    {
+
+    }
+}

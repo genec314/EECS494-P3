@@ -11,13 +11,29 @@ public class DetectKnockOver : MonoBehaviour
     bool knockedOver = false;
     MeshRenderer[] pin_renderers;
     Subscription<BallReadyEvent> ready_sub;
+    Subscription<ResetPinsEvent> reset_pin_sub;
 
+    Vector3 startPos;
+    Quaternion startRot;
+    Color[] startColors;
+    GameControl gc;
     // Start is called before the first frame update
     void Awake()
     {
         tf = this.GetComponent<Transform>();
         pin_renderers = GetComponentsInChildren<MeshRenderer>();
+
         ready_sub = EventBus.Subscribe<BallReadyEvent>(FadeOutWhenReady);
+        reset_pin_sub = EventBus.Subscribe<ResetPinsEvent>(_OnResetPins);
+        startPos = transform.localPosition;
+        startRot = transform.localRotation;
+        startColors = new Color[pin_renderers.Length];
+        for(int i = 0; i < pin_renderers.Length; i++)
+        {
+            startColors[i] = pin_renderers[i].material.color;
+        }
+
+        gc = GameObject.Find("GameControl").GetComponent<GameControl>();
     }
 
     // Update is called once per frame
@@ -34,7 +50,7 @@ public class DetectKnockOver : MonoBehaviour
 
     void FadeOutWhenReady(BallReadyEvent e)
     {
-        if (knockedOver && GetComponent<MeshCollider>().enabled == true)
+        if (knockedOver && !gc.InTutorial() && GetComponent<MeshCollider>().enabled == true)
         {
             for (int i = 0; i < pin_renderers.Length; i++)
             {
@@ -55,5 +71,24 @@ public class DetectKnockOver : MonoBehaviour
             yield return null;
         }
         GetComponent<MeshCollider>().enabled = false;
+    }
+
+    void _OnResetPins(ResetPinsEvent e)
+    {
+        StopAllCoroutines();
+        GetComponent<MeshCollider>().enabled = true;
+        transform.localPosition = startPos;
+        transform.localRotation = startRot;
+
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        for(int i = 0; i < pin_renderers.Length; i++)
+        {
+            pin_renderers[i].material.color = startColors[i];
+        }
+
+        
     }
 }

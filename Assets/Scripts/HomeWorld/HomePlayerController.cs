@@ -57,7 +57,6 @@ public class HomePlayerController : MonoBehaviour
         cur_selectable = index;
         Vector3 oldPos = transform.position;
         Vector3 newPos = selectables[index].transform.position;
-        Debug.Log(newPos);
         //back wall
         if(index <= 1)
         {
