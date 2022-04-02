@@ -10,13 +10,16 @@ public class DetectKnockOver : MonoBehaviour
     Transform tf;
     bool knockedOver = false;
     MeshRenderer[] pin_renderers;
+    AudioSource audioSource;
     Subscription<BallReadyEvent> ready_sub;
 
     // Start is called before the first frame update
     void Awake()
     {
-        tf = this.GetComponent<Transform>();
+        tf = GetComponent<Transform>();
         pin_renderers = GetComponentsInChildren<MeshRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = knockdown_sound;
         ready_sub = EventBus.Subscribe<BallReadyEvent>(FadeOutWhenReady);
     }
 
@@ -28,7 +31,7 @@ public class DetectKnockOver : MonoBehaviour
             knockedOver = true;
             PinKnockedOverEvent knock = new PinKnockedOverEvent(pin_id);
             EventBus.Publish(knock);
-            AudioSource.PlayClipAtPoint(knockdown_sound, transform.position, 0.25f);
+            audioSource.Play();
         }
     }
 

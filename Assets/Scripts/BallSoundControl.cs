@@ -37,7 +37,7 @@ public class BallSoundControl : MonoBehaviour
 
     void OnBallReady(BallReadyEvent e)
     {
-        AudioSource.PlayClipAtPoint(ready, Camera.main.transform.position, 0.5f);
+        AudioSource.PlayClipAtPoint(ready, Camera.main.transform.position, 0.25f * PlayerPrefs.GetFloat("SoundEffectsVol", 1f));
     }
 
     IEnumerator PlayRollSound()
