@@ -26,7 +26,7 @@ public class CanSplit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (needtoDie)
+        if (needtoDie && isSplit)
         {
             secondBall1.GetComponent<Rigidbody>().velocity = (transform.position - secondBall1.transform.position).normalized * joinSpeed;
         }
@@ -70,6 +70,7 @@ public class CanSplit : MonoBehaviour
             // GetComponent<Rigidbody>().velocity = Vector3.zero;
             // this.enabled = false;
             isSplit = false;
+            needtoDie = false;
         }
     }
 
@@ -94,5 +95,13 @@ public class CanSplit : MonoBehaviour
     private void OnNewHole(NewHoleEvent e)
     {
         canSplit = e.nextHole.canBallSplit;
+
+        if (secondBall1 != null)
+        {
+            Destroy(secondBall1);
+
+            isSplit = false;
+            needtoDie = false;
+        }
     }
 }

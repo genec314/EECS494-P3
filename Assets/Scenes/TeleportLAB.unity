@@ -2279,6 +2279,7 @@ MonoBehaviour:
   holeNumber: 3
   nextHole: {fileID: 0}
   current_hole: 0
+  canBallSplit: 1
 --- !u!4 &591873620
 Transform:
   m_ObjectHideFlags: 0
@@ -4112,6 +4113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   secondBall: {fileID: 2262079094571556556, guid: b4650922308bea047acfc08813c246de, type: 3}
   joinSpeed: 10
+  canSplit: 1
 --- !u!4 &1211479796 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3468564807178061389, guid: f088ce0621ea6834586f913951b6a94c, type: 3}
@@ -4217,6 +4219,7 @@ MonoBehaviour:
   holeNumber: 1
   nextHole: {fileID: 1572314398}
   current_hole: 1
+  canBallSplit: 1
 --- !u!1001 &1223898550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5217,6 +5220,7 @@ MonoBehaviour:
   holeNumber: 2
   nextHole: {fileID: 591873618}
   current_hole: 0
+  canBallSplit: 1
 --- !u!1 &1573208973
 GameObject:
   m_ObjectHideFlags: 0
@@ -5602,6 +5606,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1671457429}
+  - component: {fileID: 1671457430}
   m_Layer: 0
   m_Name: Hole6
   m_TagString: Untagged
@@ -5630,6 +5635,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1671457430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671457428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1234cf9e7ed1b4896f8a8408394fcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialBallPos: {x: 64, y: 3, z: 7}
+  initialCameraPos: {x: 0, y: 0, z: 0}
+  initalCameraRotation: {x: 0, y: 0, z: 0}
+  numPins: 0
+  numberOfShots: 0
+  ball: {fileID: 0}
+  holeNumber: 0
+  nextHole: {fileID: 0}
+  current_hole: 0
+  canBallSplit: 1
 --- !u!1001 &1683988213
 PrefabInstance:
   m_ObjectHideFlags: 0
