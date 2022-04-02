@@ -59,7 +59,7 @@ public class FollowTarget : MonoBehaviour
 
 	void OnTeleport(TeleportEvent e)
     {
-		if (e.t1 != null)
+		if (e.t1 != null && e.updateCamera)
         {
 			Camera.main.transform.position = e.t2.position + follow_offset;
         }

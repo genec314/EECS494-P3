@@ -44,7 +44,7 @@ public class BackgroundWorld1 : MonoBehaviour
             lr.widthMultiplier = intensity / 5;
             float duration = Random.Range(intensity / 5, 3);
 
-            audio.PlayOneShot(thunder);
+            audio.PlayOneShot(thunder, 0.35f);
 
             float dist = 30f;
 

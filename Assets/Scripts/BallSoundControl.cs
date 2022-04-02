@@ -38,16 +38,16 @@ public class BallSoundControl : MonoBehaviour
 
     void OnBallReady(BallReadyEvent e)
     {
-        AudioSource.PlayClipAtPoint(ready, Camera.main.transform.position);
+        AudioSource.PlayClipAtPoint(ready, Camera.main.transform.position, 0.5f);
     }
 
     IEnumerator PlayRollSound()
     {
         audiosource.clip = roll_intro;
-        audiosource.Play();
+        audiosource.PlayOneShot(audiosource.clip, 0.5f);
         yield return new WaitForSeconds(roll_intro.length);
         audiosource.clip = roll_loop;
         audiosource.loop = true;
-        audiosource.Play();
+        audiosource.PlayOneShot(audiosource.clip, 0.5f);
     }
 }

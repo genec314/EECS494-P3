@@ -116,6 +116,8 @@ public class TeleportEvent
     public Transform t1 = null;
     public Transform t2 = null;
 
+    public bool updateCamera;
+
     public TeleportEvent()
     {
 
@@ -125,6 +127,14 @@ public class TeleportEvent
     {
         t1 = _t1;
         t2 = _t2;
+        updateCamera = true;
+    }
+
+    public TeleportEvent(Transform _t1, Transform _t2, bool _updateCamera)
+    {
+        t1 = _t1;
+        t2 = _t2;
+        updateCamera = _updateCamera;
     }
 }
 

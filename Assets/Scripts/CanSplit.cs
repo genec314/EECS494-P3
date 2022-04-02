@@ -9,10 +9,15 @@ public class CanSplit : MonoBehaviour
     GameObject secondBall1;
     [SerializeField] float joinSpeed = 5;
     bool needtoDie = false;
+
+    Transform tf;
+    Rigidbody orig;
+
     // Start is called before the first frame update
     void Awake()
     {
-        
+        tf = this.GetComponent<Transform>();
+        orig = this.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -38,15 +43,16 @@ public class CanSplit : MonoBehaviour
             else
             {
                 isSplit = true;
-                Vector3 vel = GetComponent<Rigidbody>().velocity;
+                Vector3 vel = orig.velocity;
                 secondBall1 = Instantiate(secondBall);
                 secondBall1.transform.position = transform.position;
+                // StartCoroutine(ChangeToBallLayer(secondBall1));
                 Rigidbody rb = secondBall1.GetComponent<Rigidbody>();
                 //rb = GetComponent<Rigidbody>();
-                rb.velocity = vel - new Vector3(5, 0, 0);
+                rb.velocity = vel.magnitude * (tf.forward.normalized - tf.right.normalized);
                 
                 //transform.position = transform.position + new Vector3(3, 0, 0);
-                GetComponent<Rigidbody>().velocity = vel + new Vector3(5, 0, 0);
+                orig.velocity = vel.magnitude * (tf.forward.normalized + tf.right.normalized);
             }
         }
     }
@@ -54,11 +60,29 @@ public class CanSplit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.parent.CompareTag("Ball") && needtoDie)
+        if (other.transform.parent.CompareTag("Ball") && needtoDie)
         {
             Destroy(secondBall1);
             // GetComponent<Rigidbody>().velocity = Vector3.zero;
             this.enabled = false;
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.parent.CompareTag("Ball") && other.transform.parent.gameObject.layer == 9 && other.transform.parent.gameObject.layer != 7)
+        {
+            other.transform.parent.gameObject.layer = 8;
+        }
+    }
+
+    /* IEnumerator ChangeToBallLayer(GameObject ball2)
+    {
+        yield return new WaitForSeconds(1f);
+
+        if (ball2.layer != 7)
+        {
+            ball2.layer = 8;
+        }
+    } */
 }

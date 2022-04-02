@@ -32,7 +32,13 @@ public class Teleport : MonoBehaviour
         {
             justTeleported = true;
 
-            EventBus.Publish(new TeleportEvent(tf, to));
+            if (other.GetComponent<CanSplit>() != null)
+            {
+                EventBus.Publish(new TeleportEvent(tf, to));
+            } else
+            {
+                EventBus.Publish(new TeleportEvent(tf, to, false));
+            }
 
             other.gameObject.GetComponent<Transform>().position = to.position;
         }
@@ -43,7 +49,7 @@ public class Teleport : MonoBehaviour
         justTeleported = false;
 
         // Know for a fact ball's position is at new teleporter now
-        EventBus.Publish(new UpdateCameraRotationEvent());
+        // EventBus.Publish(new UpdateCameraRotationEvent());
     }
 
     private void OnTeleport(TeleportEvent e)
