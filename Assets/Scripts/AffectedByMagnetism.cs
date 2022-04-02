@@ -27,7 +27,7 @@ public class AffectedByMagnetism : MonoBehaviour
 
     private void ElectrostaticEffect(ElectrostaticForceEvent e)
     {
-        if (Vector3.Magnitude(rb.velocity) <= 0.5)
+        if (Vector3.Magnitude(rb.velocity) <= 0.5 && e.charge >= 0)
         {
             return;
         }

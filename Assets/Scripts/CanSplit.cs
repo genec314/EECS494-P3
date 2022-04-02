@@ -9,15 +9,18 @@ public class CanSplit : MonoBehaviour
     GameObject secondBall1;
     [SerializeField] float joinSpeed = 5;
     bool needtoDie = false;
+    [SerializeField] bool canSplit = false;
 
     Transform tf;
     Rigidbody orig;
+    Subscription<NewHoleEvent> new_hole_subscription;
 
     // Start is called before the first frame update
     void Awake()
     {
         tf = this.GetComponent<Transform>();
         orig = this.GetComponent<Rigidbody>();
+        new_hole_subscription = EventBus.Subscribe<NewHoleEvent>(OnNewHole);
     }
 
     // Update is called once per frame
@@ -40,9 +43,10 @@ public class CanSplit : MonoBehaviour
                 secondBall1.GetComponent<Rigidbody>().velocity = (transform.position - secondBall1.transform.position).normalized * joinSpeed;
                 
             }
-            else
+            else if (canSplit && orig.velocity.magnitude > 0.5f)
             {
                 isSplit = true;
+                canSplit = false;
                 Vector3 vel = orig.velocity;
                 secondBall1 = Instantiate(secondBall);
                 secondBall1.transform.position = transform.position;
@@ -64,7 +68,8 @@ public class CanSplit : MonoBehaviour
         {
             Destroy(secondBall1);
             // GetComponent<Rigidbody>().velocity = Vector3.zero;
-            this.enabled = false;
+            // this.enabled = false;
+            isSplit = false;
         }
     }
 
@@ -85,4 +90,9 @@ public class CanSplit : MonoBehaviour
             ball2.layer = 8;
         }
     } */
+
+    private void OnNewHole(NewHoleEvent e)
+    {
+        canSplit = e.nextHole.canBallSplit;
+    }
 }

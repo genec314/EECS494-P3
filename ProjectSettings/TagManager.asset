@@ -7,6 +7,7 @@ TagManager:
   - Ball
   - Pin
   - Magnet
+  - Field
   layers:
   - Default
   - TransparentFX

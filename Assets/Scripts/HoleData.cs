@@ -22,6 +22,7 @@ public class HoleData : MonoBehaviour
     Subscription<BallReadyEvent> ball_ready_subscription;
     public bool current_hole = false;
     private bool inTransition = false;
+    public bool canBallSplit = false;
 
     private int[] pointsOnShot = new int[3];
 
