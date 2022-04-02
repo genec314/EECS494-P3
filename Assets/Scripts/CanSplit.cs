@@ -98,10 +98,10 @@ public class CanSplit : MonoBehaviour
 
         if (secondBall1 != null)
         {
-            Destroy(secondBall1);
-
             isSplit = false;
             needtoDie = false;
+
+            Destroy(secondBall1);
         }
     }
 }
