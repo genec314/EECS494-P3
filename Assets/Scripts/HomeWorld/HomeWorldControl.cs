@@ -20,6 +20,8 @@ public class HomeWorldControl : MonoBehaviour
     public GameObject map_UI;
     //public GameObject high_score_UI;
     public GameObject throwball_UI;
+    public GameObject controls_UI;
+
     GameObject curr_UI;
 
     private int pins_down = 0;
@@ -142,6 +144,8 @@ public class HomeWorldControl : MonoBehaviour
         main_cam.SetActive(false);
         fpc.SetActive(true);
         throwball_UI.SetActive(false);
+        controls_UI.SetActive(true);
+
         EventBus.Publish(new ResetPinsEvent());
     }
 
