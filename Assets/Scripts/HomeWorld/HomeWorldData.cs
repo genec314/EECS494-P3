@@ -13,7 +13,7 @@ public class HomeWorldData : MonoBehaviour
 
     int active_ball;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if(instance != null)
         {

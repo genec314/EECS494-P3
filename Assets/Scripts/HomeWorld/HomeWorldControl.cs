@@ -72,6 +72,7 @@ public class HomeWorldControl : MonoBehaviour
 
         data = GetComponent<HomeWorldData>();
         activeLanes = data.GetActiveLanes();
+        Debug.Log(activeLanes);
         pi = GameObject.Find("GameControl").GetComponent<PlayerInventory>();
     }
 
@@ -83,7 +84,8 @@ public class HomeWorldControl : MonoBehaviour
 
     void _OnBallThrown(BallThrownEvent e)
     {
-        tutorial_UI.SetActive(false);
+        if (this.enabled)
+            tutorial_UI.SetActive(false);
     }
 
     void _OnPinKnocked(PinKnockedOverEvent e)
@@ -209,12 +211,14 @@ public class HomeWorldControl : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         EventBus.Publish(new LoadNextLevelEvent());
+        this.enabled = false;
     }
 
     IEnumerator ResetScene()
     {
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(0);
+        this.enabled = true;
         tutorial_UI.GetComponentInChildren<TextMeshProUGUI>().text = "Welcome to my bowling alley! Hold Space to Shoot!";
     }
 
