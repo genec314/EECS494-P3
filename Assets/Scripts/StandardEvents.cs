@@ -220,11 +220,9 @@ public class HomeWorldExitEvent
 public class WorldUnlockedEvent
 {
     public int num;
-    public int cost;
-    public WorldUnlockedEvent(int _num, int _cost)
+    public WorldUnlockedEvent(int _num)
     {
         num = _num;
-        cost = _cost;
     }
 }
 

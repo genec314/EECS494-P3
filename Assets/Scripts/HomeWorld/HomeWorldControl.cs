@@ -70,9 +70,16 @@ public class HomeWorldControl : MonoBehaviour
         tutorial_UI = GameObject.Find("TutorialUI");
         curr_UI = throwball_UI;
 
-        data = GetComponent<HomeWorldData>();
+        data = GameObject.Find("GameControl").GetComponent<HomeWorldData>();
         activeLanes = data.GetActiveLanes();
-        Debug.Log(activeLanes);
+        for(int i = 0; i < activeLanes.Length; i++)
+        {
+            if(activeLanes[i] == true)
+            {
+                GetComponent<LaneLights>().TurnOnLights(i);
+            }
+            
+        }
         pi = GameObject.Find("GameControl").GetComponent<PlayerInventory>();
     }
 
@@ -91,7 +98,6 @@ public class HomeWorldControl : MonoBehaviour
     void _OnPinKnocked(PinKnockedOverEvent e)
     {
         pins_down++;
-        pi.AddPins(1);
         if(pins_down >= 10)
         {
             if (activeLanes[cur_lane])
@@ -198,8 +204,11 @@ public class HomeWorldControl : MonoBehaviour
 
     IEnumerator ExitTutorial()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
+        EventBus.Publish(new WorldUnlockedEvent(0));
+        yield return new WaitForSeconds(2f);
         EventBus.Publish(new TutorialStrikeEvent());
+        
         can_free_move = true;
         can_shoot = false;
         main_cam.SetActive(false);

@@ -43,7 +43,7 @@ public class DetectKnockOver : MonoBehaviour
     void Update()
     {
         float dist = (startPos - transform.localPosition).magnitude;
-        if (!knockedOver && (tf.up.y < 0.8f || dist >= 1f))
+        if (!knockedOver && (tf.up.y < 0.8f || dist >= 3f))
         {
             knockedOver = true;
             PinKnockedOverEvent knock = new PinKnockedOverEvent(pin_id);

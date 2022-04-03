@@ -11,13 +11,13 @@ public class PlayerInventory : MonoBehaviour
 
     private int num_pins = 0;
 
-    Subscription<WorldUnlockedEvent> world_unlocked_sub;
     Subscription<BallBoughtEvent> ball_bought_sub;
+    Subscription<PinKnockedOverEvent> pin_knock_sub;
     // Start is called before the first frame update
     void Start()
     {
-        world_unlocked_sub = EventBus.Subscribe<WorldUnlockedEvent>(_OnWorldUnlocked);
         ball_bought_sub = EventBus.Subscribe<BallBoughtEvent>(_OnBallBought);
+        pin_knock_sub = EventBus.Subscribe<PinKnockedOverEvent>(_OnPinKnocked);
     }
 
     // Update is called once per frame
@@ -26,9 +26,9 @@ public class PlayerInventory : MonoBehaviour
         
     }
 
-    void _OnWorldUnlocked(WorldUnlockedEvent e)
+    void _OnPinKnocked(PinKnockedOverEvent e)
     {
-        AddPins(-e.cost);
+        AddPins(1);
     }
 
     void _OnBallBought(BallBoughtEvent e)

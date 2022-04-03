@@ -42,13 +42,13 @@ public class ShopController : MonoBehaviour
         }
         sc = this;
 
-        hwd = GameObject.Find("HomeWorldManager").GetComponent<HomeWorldData>();
+        hwd = GameObject.Find("GameControl").GetComponent<HomeWorldData>();
         pi = GameObject.Find("GameControl").GetComponent<PlayerInventory>();
 
         inventory = new Ball[balls.Length];
 
         inventory[0] = new Ball(0, "Red");
-        inventory[1] = new Ball(10, "Blue");
+        inventory[1] = new Ball(50, "Blue");
         inventory[2] = new Ball(100, "Yellow");
         inventory[3] = new Ball(1000, "Purple");
 
