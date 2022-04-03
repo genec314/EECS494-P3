@@ -96,22 +96,23 @@ public class GameControl : MonoBehaviour
 
 class LevelData {
     bool unlocked;
+    bool complete;
     int pins;
-    int pins_down;
     int max_throws;
 
     public LevelData()
     {
         unlocked = false;
-        pins = 10;
-        pins_down = 0;
-        max_throws = 3;
+        complete = false;
     }
 
-    public LevelData(int _pins, int _pins_down, int _max_throws)
+    public void setUnlocked(bool _unlocked)
     {
-        pins = _pins;
-        pins_down = _pins_down;
-        max_throws = _max_throws;
+        unlocked = _unlocked;
+    }
+
+    public void setCompleted(bool _complete)
+    {
+        complete = _complete;
     }
 }

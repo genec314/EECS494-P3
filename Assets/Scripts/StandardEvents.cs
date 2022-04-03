@@ -78,14 +78,12 @@ public class UpdateLevelDataEvent
 {
     int level_num;
     int world_num;
-    int pins_down;
     bool complete;
 
-    public UpdateLevelDataEvent(int _level, int _world, int _pins, bool _complete)
+    public UpdateLevelDataEvent(int _level, int _world, bool _complete)
     {
         level_num = _level;
         world_num = _world;
-        pins_down = _pins;
         complete = _complete;
     }
 }
@@ -239,4 +237,5 @@ public class BallBoughtEvent
         num = _num;
         cost = _cost;
     }
+
 }

@@ -583,10 +583,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelMenuPanel
       objectReference: {fileID: 0}
-    - target: {fileID: 712551824368120665, guid: ca5c98b2bf34750468b7725660dee306, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca5c98b2bf34750468b7725660dee306, type: 3}
 --- !u!1001 &1335969310848869894
@@ -683,10 +679,6 @@ PrefabInstance:
     - target: {fileID: 1335969311545212067, guid: 0fa423d5625ef4a4395bc368d52602c8, type: 3}
       propertyPath: m_Name
       value: WorldMenuPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 1335969311545212067, guid: 0fa423d5625ef4a4395bc368d52602c8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fa423d5625ef4a4395bc368d52602c8, type: 3}
