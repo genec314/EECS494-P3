@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Undefined
   - Ball
   - Pin
   - Magnet
@@ -17,13 +18,8 @@ TagManager:
   - UI
   - Pin
   - Joining
-<<<<<<< HEAD
-  - BallView
-  - Ground
-=======
   - Ball
   - Temp
->>>>>>> daniel_alpha
   - 
   - 
   - 

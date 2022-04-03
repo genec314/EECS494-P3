@@ -5292,6 +5292,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   to: {x: 48, y: 3, z: -55.5}
+  localto: {x: 0, y: 0, z: 0}
+  useLocal: 0
   time: 2
 --- !u!1001 &931071928
 PrefabInstance:
@@ -5992,15 +5994,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2217140522337086300, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 53
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 2217140522337086300, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2217140522337086300, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -28
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 2217140522337086300, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6556,6 +6558,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   to: {x: 59.5, y: 10, z: -32}
+  localto: {x: 0, y: 0, z: 0}
+  useLocal: 0
   time: 2
 --- !u!1 &1113912807
 GameObject:
@@ -6586,7 +6590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f1234cf9e7ed1b4896f8a8408394fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBallPos: {x: -20, y: 5, z: -17}
+  initialBallPos: {x: -21, y: 5, z: -15}
   initialCameraPos: {x: -20, y: 9.5, z: -27}
   initalCameraRotation: {x: 0, y: 0, z: 0}
   numPins: 10
@@ -7808,6 +7812,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   to: {x: 65.5, y: 10, z: -24}
+  localto: {x: 0, y: 0, z: 0}
+  useLocal: 0
   time: 2
 --- !u!4 &1399549915 stripped
 Transform:
@@ -9192,6 +9198,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   to: {x: 38, y: 3, z: -45.5}
+  localto: {x: 0, y: 0, z: 0}
+  useLocal: 0
   time: 2
 --- !u!1001 &1720735333
 PrefabInstance:
@@ -11444,6 +11452,10 @@ PrefabInstance:
     - target: {fileID: 746048943683545030, guid: 72ef117baef0443b09abe49b7f86f91d, type: 3}
       propertyPath: m_Name
       value: PinsRemainingUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 746048943683545030, guid: 72ef117baef0443b09abe49b7f86f91d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72ef117baef0443b09abe49b7f86f91d, type: 3}

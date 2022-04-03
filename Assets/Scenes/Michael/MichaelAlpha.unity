@@ -1068,6 +1068,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ElectricBall
       objectReference: {fileID: 0}
+    - target: {fileID: 2262079094571556556, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2262079094571556556, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
+      propertyPath: m_TagString
+      value: Ball
+      objectReference: {fileID: 0}
     - target: {fileID: 5855688499794547475, guid: aa0cd982c31b444e99c28b9257abbe88, type: 3}
       propertyPath: m_Drag
       value: 0.2

@@ -17,7 +17,7 @@ public class GameControl : MonoBehaviour
     int curr_world; // 0 = intro, otherwise 1, 2, 3
     int curr_level; // 0 to 9
 
-    LevelData[][] leveldata = new LevelData[3][10];
+    LevelData[] leveldata = new LevelData[10];
     LevelData[] world_2_levels = new LevelData[10];
     LevelData[] world_3_levels = new LevelData[10];
 
