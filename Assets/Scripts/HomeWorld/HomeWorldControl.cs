@@ -11,8 +11,15 @@ public class HomeWorldControl : MonoBehaviour
     Subscription<BallThrownEvent> ball_thrown_sub;
     Subscription<PinKnockedOverEvent> pin_knocked_sub;
     Subscription<BallReadyEvent> ball_ready_subscription;
+    Subscription<HomeWorldSelectEvent> select_sub;
+    Subscription<HomeWorldExitEvent> exit_sub;
 
     public GameObject tutorial_UI;
+    public GameObject shop_UI;
+    public GameObject map_UI;
+    //public GameObject high_score_UI;
+    public GameObject throwball_UI;
+    GameObject curr_UI;
 
     private int pins_down = 0;
     private int attempts = 0;
@@ -46,6 +53,9 @@ public class HomeWorldControl : MonoBehaviour
         ball_thrown_sub = EventBus.Subscribe<BallThrownEvent>(_OnBallThrown);
         pin_knocked_sub = EventBus.Subscribe<PinKnockedOverEvent>(_OnPinKnocked);
         ball_ready_subscription = EventBus.Subscribe<BallReadyEvent>(_OnBallReady);
+        select_sub = EventBus.Subscribe<HomeWorldSelectEvent>(_OnSelect);
+        exit_sub = EventBus.Subscribe<HomeWorldExitEvent>(_OnExit);
+
         main_cam = GameObject.Find("Main Camera");
         player = GameObject.Find("Player");
         playerStartPos = player.transform.position;
@@ -94,6 +104,27 @@ public class HomeWorldControl : MonoBehaviour
         }
     }
 
+    void _OnSelect(HomeWorldSelectEvent e)
+    {
+        switch (e.where)
+        {
+            case "Shop":
+                shop_UI.SetActive(true);
+                curr_UI = shop_UI;
+                throwball_UI.SetActive(false);
+                break;
+            case "Map":
+                map_UI.SetActive(true);
+                curr_UI = map_UI;
+                throwball_UI.SetActive(false);
+                break;
+        }
+    }
+
+    void _OnExit(HomeWorldExitEvent e)
+    {
+        curr_UI.SetActive(false);
+    }
     IEnumerator ExitTutorial()
     {
         yield return new WaitForSeconds(1.5f);
@@ -102,6 +133,7 @@ public class HomeWorldControl : MonoBehaviour
         can_shoot = false;
         main_cam.SetActive(false);
         fpc.SetActive(true);
+        throwball_UI.SetActive(false);
         EventBus.Publish(new ResetPinsEvent());
     }
 

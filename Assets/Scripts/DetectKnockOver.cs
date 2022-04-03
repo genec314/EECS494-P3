@@ -76,6 +76,7 @@ public class DetectKnockOver : MonoBehaviour
     void _OnResetPins(ResetPinsEvent e)
     {
         StopAllCoroutines();
+        knockedOver = false;
         GetComponent<MeshCollider>().enabled = true;
         transform.localPosition = startPos;
         transform.localRotation = startRot;

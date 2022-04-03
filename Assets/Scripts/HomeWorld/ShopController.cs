@@ -11,7 +11,8 @@ public class ShopController : MonoBehaviour
     public Image arrow;
     public Image check;
     public int num_balls = 4;
-    
+
+    HomeWorldData hwd;
     struct Ball
     {
         public bool purchased;
@@ -39,14 +40,25 @@ public class ShopController : MonoBehaviour
             return;
         }
         sc = this;
-        DontDestroyOnLoad(this);
 
+        hwd = GameObject.Find("HomeWorldManager").GetComponent<HomeWorldData>();
         inventory = new Ball[balls.Length];
 
-        inventory[0] = new Ball(100, "Red");
+        inventory[0] = new Ball(0, "Red");
         inventory[1] = new Ball(200, "Blue");
         inventory[2] = new Ball(500, "Yellow");
         inventory[3] = new Ball(1000, "Purple");
+
+        List<int> purchased_balls = hwd.GetPurchasedBalls();
+        for(int i = 0; i < purchased_balls.Count; i++)
+        {
+            inventory[purchased_balls[i]].purchased = true;
+            balls[purchased_balls[i]].GetComponentInChildren<TextMeshProUGUI>().text = "Owned";
+            GameObject pin = balls[purchased_balls[i]].transform.Find("Pin").gameObject;
+            pin.SetActive(false);
+        }
+
+        ChangeActiveBall(hwd.GetActiveBall());
     }
 
     // Update is called once per frame
@@ -92,5 +104,7 @@ public class ShopController : MonoBehaviour
         string path = "Materials/Balls/" + inventory[index].color;
         Material mat = (Material)Resources.Load(path);
         ball.material = mat;
+
+        hwd.SetActiveBall(index);
     }
 }

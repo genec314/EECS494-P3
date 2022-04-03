@@ -10,6 +10,7 @@ public class HomePlayerController : MonoBehaviour
     Rigidbody rb;
 
     bool in_select_mode = false;
+    bool in_bowl_mode = true;
     bool doing_lerp = false;
 
     public GameObject[] selectables;
@@ -27,12 +28,56 @@ public class HomePlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!in_select_mode || doing_lerp)
+        if (in_bowl_mode)
+        {
+            return;
+        }
+        if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+        {    
+            if (!in_select_mode)
+            {
+                return;
+            }
+            string eventType = "Shop";
+            switch (cur_selectable)
+            {
+                case 0:
+                    eventType = "Shop";
+                    break;
+                case 1:
+                    eventType = "Map";
+                    break;
+                case 2:
+                    eventType = "HighScore";
+                    break;
+                case 3:
+                    eventType = "LeftLane";
+                    break;
+                case 4:
+                    eventType = "MiddleLane";
+                    break;
+                case 5:
+                    eventType = "RightLane";
+                    break;
+                default:
+                    break;
+            }
+            in_select_mode = false;
+            EventBus.Publish(new HomeWorldSelectEvent(eventType));
+
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            in_select_mode = true;
+            EventBus.Publish(new HomeWorldExitEvent());
+        }
+        else if (!in_select_mode || doing_lerp)
         {
             return;
         }
 
-        if((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && cur_selectable < (selectables.Length - 1)){
+        else if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && cur_selectable < (selectables.Length - 1))
+        {
             SetSelectable(cur_selectable + 1);
         }
         else if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && cur_selectable > 0)
@@ -49,6 +94,7 @@ public class HomePlayerController : MonoBehaviour
         GetComponent<Rigidbody>().velocity = Vector3.zero;
 
         in_select_mode = true;
+        in_bowl_mode = false;
         SetSelectable(cur_selectable);
     }
 

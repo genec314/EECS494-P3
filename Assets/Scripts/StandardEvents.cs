@@ -158,3 +158,21 @@ public class ResetPinsEvent
 
     }
 }
+
+public class HomeWorldSelectEvent
+{
+    public string where;
+
+    public HomeWorldSelectEvent(string _where)
+    {
+        where = _where;
+    }
+}
+
+public class HomeWorldExitEvent
+{
+    public HomeWorldExitEvent()
+    {
+
+    }
+}

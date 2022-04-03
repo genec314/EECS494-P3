@@ -33,7 +33,7 @@ public class RollBall : MonoBehaviour
     Subscription<BallReadyEvent> ready_subscription;
     Subscription<EndHoleEvent> end_hole_subscription;
     Subscription<NewHoleEvent> new_hole_subscription;
-    
+
     // Start is called before the first frame update
     void Start()
     {
