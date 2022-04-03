@@ -44,6 +44,10 @@ public class MapController : MonoBehaviour
         {
             ChangeImage(cur_image - 1);
         }
+        else if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+        {
+            UnlockWorld(cur_image);
+        }
     }
 
     void ChangeImage(int num)
@@ -63,5 +67,13 @@ public class MapController : MonoBehaviour
             to_unlock.SetActive(true);
             to_unlock.GetComponentInChildren<TextMeshProUGUI>().text = "x" + world_costs[num];
         }
+    }
+
+    void UnlockWorld(int num)
+    {
+        EventBus.Publish(new WorldUnlockedEvent(num));
+        lock_pic.enabled = false;
+        to_unlock.SetActive(false);
+
     }
 }

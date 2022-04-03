@@ -13,6 +13,7 @@ public class HomeWorldControl : MonoBehaviour
     Subscription<BallReadyEvent> ball_ready_subscription;
     Subscription<HomeWorldSelectEvent> select_sub;
     Subscription<HomeWorldExitEvent> exit_sub;
+    Subscription<WorldUnlockedEvent> world_unlocked_sub;
 
     public GameObject tutorial_UI;
     public GameObject shop_UI;
@@ -35,7 +36,7 @@ public class HomeWorldControl : MonoBehaviour
     private float sensitivity = 500f;
 
     [SerializeField]
-    public GameObject[] pinReset;
+    public GameObject[] toActivateLanes;
 
     HomeWorldData data;
     //true if the world that lane is unlocked
@@ -55,6 +56,7 @@ public class HomeWorldControl : MonoBehaviour
         ball_ready_subscription = EventBus.Subscribe<BallReadyEvent>(_OnBallReady);
         select_sub = EventBus.Subscribe<HomeWorldSelectEvent>(_OnSelect);
         exit_sub = EventBus.Subscribe<HomeWorldExitEvent>(_OnExit);
+        world_unlocked_sub = EventBus.Subscribe<WorldUnlockedEvent>(_OnWorldUnlocked);
 
         main_cam = GameObject.Find("Main Camera");
         player = GameObject.Find("Player");
@@ -125,6 +127,12 @@ public class HomeWorldControl : MonoBehaviour
     {
         curr_UI.SetActive(false);
     }
+
+    void _OnWorldUnlocked(WorldUnlockedEvent e)
+    {
+        toActivateLanes[e.num].SetActive(true);
+    }
+
     IEnumerator ExitTutorial()
     {
         yield return new WaitForSeconds(1.5f);

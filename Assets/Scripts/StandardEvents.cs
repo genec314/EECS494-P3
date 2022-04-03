@@ -176,3 +176,13 @@ public class HomeWorldExitEvent
 
     }
 }
+
+public class WorldUnlockedEvent
+{
+    public int num;
+
+    public WorldUnlockedEvent(int _num)
+    {
+        num = _num;
+    }
+}
