@@ -8,11 +8,19 @@ public class GameControl : MonoBehaviour
     public static GameControl instance;
     float first_thrown_time;
     bool ball_thrown;
-    Subscription<BallThrownEvent> thrown_subscription;
+    bool intro_played = false;
     Subscription<LoadNextLevelEvent> level_subscription;
     Subscription<ReloadLevelEvent> reload_subscription;
+    Subscription<LoadIntroEvent> intro_subscription;
 
-    private int level;
+    int curr_world; // 0 = intro, otherwise 1, 2, 3
+    int curr_level; // 0 to 9
+
+    LevelData[][] leveldata = new LevelData[3][10];
+    LevelData[] world_2_levels = new LevelData[10];
+    LevelData[] world_3_levels = new LevelData[10];
+
+    int level;
 
     void Start()
     {
@@ -26,17 +34,15 @@ public class GameControl : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
 
-        thrown_subscription = EventBus.Subscribe<BallThrownEvent>(OnBallThrown);
         level_subscription = EventBus.Subscribe<LoadNextLevelEvent>(OnNewLevel);
         reload_subscription = EventBus.Subscribe<ReloadLevelEvent>(OnReloadLevel);
-
 
         level = SceneManager.GetActiveScene().buildIndex;
     }
 
     void OnDestroy()
     {
-        if (thrown_subscription != null) EventBus.Unsubscribe<BallThrownEvent>(thrown_subscription);
+        
     }
 
     // Update is called once per frame
@@ -45,11 +51,16 @@ public class GameControl : MonoBehaviour
 
     }
 
-
-    void OnBallThrown(BallThrownEvent e)
+    void OnIntroLevel(LoadIntroEvent e)
     {
-        ball_thrown = true;
-        first_thrown_time = Time.time;
+        if (intro_played)
+        {
+            SceneManager.LoadScene("home");
+        }
+        else
+        {
+            SceneManager.LoadScene("intro");
+        }
     }
 
     void OnNewLevel(LoadNextLevelEvent e)
@@ -73,5 +84,27 @@ public class GameControl : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(level_num);
+    }
+}
+
+class LevelData {
+    bool unlocked;
+    int pins;
+    int pins_down;
+    int max_throws;
+
+    public LevelData()
+    {
+        unlocked = false;
+        pins = 10;
+        pins_down = 0;
+        max_throws = 3;
+    }
+
+    public LevelData(int _pins, int _pins_down, int _max_throws)
+    {
+        pins = _pins;
+        pins_down = _pins_down;
+        max_throws = _max_throws;
     }
 }

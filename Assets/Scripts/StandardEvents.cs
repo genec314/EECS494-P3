@@ -50,11 +50,43 @@ public class PowerBarReleaseEvent
     public PowerBarReleaseEvent() {}
 }
 
+public class LoadIntroEvent
+{
+    public LoadIntroEvent() {}
+}
+
 public class LoadNextLevelEvent
 {
     public LoadNextLevelEvent()
     {
 
+    }
+}
+
+public class LoadLevelEvent
+{
+    int level_num;
+    int world_num;
+    public LoadLevelEvent(int _level, int _world)
+    {
+        level_num = _level;
+        world_num = _world;
+    }
+}
+
+public class UpdateLevelDataEvent
+{
+    int level_num;
+    int world_num;
+    int pins_down;
+    bool complete;
+
+    public UpdateLevelDataEvent(int _level, int _world, int _pins, bool _complete)
+    {
+        level_num = _level;
+        world_num = _world;
+        pins_down = _pins;
+        complete = _complete;
     }
 }
 
