@@ -47,7 +47,7 @@ public class DetectKnockOver : MonoBehaviour
             knockedOver = true;
             PinKnockedOverEvent knock = new PinKnockedOverEvent(pin_id);
             EventBus.Publish(knock);
-            audioSource.Play();
+            AudioSource.PlayClipAtPoint(knockdown_sound, transform.position, 0.35f);
         }
     }
 

@@ -148,7 +148,8 @@ public class TeleportEvent
     public Transform t1 = null;
     public Transform t2 = null;
 
-<<<<<<< HEAD
+    public bool updateCamera;
+
     public TeleportEvent()
     {
 
@@ -158,6 +159,14 @@ public class TeleportEvent
     {
         t1 = _t1;
         t2 = _t2;
+        updateCamera = true;
+    }
+
+    public TeleportEvent(Transform _t1, Transform _t2, bool _updateCamera)
+    {
+        t1 = _t1;
+        t2 = _t2;
+        updateCamera = _updateCamera;
     }
 }
 
@@ -205,29 +214,11 @@ public class HomeWorldSelectEvent
 public class HomeWorldExitEvent
 {
     public HomeWorldExitEvent()
-=======
-    public TeleportEvent()
-    {
-
-    }
-
-    public TeleportEvent(Transform _t1, Transform _t2)
-    {
-        t1 = _t1;
-        t2 = _t2;
-    }
-}
-
-public class UpdateCameraRotationEvent
-{
-    public UpdateCameraRotationEvent()
->>>>>>> gene_alpha
     {
 
     }
 }
 
-<<<<<<< HEAD
 public class WorldUnlockedEvent
 {
     public int num;
@@ -248,20 +239,4 @@ public class BallBoughtEvent
         num = _num;
         cost = _cost;
     }
-
-=======
-public class ResetShotEvent {
-
-    public Vector3 position = new Vector3(-999, -999, -999);
-
-    public ResetShotEvent()
-    {
-
-    }
-
-    public ResetShotEvent(Vector3 _position)
-    {
-        position = _position;
-    }
->>>>>>> gene_alpha
 }

@@ -44,7 +44,7 @@ public class FollowTarget : MonoBehaviour
 	void UpdateOffsets()
 	{
 		shot_offset = -7.5f * transform.forward + 2.5f * Vector3.up;
-		follow_offset = -4.5f * transform.forward + 1.5f * Vector3.up;
+		follow_offset = -7.5f * transform.forward + 2.5f * Vector3.up;
 	}
 
 	void OnBallThrown(BallThrownEvent e)
@@ -59,7 +59,7 @@ public class FollowTarget : MonoBehaviour
 
 	void OnTeleport(TeleportEvent e)
     {
-		if (e.t1 != null)
+		if (e.t1 != null && e.updateCamera)
         {
 			Camera.main.transform.position = e.t2.position + follow_offset;
         }
