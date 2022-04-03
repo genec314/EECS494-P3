@@ -18,7 +18,7 @@ public class HomeWorldControl : MonoBehaviour
     public GameObject tutorial_UI;
     public GameObject shop_UI;
     public GameObject map_UI;
-    public GameObject high_score_UI;
+    //public GameObject high_score_UI;
     public GameObject throwball_UI;
     public GameObject controls_UI;
 
@@ -131,11 +131,13 @@ public class HomeWorldControl : MonoBehaviour
                 curr_UI = map_UI;
                 throwball_UI.SetActive(false);
                 break;
+            /*
             case "HighScore":
                 high_score_UI.SetActive(true);
                 curr_UI = high_score_UI;
                 throwball_UI.SetActive(false);
                 break;
+            */
             case "LeftLane":
                 lastThrowPos = playerStartPos;
                 lastThrowPos.x -= 15.1f;

@@ -42,7 +42,8 @@ public class DetectKnockOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!knockedOver && tf.up.y < 0.5f)
+        float dist = (startPos - transform.localPosition).magnitude;
+        if (!knockedOver && (tf.up.y < 0.8f || dist >= 1f))
         {
             knockedOver = true;
             PinKnockedOverEvent knock = new PinKnockedOverEvent(pin_id);

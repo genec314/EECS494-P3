@@ -47,16 +47,18 @@ public class HomePlayerController : MonoBehaviour
                 case 1:
                     eventType = "Map";
                     break;
+                /*
                 case 2:
                     eventType = "HighScore";
                     break;
-                case 3:
+                */
+                case 2:
                     eventType = "LeftLane";
                     break;
-                case 4:
+                case 3:
                     eventType = "MiddleLane";
                     break;
-                case 5:
+                case 4:
                     eventType = "RightLane";
                     break;
                 default:
@@ -117,6 +119,8 @@ public class HomePlayerController : MonoBehaviour
         cur_selectable = index;
         Vector3 oldPos = transform.position;
         Vector3 newPos = selectables[index].transform.position;
+        Debug.Log(index);
+        
         //back wall
         if(index <= 1)
         {
@@ -126,17 +130,20 @@ public class HomePlayerController : MonoBehaviour
             //transform.localPosition = new Vector3(0, -10f, -30f);
             //transform.localRotation = Quaternion.Euler(0f, 180f, 0);
         }
+        /*
         else if(index == 2)
         {
             newPos.y = 0.5f;
             newPos.x += 10f;
             StartCoroutine(LerpPlayer(oldPos, newPos, transform.rotation.eulerAngles, new Vector3(0f, 90f, 0f)));
         }
+        */
         //a lane
         else
         {
             newPos.y -= 7.75f;
             newPos.z -= 40f;
+            Debug.Log(newPos);
             StartCoroutine(LerpPlayer(oldPos, newPos, transform.rotation.eulerAngles, new Vector3(0f, 180f, 0f)));
             //transform.localPosition = new Vector3(0, -7f, -40f);
             //transform.localRotation = Quaternion.Euler(0f, 180f, 0);

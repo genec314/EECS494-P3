@@ -9,6 +9,7 @@ public class BallSoundControl : MonoBehaviour
     public AudioClip roll_loop;
 
     AudioSource audiosource;
+    GameControl gc;
 
     Subscription<BallThrownEvent> throw_sub;
     Subscription<BallAtRestEvent> rest_sub;
@@ -21,6 +22,7 @@ public class BallSoundControl : MonoBehaviour
         throw_sub = EventBus.Subscribe<BallThrownEvent>(OnBallThrown);
         rest_sub = EventBus.Subscribe<BallAtRestEvent>(OnBallAtRest);
         ready_sub = EventBus.Subscribe<BallReadyEvent>(OnBallReady);
+        gc = GameObject.Find("GameControl").GetComponent<GameControl>();
     }
 
     void OnBallThrown(BallThrownEvent e)
@@ -37,7 +39,11 @@ public class BallSoundControl : MonoBehaviour
 
     void OnBallReady(BallReadyEvent e)
     {
-        AudioSource.PlayClipAtPoint(ready, Camera.main.transform.position, 0.25f * PlayerPrefs.GetFloat("SoundEffectsVol", 1f));
+        if (!gc.InTutorial())
+        {
+            AudioSource.PlayClipAtPoint(ready, Camera.main.transform.position, 0.25f * PlayerPrefs.GetFloat("SoundEffectsVol", 1f));
+        }
+        
     }
 
     IEnumerator PlayRollSound()
