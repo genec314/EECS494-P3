@@ -46,6 +46,16 @@ PrefabInstance:
     - target: {fileID: 487161535, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
       propertyPath: MinDistance
       value: 0.5292139
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 487161535, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -1810479408964791510, guid: 9e55ce8988e12f447a39b60f3cd4f359, type: 2}
+    - target: {fileID: 487161538, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 487161538, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value

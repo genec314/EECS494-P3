@@ -50,11 +50,43 @@ public class PowerBarReleaseEvent
     public PowerBarReleaseEvent() {}
 }
 
+public class LoadIntroEvent
+{
+    public LoadIntroEvent() {}
+}
+
 public class LoadNextLevelEvent
 {
     public LoadNextLevelEvent()
     {
 
+    }
+}
+
+public class LoadLevelEvent
+{
+    int level_num;
+    int world_num;
+    public LoadLevelEvent(int _level, int _world)
+    {
+        level_num = _level;
+        world_num = _world;
+    }
+}
+
+public class UpdateLevelDataEvent
+{
+    int level_num;
+    int world_num;
+    int pins_down;
+    bool complete;
+
+    public UpdateLevelDataEvent(int _level, int _world, int _pins, bool _complete)
+    {
+        level_num = _level;
+        world_num = _world;
+        pins_down = _pins;
+        complete = _complete;
     }
 }
 
@@ -116,6 +148,7 @@ public class TeleportEvent
     public Transform t1 = null;
     public Transform t2 = null;
 
+<<<<<<< HEAD
     public TeleportEvent()
     {
 
@@ -172,11 +205,29 @@ public class HomeWorldSelectEvent
 public class HomeWorldExitEvent
 {
     public HomeWorldExitEvent()
+=======
+    public TeleportEvent()
+    {
+
+    }
+
+    public TeleportEvent(Transform _t1, Transform _t2)
+    {
+        t1 = _t1;
+        t2 = _t2;
+    }
+}
+
+public class UpdateCameraRotationEvent
+{
+    public UpdateCameraRotationEvent()
+>>>>>>> gene_alpha
     {
 
     }
 }
 
+<<<<<<< HEAD
 public class WorldUnlockedEvent
 {
     public int num;
@@ -198,4 +249,19 @@ public class BallBoughtEvent
         cost = _cost;
     }
 
+=======
+public class ResetShotEvent {
+
+    public Vector3 position = new Vector3(-999, -999, -999);
+
+    public ResetShotEvent()
+    {
+
+    }
+
+    public ResetShotEvent(Vector3 _position)
+    {
+        position = _position;
+    }
+>>>>>>> gene_alpha
 }

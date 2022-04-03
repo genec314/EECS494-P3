@@ -12,6 +12,7 @@ public class DetectKnockOver : MonoBehaviour
     MeshRenderer[] pin_renderers;
     Subscription<BallReadyEvent> ready_sub;
     Subscription<ResetPinsEvent> reset_pin_sub;
+    AudioSource audioSource;
 
     Vector3 startPos;
     Quaternion startRot;
@@ -34,6 +35,8 @@ public class DetectKnockOver : MonoBehaviour
         }
 
         gc = GameObject.Find("GameControl").GetComponent<GameControl>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = knockdown_sound;
     }
 
     // Update is called once per frame
@@ -44,7 +47,7 @@ public class DetectKnockOver : MonoBehaviour
             knockedOver = true;
             PinKnockedOverEvent knock = new PinKnockedOverEvent(pin_id);
             EventBus.Publish(knock);
-            AudioSource.PlayClipAtPoint(knockdown_sound, transform.position, 0.25f);
+            audioSource.Play();
         }
     }
 
@@ -89,7 +92,5 @@ public class DetectKnockOver : MonoBehaviour
         {
             pin_renderers[i].material.color = startColors[i];
         }
-
-        
     }
 }
