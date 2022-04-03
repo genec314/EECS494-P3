@@ -12,6 +12,8 @@ public class Move : MonoBehaviour
     Subscription<BallThrownEvent> thrown_subscription;
     Subscription<ResetShotEvent> reset_shot_subscription;
 
+    private bool inRepelField = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -29,7 +31,8 @@ public class Move : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!at_rest && Time.time > last_thrown_time + 0.5f && rb.velocity.magnitude < 1f)
+        // ball will stop if moving at a speed of less than 1 if the throw was more than half a second ago and is not in a repelling field
+        if (!at_rest && Time.time > last_thrown_time + 0.5f && rb.velocity.magnitude < 1f && !inRepelField)
         {
             at_rest = true;
             rb.velocity = Vector3.zero;
@@ -60,6 +63,22 @@ public class Move : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             tf.position = e.position;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Field"))
+        {
+            inRepelField = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Field"))
+        {
+            inRepelField = false;
         }
     }
 }
