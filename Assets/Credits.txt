@@ -9,3 +9,6 @@ Icon made from http://www.onlinewebfonts.com/icon. Icon Fonts is licensed by CC 
 Lightning bolt aesthetics and controller - https://assetstore.unity.com/packages/tools/particles-effects/lightning-bolt-effect-for-unity-59471
 bowling pin fade out - https://owlcation.com/stem/How-to-fade-out-a-GameObject-in-Unity
 Thunder sound effect - https://freesound.org/people/InspectorJ/sounds/411231/
+Bowling ball 3d model - https://sketchfab.com/3d-models/bowling-ball-fc8f1162901a4e38b506fe1ab229f296
+Bowling pin clipart - https://www.pngkey.com/maxpic/u2q8o0r5o0t4y3a9/
+Lock clipart - https://www.pinclipart.com/pindetail/ihmiboh_key-hole-png-open-lock-clip-art-transparent/

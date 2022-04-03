@@ -150,3 +150,52 @@ public class ResetShotEvent {
         position = _position;
     }
 }
+
+public class ResetPinsEvent
+{
+    public ResetPinsEvent()
+    {
+
+    }
+}
+
+public class HomeWorldSelectEvent
+{
+    public string where;
+
+    public HomeWorldSelectEvent(string _where)
+    {
+        where = _where;
+    }
+}
+
+public class HomeWorldExitEvent
+{
+    public HomeWorldExitEvent()
+    {
+
+    }
+}
+
+public class WorldUnlockedEvent
+{
+    public int num;
+    public int cost;
+    public WorldUnlockedEvent(int _num, int _cost)
+    {
+        num = _num;
+        cost = _cost;
+    }
+}
+
+public class BallBoughtEvent
+{
+    public int num;
+    public int cost;
+    public BallBoughtEvent(int _num, int _cost)
+    {
+        num = _num;
+        cost = _cost;
+    }
+
+}

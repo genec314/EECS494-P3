@@ -13,6 +13,7 @@ public class GameControl : MonoBehaviour
     Subscription<ReloadLevelEvent> reload_subscription;
 
     private int level;
+    private string levelName;
 
     void Start()
     {
@@ -32,6 +33,7 @@ public class GameControl : MonoBehaviour
 
 
         level = SceneManager.GetActiveScene().buildIndex;
+        levelName = SceneManager.GetActiveScene().name;
     }
 
     void OnDestroy()
@@ -74,4 +76,10 @@ public class GameControl : MonoBehaviour
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(level_num);
     }
+
+    public bool InTutorial()
+    {
+        return levelName == "Intro";
+    }
 }
+
