@@ -13,6 +13,7 @@ public class ShopController : MonoBehaviour
     public int num_balls = 4;
 
     HomeWorldData hwd;
+    PlayerInventory pi;
     struct Ball
     {
         public bool purchased;
@@ -42,11 +43,13 @@ public class ShopController : MonoBehaviour
         sc = this;
 
         hwd = GameObject.Find("HomeWorldManager").GetComponent<HomeWorldData>();
+        pi = GameObject.Find("GameControl").GetComponent<PlayerInventory>();
+
         inventory = new Ball[balls.Length];
 
         inventory[0] = new Ball(0, "Red");
-        inventory[1] = new Ball(200, "Blue");
-        inventory[2] = new Ball(500, "Yellow");
+        inventory[1] = new Ball(10, "Blue");
+        inventory[2] = new Ball(100, "Yellow");
         inventory[3] = new Ball(1000, "Purple");
 
         List<int> purchased_balls = hwd.GetPurchasedBalls();
@@ -84,13 +87,16 @@ public class ShopController : MonoBehaviour
 
                 return;
             }
-            balls[cur_ball].GetComponentInChildren<TextMeshProUGUI>().text = "Owned";
-            inventory[cur_ball].purchased = true;
-            GameObject pin = balls[cur_ball].transform.Find("Pin").gameObject;
-            pin.SetActive(false);
+            if(pi.GetPins() >= inventory[cur_ball].cost)
+            {
+                EventBus.Publish(new BallBoughtEvent(cur_ball, inventory[cur_ball].cost));
+                balls[cur_ball].GetComponentInChildren<TextMeshProUGUI>().text = "Owned";
+                inventory[cur_ball].purchased = true;
+                GameObject pin = balls[cur_ball].transform.Find("Pin").gameObject;
+                pin.SetActive(false);
 
-            ChangeActiveBall(cur_ball);
-
+                ChangeActiveBall(cur_ball);
+            }
         }
     }
 

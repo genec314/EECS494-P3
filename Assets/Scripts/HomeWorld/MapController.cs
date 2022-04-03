@@ -15,6 +15,7 @@ public class MapController : MonoBehaviour
     List<int> unlocked_worlds;
     List<int> world_costs;
     HomeWorldData hwd;
+    PlayerInventory pi;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +32,8 @@ public class MapController : MonoBehaviour
         world_costs.Add(10);
         world_costs.Add(80);
         world_costs.Add(200);
+
+        pi = GameObject.Find("GameControl").GetComponent<PlayerInventory>();
     }
 
     // Update is called once per frame
@@ -46,7 +49,11 @@ public class MapController : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
         {
-            UnlockWorld(cur_image);
+            if(pi.GetPins() >= world_costs[cur_image])
+            {
+                UnlockWorld(cur_image);
+            }
+            
         }
     }
 
@@ -65,13 +72,13 @@ public class MapController : MonoBehaviour
         {
             lock_pic.enabled = true;
             to_unlock.SetActive(true);
-            to_unlock.GetComponentInChildren<TextMeshProUGUI>().text = "x" + world_costs[num];
+            to_unlock.GetComponentInChildren<TextMeshProUGUI>().text = world_costs[num].ToString();
         }
     }
 
     void UnlockWorld(int num)
     {
-        EventBus.Publish(new WorldUnlockedEvent(num));
+        EventBus.Publish(new WorldUnlockedEvent(num, world_costs[num]));
         lock_pic.enabled = false;
         to_unlock.SetActive(false);
 

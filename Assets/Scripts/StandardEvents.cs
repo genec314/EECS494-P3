@@ -180,9 +180,22 @@ public class HomeWorldExitEvent
 public class WorldUnlockedEvent
 {
     public int num;
-
-    public WorldUnlockedEvent(int _num)
+    public int cost;
+    public WorldUnlockedEvent(int _num, int _cost)
     {
         num = _num;
+        cost = _cost;
     }
+}
+
+public class BallBoughtEvent
+{
+    public int num;
+    public int cost;
+    public BallBoughtEvent(int _num, int _cost)
+    {
+        num = _num;
+        cost = _cost;
+    }
+
 }

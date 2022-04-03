@@ -69,6 +69,7 @@ public class HomePlayerController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
             in_select_mode = true;
+            SetSelectable(cur_selectable);
             EventBus.Publish(new HomeWorldExitEvent());
         }
         else if (!in_select_mode || doing_lerp)
@@ -76,19 +77,32 @@ public class HomePlayerController : MonoBehaviour
             return;
         }
 
-        else if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && cur_selectable < (selectables.Length - 1))
+        else if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)))
         {
-            SetSelectable(cur_selectable + 1);
+            if(cur_selectable >= (selectables.Length - 1))
+            {
+                SetSelectable(0);           
+            }
+            else
+            {
+                SetSelectable(cur_selectable + 1);
+            }
         }
-        else if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && cur_selectable > 0)
+        else if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)))
         {
-            SetSelectable(cur_selectable - 1);
+            if(cur_selectable <= 0)
+            {
+                SetSelectable(selectables.Length - 1);
+            }
+            else
+            {
+                SetSelectable(cur_selectable - 1);
+            }
         }
     }
 
     void _OnTutorialStrike(TutorialStrikeEvent e)
     {
-
         transform.position = new Vector3(0, 0.5f, -20f);
         camera.transform.localRotation = Quaternion.Euler(0, 180f, 0);
         GetComponent<Rigidbody>().velocity = Vector3.zero;

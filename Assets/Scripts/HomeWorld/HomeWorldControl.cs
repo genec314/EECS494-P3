@@ -18,7 +18,7 @@ public class HomeWorldControl : MonoBehaviour
     public GameObject tutorial_UI;
     public GameObject shop_UI;
     public GameObject map_UI;
-    //public GameObject high_score_UI;
+    public GameObject high_score_UI;
     public GameObject throwball_UI;
     public GameObject controls_UI;
 
@@ -32,6 +32,7 @@ public class HomeWorldControl : MonoBehaviour
     public GameObject fpc;
     GameObject player;
     Vector3 playerStartPos;
+    Vector3 lastThrowPos;
 
     private bool can_shoot = true;
     public bool can_free_move = true;
@@ -41,6 +42,8 @@ public class HomeWorldControl : MonoBehaviour
     public GameObject[] toActivateLanes;
 
     HomeWorldData data;
+    PlayerInventory pi;
+
     //true if the world that lane is unlocked
     bool[] activeLanes;
     private int cur_lane = 1;
@@ -63,10 +66,13 @@ public class HomeWorldControl : MonoBehaviour
         main_cam = GameObject.Find("Main Camera");
         player = GameObject.Find("Player");
         playerStartPos = player.transform.position;
+        lastThrowPos = playerStartPos;
         tutorial_UI = GameObject.Find("TutorialUI");
+        curr_UI = throwball_UI;
 
         data = GetComponent<HomeWorldData>();
         activeLanes = data.GetActiveLanes();
+        pi = GameObject.Find("GameControl").GetComponent<PlayerInventory>();
     }
 
     // Update is called once per frame
@@ -83,6 +89,7 @@ public class HomeWorldControl : MonoBehaviour
     void _OnPinKnocked(PinKnockedOverEvent e)
     {
         pins_down++;
+        pi.AddPins(1);
         if(pins_down >= 10)
         {
             if (activeLanes[cur_lane])
@@ -102,10 +109,10 @@ public class HomeWorldControl : MonoBehaviour
         if (pins_down < 10)
         {
             EventBus.Publish(new ResetPinsEvent());
-            pins_down = 0;
-            player.transform.position = playerStartPos;
+            player.transform.position = lastThrowPos;
 
         }
+        pins_down = 0;
     }
 
     void _OnSelect(HomeWorldSelectEvent e)
@@ -122,17 +129,67 @@ public class HomeWorldControl : MonoBehaviour
                 curr_UI = map_UI;
                 throwball_UI.SetActive(false);
                 break;
+            case "HighScore":
+                high_score_UI.SetActive(true);
+                curr_UI = high_score_UI;
+                throwball_UI.SetActive(false);
+                break;
+            case "LeftLane":
+                lastThrowPos = playerStartPos;
+                lastThrowPos.x -= 15.1f;
+                player.transform.position = lastThrowPos;
+                SetCamera(lastThrowPos);
+                cur_lane = 0;
+                EnterLane();
+                break;
+            case "MiddleLane":
+                player.transform.position = playerStartPos;
+                lastThrowPos = playerStartPos;
+                SetCamera(playerStartPos);
+                cur_lane = 1;
+                EnterLane();
+                break;
+            case "RightLane":
+                lastThrowPos = playerStartPos;
+                lastThrowPos.x += 15.1f;
+                player.transform.position = lastThrowPos;
+                SetCamera(lastThrowPos);
+                cur_lane = 2;
+                EnterLane();
+                break;
         }
+    }
+
+    void EnterLane()
+    {
+        throwball_UI.SetActive(true);
+        curr_UI = throwball_UI;
+        controls_UI.SetActive(false);
+        fpc.SetActive(false);
+        main_cam.SetActive(true);
+        player.transform.rotation = Quaternion.identity;
+    }
+
+    void SetCamera(Vector3 playerPos)
+    {
+        Vector3 camPos = playerPos;
+        camPos.y = 6.5f;
+        camPos.z = -19f;
+        main_cam.transform.position = camPos;
     }
 
     void _OnExit(HomeWorldExitEvent e)
     {
         curr_UI.SetActive(false);
+        controls_UI.SetActive(true);
+        fpc.SetActive(true);
+        main_cam.SetActive(false);
     }
 
     void _OnWorldUnlocked(WorldUnlockedEvent e)
     {
         toActivateLanes[e.num].SetActive(true);
+        activeLanes[e.num] = true;
     }
 
     IEnumerator ExitTutorial()
@@ -145,7 +202,6 @@ public class HomeWorldControl : MonoBehaviour
         fpc.SetActive(true);
         throwball_UI.SetActive(false);
         controls_UI.SetActive(true);
-
         EventBus.Publish(new ResetPinsEvent());
     }
 
