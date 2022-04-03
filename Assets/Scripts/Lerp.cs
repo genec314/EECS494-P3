@@ -8,6 +8,8 @@ public class Lerp : MonoBehaviour
 
     Vector3 start;
     public Vector3 to;
+    public Vector3 localto;
+    public bool useLocal = false;
 
     bool way = true;
 
@@ -20,6 +22,12 @@ public class Lerp : MonoBehaviour
     {
         tf = this.GetComponent<Transform>();
         start = tf.position;
+
+        if (useLocal)
+        {
+            start = tf.localPosition;
+        }
+        
         initial_time = Time.time;
     }
 
@@ -35,12 +43,28 @@ public class Lerp : MonoBehaviour
             initial_time = Time.time;
         }
 
-        if (way)
+        //Michael hacky solution for now, prob change later
+        if (useLocal)
         {
-            tf.position = Vector3.Lerp(start, to, progress);
-        } else
+            if (way)
+            {
+                tf.localPosition = Vector3.Lerp(start, localto, progress);
+            }
+            else
+            {
+                tf.localPosition = Vector3.Lerp(localto, start, progress);
+            }
+        }
+        else
         {
-            tf.position = Vector3.Lerp(to, start, progress);
+            if (way)
+            {
+                tf.position = Vector3.Lerp(start, to, progress);
+            }
+            else
+            {
+                tf.position = Vector3.Lerp(to, start, progress);
+            }
         }
     }
 }
