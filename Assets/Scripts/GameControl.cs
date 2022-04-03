@@ -90,7 +90,7 @@ public class GameControl : MonoBehaviour
 
     public bool InTutorial()
     {
-        return levelName == "Intro";
+        return levelName == "HomeWorld";
     }
 }
 
