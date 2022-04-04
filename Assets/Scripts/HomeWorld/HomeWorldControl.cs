@@ -108,7 +108,7 @@ public class HomeWorldControl : MonoBehaviour
                         StartCoroutine(NextLevel(3f, "WorldOne"));
                         break;
                     case 1:
-                        StartCoroutine(NextLevel(3f, "World2"));
+                        StartCoroutine(NextLevel(3f, "WorldTwo"));
                         break;
                 }
                 
