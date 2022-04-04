@@ -15,7 +15,7 @@ public class HomeWorldData : MonoBehaviour
 
     public Material[] ball_mats;
 
-    int active_ball;
+    int active_ball = 0;
     // Start is called before the first frame update
     void Awake()
     {
