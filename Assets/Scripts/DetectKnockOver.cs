@@ -22,17 +22,17 @@ public class DetectKnockOver : MonoBehaviour
     void Awake()
     {
         tf = this.GetComponent<Transform>();
-        // pin_renderers = GetComponentsInChildren<MeshRenderer>();
+        pin_renderers = GetComponentsInChildren<MeshRenderer>();
 
         ready_sub = EventBus.Subscribe<BallReadyEvent>(FadeOutWhenReady);
         reset_pin_sub = EventBus.Subscribe<ResetPinsEvent>(_OnResetPins);
         startPos = transform.localPosition;
         startRot = transform.localRotation;
-        /*startColors = new Color[pin_renderers.Length];
+        startColors = new Color[pin_renderers.Length];
         for(int i = 0; i < pin_renderers.Length; i++)
         {
             startColors[i] = pin_renderers[i].material.color;
-        }*/
+        }
 
         gc = GameObject.Find("GameControl").GetComponent<GameControl>();
         audioSource = GetComponent<AudioSource>();
@@ -57,11 +57,11 @@ public class DetectKnockOver : MonoBehaviour
     {
         if (knockedOver && !gc.InTutorial() && GetComponent<MeshCollider>().enabled == true)
         {
-            this.gameObject.SetActive(false);
-            /*for (int i = 0; i < pin_renderers.Length; i++)
+            // this.gameObject.SetActive(false);
+            for (int i = 0; i < pin_renderers.Length; i++)
             {
                 StartCoroutine(FadeOut(pin_renderers[i]));
-            }*/
+            }
         }
     }
 
@@ -91,11 +91,9 @@ public class DetectKnockOver : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
-        /*
         for(int i = 0; i < pin_renderers.Length; i++)
         {
             pin_renderers[i].material.color = startColors[i];
         }
-        */
     }
 }

@@ -61,56 +61,59 @@ public class HoleData : MonoBehaviour
     private void BallReady(BallReadyEvent e)
     {
         // takes into account that shots_taken was already incremented
-        if (current_hole)
-        {
-            if (shots_taken == 1)
-            {
-                pointsOnShot[shots_taken - 1] = 10 - numPins;
-            }
-            else if (shots_taken == 2)
-            {
-                pointsOnShot[shots_taken - 1] = 10 - pointsOnShot[0] - numPins;
-            }
-            else if (shots_taken == 3)
-            {
-                pointsOnShot[shots_taken - 1] = 10 - pointsOnShot[0] - pointsOnShot[1] - numPins;
-            }
-        }
+        // if (current_hole)
+        // {
+        //     if (shots_taken == 1)
+        //     {
+        //         pointsOnShot[shots_taken - 1] = 10 - numPins;
+        //     }
+        //     else if (shots_taken == 2)
+        //     {
+        //         pointsOnShot[shots_taken - 1] = 10 - pointsOnShot[0] - numPins;
+        //     }
+        //     else if (shots_taken == 3)
+        //     {
+        //         pointsOnShot[shots_taken - 1] = 10 - pointsOnShot[0] - pointsOnShot[1] - numPins;
+        //     }
+        // }
 
         if ((numberOfShots == shots_taken || numPins == 0) && current_hole)
         {
-            if (!inTransition)
+            if (!inTransition && numPins == 0)
             {
                 StartCoroutine(GoToNextHole());
             }
+            else
+            {
+                StartCoroutine(ResetHole());
+            }
         }
-
     }
     
     IEnumerator GoToNextHole() // Make a more generalizable public function that also calls this
     {
         inTransition = true;
 
-        if (current_hole)
-        {
-            if (shots_taken == 1)
-            {
-                pointsOnShot[shots_taken - 1] = 10 - numPins;
-            }
-            else if (shots_taken == 2)
-            {
-                pointsOnShot[shots_taken - 1] = 10 - pointsOnShot[0] - numPins;
-            }
-            else if (shots_taken == 3)
-            {
-                pointsOnShot[shots_taken - 1] = 10 - pointsOnShot[0] - pointsOnShot[1] - numPins;
-            }
-        }
+        // if (current_hole)
+        // {
+        //     if (shots_taken == 1)
+        //     {
+        //         pointsOnShot[shots_taken - 1] = 10 - numPins;
+        //     }
+        //     else if (shots_taken == 2)
+        //     {
+        //         pointsOnShot[shots_taken - 1] = 10 - pointsOnShot[0] - numPins;
+        //     }
+        //     else if (shots_taken == 3)
+        //     {
+        //         pointsOnShot[shots_taken - 1] = 10 - pointsOnShot[0] - pointsOnShot[1] - numPins;
+        //     }
+        // }
 
         //We should make a toast system and send it "strike, spare etc depending on how many shots it took
         EventBus.Publish(new EndHoleEvent(this));
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
 
         current_hole = false;
 
@@ -140,6 +143,18 @@ public class HoleData : MonoBehaviour
         }
 
         yield return null;
+    }
+
+    IEnumerator ResetHole()
+    {
+        EventBus.Publish<LevelFailedEvent>(new LevelFailedEvent());
+        yield return new WaitForSeconds(3f);
+        numPins = 10;
+        shots_taken = 0;
+        EventBus.Publish<ResetPinsEvent>(new ResetPinsEvent());
+        GameObject.Find("ElectricBall").transform.position = initialBallPos;
+        Camera.main.transform.position = initialCameraPos;
+        Camera.main.transform.Rotate(initalCameraRotation);
     }
 
 

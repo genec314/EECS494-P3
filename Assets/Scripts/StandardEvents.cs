@@ -210,6 +210,16 @@ public class ResetPinsEvent
     }
 }
 
+public class LevelFailedEvent
+{
+    public LevelFailedEvent() {}
+}
+
+public class LevelCompleteEvent
+{
+    public LevelCompleteEvent() {}
+}
+
 public class HomeWorldSelectEvent
 {
     public string where;
