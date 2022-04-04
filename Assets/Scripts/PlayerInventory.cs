@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class PlayerInventory : MonoBehaviour
@@ -23,7 +24,14 @@ public class PlayerInventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (SceneManager.GetActiveScene().name == "Title")
+        {
+            if (UI.activeSelf) UI.SetActive(false);
+        }
+        else
+        {
+            if (!UI.activeSelf) UI.SetActive(true);
+        }
     }
 
     void _OnPinKnocked(PinKnockedOverEvent e)

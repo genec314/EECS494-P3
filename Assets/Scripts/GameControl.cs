@@ -118,7 +118,8 @@ public class GameControl : MonoBehaviour
 
     public bool InTutorial()
     {
-        return curr_world == 0;
+        return levelName == "HomeWorld";
+        // return curr_world == 0;
     }
 }
 

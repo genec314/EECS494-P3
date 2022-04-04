@@ -118,11 +118,18 @@ public class ElectrostaticForceEvent
 
 public class RanOutOfLivesEvent
 {
-   
-
     public RanOutOfLivesEvent()
     {
        
+    }
+}
+
+public class ResetLivesEvent
+{
+    public int lives;
+    public ResetLivesEvent(int _lives)
+    {
+        lives = _lives;
     }
 }
 

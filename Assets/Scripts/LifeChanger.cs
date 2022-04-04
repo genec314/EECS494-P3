@@ -10,6 +10,7 @@ public class LifeChanger : MonoBehaviour
 
     Subscription<BallThrownEvent> thrown_subscription;
     Subscription<NewHoleEvent> new_hole_subscription;
+    Subscription<ResetLivesEvent> reset_subscription;
 
     // Start is called before the first frame update
     void Awake()
@@ -38,6 +39,12 @@ public class LifeChanger : MonoBehaviour
     private void NewHole(NewHoleEvent e)
     {
         currentLives = e.nextHole.GetNumShots();
+        text.text = "x " + currentLives;
+    }
+
+    void ResetHole(ResetLivesEvent e)
+    {
+        currentLives = e.lives;
         text.text = "x " + currentLives;
     }
 }
