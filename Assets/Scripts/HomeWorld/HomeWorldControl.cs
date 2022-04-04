@@ -102,7 +102,16 @@ public class HomeWorldControl : MonoBehaviour
         {
             if (activeLanes[cur_lane])
             {
-                StartCoroutine(NextLevel(3f));
+                switch (cur_lane)
+                {
+                    case 0:
+                        StartCoroutine(NextLevel(3f, "WorldOne"));
+                        break;
+                    case 1:
+                        StartCoroutine(NextLevel(3f, "World2"));
+                        break;
+                }
+                
             }
             else
             {
@@ -218,10 +227,10 @@ public class HomeWorldControl : MonoBehaviour
         EventBus.Publish(new ResetPinsEvent());
     }
 
-    IEnumerator NextLevel(float time)
+    IEnumerator NextLevel(float time, string level)
     {
         yield return new WaitForSeconds(time);
-        EventBus.Publish(new LoadNextLevelEvent());
+        EventBus.Publish(new LoadNextLevelEvent(level));
         this.enabled = false;
     }
 

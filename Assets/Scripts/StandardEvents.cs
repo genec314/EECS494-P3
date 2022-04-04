@@ -57,9 +57,10 @@ public class LoadIntroEvent
 
 public class LoadNextLevelEvent
 {
-    public LoadNextLevelEvent()
+    public string world;
+    public LoadNextLevelEvent(string _world)
     {
-
+        world = _world;
     }
 }
 

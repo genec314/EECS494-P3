@@ -125,7 +125,7 @@ public class HoleData : MonoBehaviour
 
         if (nextHole == null)
         {
-            EventBus.Publish(new LoadNextLevelEvent());
+            EventBus.Publish(new LoadNextLevelEvent("HomeWorld"));
         } else
         {
             EventBus.Publish(new NewHoleEvent(nextHole.GetComponent<HoleData>()));

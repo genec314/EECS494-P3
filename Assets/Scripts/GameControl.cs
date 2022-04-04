@@ -21,8 +21,6 @@ public class GameControl : MonoBehaviour
     LevelData[] world_2_levels = new LevelData[10];
     LevelData[] world_3_levels = new LevelData[10];
 
-    int level;
-
     void Start()
     {
         if (instance == null)
@@ -38,7 +36,6 @@ public class GameControl : MonoBehaviour
         level_subscription = EventBus.Subscribe<LoadNextLevelEvent>(OnNewLevel);
         reload_subscription = EventBus.Subscribe<ReloadLevelEvent>(OnReloadLevel);
 
-        level = SceneManager.GetActiveScene().buildIndex;
         levelName = SceneManager.GetActiveScene().name;
     }
 
@@ -50,42 +47,38 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     void OnIntroLevel(LoadIntroEvent e)
     {
         if (intro_played)
         {
-            SceneManager.LoadScene("home");
+            SceneManager.LoadScene("HomeWorld");
         }
         else
         {
-            SceneManager.LoadScene("intro");
+            SceneManager.LoadScene("Intro");
         }
     }
 
     void OnNewLevel(LoadNextLevelEvent e)
     {
-        if (level + 1 == SceneManager.sceneCountInBuildSettings)
-        {
-            level = 0;
-            StartCoroutine(WaitThenLoadLevel(0));
-            return;
-        }
+        string level_to_load = e.world;
 
-        StartCoroutine(WaitThenLoadLevel(level++ + 1));
+        StartCoroutine(WaitThenLoadLevel(level_to_load));
     }
 
     void OnReloadLevel(ReloadLevelEvent e)
     {
-        WaitThenLoadLevel(level);
+        WaitThenLoadLevel(levelName);
     }
 
-    IEnumerator WaitThenLoadLevel(int level_num)
+    IEnumerator WaitThenLoadLevel(string world)
     {
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(level_num);
+        Debug.Log(world);
+        levelName = world;
+        SceneManager.LoadScene(world);
     }
 
     public bool InTutorial()
