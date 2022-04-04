@@ -28,16 +28,7 @@ public class BallReadyEvent
 
 public class PinKnockedOverEvent
 {
-    public int id;
-    public PinKnockedOverEvent(int _id)
-    {
-        id = _id;
-    }
-
-    public override string ToString()
-    {
-        return "pin #" + id + " knocked over";
-    }
+    public PinKnockedOverEvent() {}
 }
 
 public class PowerBarWindupEvent
@@ -55,10 +46,10 @@ public class LoadIntroEvent
     public LoadIntroEvent() {}
 }
 
-public class LoadNextLevelEvent
+public class LoadWorldEvent
 {
     public string world;
-    public LoadNextLevelEvent(string _world)
+    public LoadWorldEvent(string _world)
     {
         world = _world;
     }
@@ -116,14 +107,6 @@ public class ElectrostaticForceEvent
     }
 }
 
-public class RanOutOfLivesEvent
-{
-    public RanOutOfLivesEvent()
-    {
-       
-    }
-}
-
 public class ResetLivesEvent
 {
     public int lives;
@@ -155,7 +138,7 @@ public class NewHoleEvent
 
 public class TutorialStrikeEvent
 {
-    public TutorialStrikeEvent() { }
+    public TutorialStrikeEvent() {}
 
 }
 
@@ -166,10 +149,7 @@ public class TeleportEvent
 
     public bool updateCamera;
 
-    public TeleportEvent()
-    {
-
-    }
+    public TeleportEvent() {}
 
     public TeleportEvent(Transform _t1, Transform _t2)
     {
@@ -186,22 +166,11 @@ public class TeleportEvent
     }
 }
 
-public class UpdateCameraRotationEvent
-{
-    public UpdateCameraRotationEvent()
-    {
-
-    }
-}
-
 public class ResetShotEvent {
 
     public Vector3 position = new Vector3(-999, -999, -999);
 
-    public ResetShotEvent()
-    {
-
-    }
+    public ResetShotEvent() {}
 
     public ResetShotEvent(Vector3 _position)
     {
@@ -211,10 +180,7 @@ public class ResetShotEvent {
 
 public class ResetPinsEvent
 {
-    public ResetPinsEvent()
-    {
-
-    }
+    public ResetPinsEvent() {}
 }
 
 public class LevelFailedEvent
@@ -239,10 +205,7 @@ public class HomeWorldSelectEvent
 
 public class HomeWorldExitEvent
 {
-    public HomeWorldExitEvent()
-    {
-
-    }
+    public HomeWorldExitEvent() {}
 }
 
 public class WorldUnlockedEvent

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DetectKnockOver : MonoBehaviour
 {
-    public int pin_id;
     public float fadeSpeed = 1f;
     public AudioClip knockdown_sound;
     Transform tf;
@@ -46,8 +45,7 @@ public class DetectKnockOver : MonoBehaviour
         if (!knockedOver && (tf.up.y < 0.8f || dist >= 3f))
         {
             knockedOver = true;
-            PinKnockedOverEvent knock = new PinKnockedOverEvent(pin_id);
-            EventBus.Publish(knock);
+            EventBus.Publish(new PinKnockedOverEvent());
             AudioSource.PlayClipAtPoint(knockdown_sound, transform.position, 0.35f);
             
         }

@@ -240,7 +240,7 @@ public class HomeWorldControl : MonoBehaviour
     IEnumerator NextLevel(float time, string level)
     {
         yield return new WaitForSeconds(time);
-        EventBus.Publish(new LoadNextLevelEvent(level));
+        EventBus.Publish(new LoadWorldEvent(level));
         this.enabled = false;
     }
 
@@ -281,6 +281,4 @@ public class HomeWorldControl : MonoBehaviour
     {
         sensitivity = _in;
     }
-
-
 }

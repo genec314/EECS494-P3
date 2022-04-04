@@ -7,7 +7,7 @@ public class GameControl : MonoBehaviour
 {
     public static GameControl instance;
     bool intro_played = false;
-    Subscription<LoadNextLevelEvent> level_subscription;
+    Subscription<LoadWorldEvent> level_subscription;
     Subscription<ReloadLevelEvent> reload_subscription;
     Subscription<LoadIntroEvent> intro_subscription;
 
@@ -33,7 +33,7 @@ public class GameControl : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         Screen.SetResolution(1920, 1080, false);
 
-        level_subscription = EventBus.Subscribe<LoadNextLevelEvent>(OnNewLevel);
+        level_subscription = EventBus.Subscribe<LoadWorldEvent>(OnWorldChange);
         reload_subscription = EventBus.Subscribe<ReloadLevelEvent>(OnReloadLevel);
         intro_subscription = EventBus.Subscribe<LoadIntroEvent>(OnIntroLevel);
 
@@ -84,9 +84,9 @@ public class GameControl : MonoBehaviour
     }
 
     // TODO: for when the player switches worlds. should handle updating world_num and loading the appropriate level select
-    void OnWorldChange()
+    void OnWorldChange(LoadWorldEvent e)
     {
-
+        StartCoroutine(WaitThenLoadWorld(e.world));
     }
 
     // TODO: load the appropriate level select screen
@@ -96,19 +96,17 @@ public class GameControl : MonoBehaviour
     }
 
     // will be deprecated in favor of having game control dictate loading new levels
-    void OnNewLevel(LoadNextLevelEvent e)
+    void OnNewLevel()
     {
-        string level_to_load = e.world;
-
-        StartCoroutine(WaitThenLoadLevel(level_to_load));
+        
     }
 
     void OnReloadLevel(ReloadLevelEvent e)
     {
-        WaitThenLoadLevel(levelName);
+        WaitThenLoadWorld(levelName);
     }
 
-    IEnumerator WaitThenLoadLevel(string world)
+    IEnumerator WaitThenLoadWorld(string world)
     {
         yield return new WaitForSeconds(2f);
         EventBus.Publish<LoadLevelEvent>(new LoadLevelEvent(curr_level, curr_world));

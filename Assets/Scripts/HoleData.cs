@@ -11,9 +11,10 @@ public class HoleData : MonoBehaviour
     [SerializeField] Vector3 initialCameraPos;
     [SerializeField] Vector3 initalCameraRotation;
     [SerializeField] int numPins;
-    [SerializeField] int numberOfShots;
+    [SerializeField] int numShots;
     [SerializeField] GameObject ball;
     int shots_taken = 0;
+    int pins_down = 0;
     [SerializeField] int holeNumber;
     [SerializeField] GameObject nextHole;
     Subscription<PinKnockedOverEvent> pin_subscription;
@@ -21,15 +22,12 @@ public class HoleData : MonoBehaviour
     Subscription<ResetShotEvent> reset_shot_subscription;
     Subscription<BallReadyEvent> ball_ready_subscription;
     public bool current_hole = false;
-    private bool inTransition = false;
     public bool canBallSplit = false;
-
-    private int[] pointsOnShot = new int[3];
 
     // Start is called before the first frame update
     void Awake()
     {
-        pin_subscription = EventBus.Subscribe<PinKnockedOverEvent>(DecreasePins);
+        pin_subscription = EventBus.Subscribe<PinKnockedOverEvent>(PinDown);
         thrown_subscription = EventBus.Subscribe<BallThrownEvent>(IncreaseShots);
         reset_shot_subscription = EventBus.Subscribe<ResetShotEvent>(ResetShot);
         ball_ready_subscription = EventBus.Subscribe<BallReadyEvent>(BallReady);
@@ -41,49 +39,20 @@ public class HoleData : MonoBehaviour
         
     }
 
-    private void DecreasePins(PinKnockedOverEvent p)
+    private void PinDown(PinKnockedOverEvent p)
     {
-        if (current_hole == false)
-        {
-            return;
-        }
-
-        numPins--;
-        // if(numPins == 0)
-        // {
-        //     if (!inTransition)
-        //     {
-        //         StartCoroutine(GoToNextHole());
-        //     }
-        // }
+        if (current_hole) pins_down++;
     }
 
     private void BallReady(BallReadyEvent e)
     {
-        // takes into account that shots_taken was already incremented
-        // if (current_hole)
-        // {
-        //     if (shots_taken == 1)
-        //     {
-        //         pointsOnShot[shots_taken - 1] = 10 - numPins;
-        //     }
-        //     else if (shots_taken == 2)
-        //     {
-        //         pointsOnShot[shots_taken - 1] = 10 - pointsOnShot[0] - numPins;
-        //     }
-        //     else if (shots_taken == 3)
-        //     {
-        //         pointsOnShot[shots_taken - 1] = 10 - pointsOnShot[0] - pointsOnShot[1] - numPins;
-        //     }
-        // }
-
-        if ((numberOfShots == shots_taken || numPins == 0) && current_hole)
+        if (current_hole)
         {
-            if (!inTransition && numPins == 0)
+            if (pins_down == numPins)
             {
                 StartCoroutine(GoToNextHole());
             }
-            else
+            else if (shots_taken == numShots)
             {
                 StartCoroutine(ResetHole());
             }
@@ -92,25 +61,6 @@ public class HoleData : MonoBehaviour
     
     IEnumerator GoToNextHole() // Make a more generalizable public function that also calls this
     {
-        inTransition = true;
-
-        // if (current_hole)
-        // {
-        //     if (shots_taken == 1)
-        //     {
-        //         pointsOnShot[shots_taken - 1] = 10 - numPins;
-        //     }
-        //     else if (shots_taken == 2)
-        //     {
-        //         pointsOnShot[shots_taken - 1] = 10 - pointsOnShot[0] - numPins;
-        //     }
-        //     else if (shots_taken == 3)
-        //     {
-        //         pointsOnShot[shots_taken - 1] = 10 - pointsOnShot[0] - pointsOnShot[1] - numPins;
-        //     }
-        // }
-
-        //We should make a toast system and send it "strike, spare etc depending on how many shots it took
         EventBus.Publish(new EndHoleEvent(this));
 
         yield return new WaitForSeconds(3f);
@@ -136,7 +86,7 @@ public class HoleData : MonoBehaviour
             {
                 EventBus.Publish(new WorldUnlockedEvent(2));
             }
-            EventBus.Publish(new LoadNextLevelEvent("HomeWorld"));
+            EventBus.Publish(new LoadWorldEvent("HomeWorld"));
         } else
         {
             EventBus.Publish(new NewHoleEvent(nextHole.GetComponent<HoleData>()));
@@ -148,11 +98,13 @@ public class HoleData : MonoBehaviour
     IEnumerator ResetHole()
     {
         EventBus.Publish<LevelFailedEvent>(new LevelFailedEvent());
+
         yield return new WaitForSeconds(3f);
-        numPins = 10;
+
+        pins_down = 0;
         shots_taken = 0;
         EventBus.Publish<ResetPinsEvent>(new ResetPinsEvent());
-        EventBus.Publish<ResetLivesEvent>(new ResetLivesEvent(numberOfShots));
+        EventBus.Publish<ResetLivesEvent>(new ResetLivesEvent(numShots));
         GameObject.Find("ElectricBall").transform.position = initialBallPos;
         Camera.main.transform.position = initialCameraPos;
         Camera.main.transform.rotation = Quaternion.identity;
@@ -186,7 +138,7 @@ public class HoleData : MonoBehaviour
 
     public int GetNumShots()
     {
-        return numberOfShots;
+        return numShots;
     }
 
     public int GetShotsTaken()
@@ -196,7 +148,7 @@ public class HoleData : MonoBehaviour
 
     public int GetPinsRemaining()
     {
-        return numPins;
+        return pins_down;
     }
 
     public int GetHoleNumber()
@@ -204,14 +156,8 @@ public class HoleData : MonoBehaviour
         return holeNumber;
     }
 
-    public int[] GetScoresByShot()
-    {
-        return pointsOnShot;
-    }
-
     private void ResetShot(ResetShotEvent e)
     {
-        Debug.Log("Here1");
         if (current_hole && e.position.x == -999)
         {
             EventBus.Publish(new ResetShotEvent(initialBallPos));

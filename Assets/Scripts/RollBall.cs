@@ -37,16 +37,6 @@ public class RollBall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            Destroy(this);
-        }
-        DontDestroyOnLoad(this);*/
-
         canMove = true;
         meter.SetActive(false);
         bar.SetActive(false);
