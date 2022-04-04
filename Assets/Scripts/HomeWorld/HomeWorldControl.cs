@@ -44,8 +44,7 @@ public class HomeWorldControl : MonoBehaviour
     HomeWorldData data;
     PlayerInventory pi;
 
-    //true if the world that lane is unlocked
-    bool[] activeLanes;
+    List<int> unlocked_worlds;
     private int cur_lane = 1;
     // Start is called before the first frame update
     void Start()
@@ -71,15 +70,21 @@ public class HomeWorldControl : MonoBehaviour
         curr_UI = throwball_UI;
 
         data = GameObject.Find("GameControl").GetComponent<HomeWorldData>();
-        activeLanes = data.GetActiveLanes();
-        for(int i = 0; i < activeLanes.Length; i++)
+        unlocked_worlds = data.GetUnlockedWorlds();
+        for(int i = 0; i < unlocked_worlds.Count; i++)
         {
-            if(activeLanes[i] == true)
-            {
-                tutorial_UI.SetActive(false);
-                GetComponent<LaneLights>().TurnOnLights(i);
-            }
-            
+            toActivateLanes[unlocked_worlds[i]].SetActive(true);            
+        }
+        if(unlocked_worlds.Count >= 1)
+        {
+            can_free_move = true;
+            can_shoot = false;
+            main_cam.SetActive(false);
+            fpc.SetActive(true);
+            throwball_UI.SetActive(false);
+            controls_UI.SetActive(true);
+            tutorial_UI.SetActive(false);
+            EventBus.Publish(new TutorialStrikeEvent());
         }
         pi = GameObject.Find("GameControl").GetComponent<PlayerInventory>();
     }
@@ -101,7 +106,7 @@ public class HomeWorldControl : MonoBehaviour
         pins_down++;
         if(pins_down >= 10)
         {
-            if (activeLanes[cur_lane])
+            if (unlocked_worlds.Contains(cur_lane))
             {
                 switch (cur_lane)
                 {
@@ -213,7 +218,7 @@ public class HomeWorldControl : MonoBehaviour
     void _OnWorldUnlocked(WorldUnlockedEvent e)
     {
         toActivateLanes[e.num].SetActive(true);
-        activeLanes[e.num] = true;
+        unlocked_worlds.Add(e.num);
     }
 
     IEnumerator ExitTutorial()

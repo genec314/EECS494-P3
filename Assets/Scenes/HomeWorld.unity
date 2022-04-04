@@ -3077,7 +3077,6 @@ GameObject:
   m_Component:
   - component: {fileID: 980497978}
   - component: {fileID: 980497977}
-  - component: {fileID: 980497979}
   m_Layer: 0
   m_Name: HomeWorldManager
   m_TagString: Untagged
@@ -3122,23 +3121,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &980497979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 980497976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90dd88a6ef08ae14f9652d91e2c64ac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lights:
-  - {fileID: 436303025}
-  - {fileID: 1264497688}
-  - {fileID: 262670082}
-  pictures: []
 --- !u!1001 &1008466038
 PrefabInstance:
   m_ObjectHideFlags: 0

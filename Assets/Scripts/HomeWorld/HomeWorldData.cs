@@ -10,7 +10,6 @@ public class HomeWorldData : MonoBehaviour
 
     static HomeWorldData instance;
 
-    bool[] activeLanes;
     List<int> purchased_balls;
     List<int> unlocked_worlds;
 
@@ -28,13 +27,10 @@ public class HomeWorldData : MonoBehaviour
         world_unlock_sub = EventBus.Subscribe<WorldUnlockedEvent>(UnlockWorld);
         ball_bought_sub = EventBus.Subscribe<BallBoughtEvent>(BallBought);
 
-        activeLanes = new bool[3]{ false, false, false};
-
         purchased_balls = new List<int>();
         purchased_balls.Add(0);
 
         unlocked_worlds = new List<int>();
-        unlocked_worlds.Add(0);
     }
 
     // Update is called once per frame
@@ -43,9 +39,9 @@ public class HomeWorldData : MonoBehaviour
         
     }
 
-    public bool[] GetActiveLanes()
+    public List<int> GetUnlockedWorlds()
     {
-        return activeLanes;
+        return unlocked_worlds;
     }
 
     public List<int> GetPurchasedBalls()
@@ -68,10 +64,6 @@ public class HomeWorldData : MonoBehaviour
         active_ball = index;
     }
 
-    public List<int> GetUnlockedWorlds()
-    {
-        return unlocked_worlds;
-    }
 
     void UnlockWorld(WorldUnlockedEvent e)
     {
