@@ -76,6 +76,7 @@ public class HomeWorldControl : MonoBehaviour
         {
             if(activeLanes[i] == true)
             {
+                tutorial_UI.SetActive(false);
                 GetComponent<LaneLights>().TurnOnLights(i);
             }
             
@@ -109,6 +110,10 @@ public class HomeWorldControl : MonoBehaviour
                         break;
                     case 1:
                         StartCoroutine(NextLevel(3f, "WorldTwo"));
+                        break;
+                    case 2:
+                        //idk
+                        StartCoroutine(NextLevel(3f, "WorldOne"));
                         break;
                 }
                 
