@@ -8,7 +8,7 @@ public class TutorialControl3 : MonoBehaviour
     public GameObject tutorialUI;
 
     private bool hole1 = true;
-    private bool hole3 = false;
+    private bool hole4 = false;
     private bool firstF = true;
 
     Subscription<NewHoleEvent> new_hole_subscription;
@@ -25,10 +25,10 @@ public class TutorialControl3 : MonoBehaviour
         {
             hole1 = false;
             StartCoroutine(EndTutorial());
-        } else if (hole3 && Input.GetKeyDown(KeyCode.F) && firstF)
+        } else if (hole4 && Input.GetKeyDown(KeyCode.F) && firstF)
         {
             firstF = false;
-            tutorialUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Press F to rejoin the split balls!";
+            tutorialUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Press F to rejoin the split balls at any time before the end of your last shot!";
         } else if (!firstF && Input.GetKeyDown(KeyCode.F))
         {
             StartCoroutine(EndTutorial());
@@ -38,11 +38,11 @@ public class TutorialControl3 : MonoBehaviour
     private void NewHole(NewHoleEvent e)
     {
         Debug.Log(e.nextHole.GetHoleNumber());
-        if (e.nextHole.GetHoleNumber() == 3)
+        if (e.nextHole.GetHoleNumber() == 4)
         {
-            hole3 = true;
+            hole4 = true;
             tutorialUI.SetActive(true);
-            tutorialUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Trying shooting straight, and press F to split the ball!";
+            tutorialUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Trying shooting straight, and press F to split the ball while the ball is moving!";
         }
     }
 
