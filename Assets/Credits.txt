@@ -14,4 +14,6 @@ Bowling pin clipart - https://www.pngkey.com/maxpic/u2q8o0r5o0t4y3a9/
 Lock clipart - https://www.pinclipart.com/pindetail/ihmiboh_key-hole-png-open-lock-clip-art-transparent/
 volume slider - https://johnleonardfrench.com/the-right-way-to-make-a-volume-slider-in-unity-using-logarithmic-conversion/
 Overload Regular and Overload Burn fonts - available for personal and commercial use as specified by license and found on https://www.1001fonts.com/overload-font.html
-
+Palm trees - https://sketchfab.com/3d-models/kit-palm-tree-378f04d9f7a341cc87c8f9df0a0b049c#download
+Water texture - https://sketchfab.com/3d-models/ocean-wave-wmaya-03f0559f6b7646ea9014e2e72f71b198
+Sand Texture - https://assetstore.unity.com/packages/2d/textures-materials/floors/yughues-free-sand-materials-12964#description
