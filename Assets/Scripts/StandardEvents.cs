@@ -265,3 +265,13 @@ public class BallBoughtEvent
     }
 
 }
+
+public class ResetSplitEvent {
+
+    public HoleData holedata;
+
+    public ResetSplitEvent(HoleData _holedata)
+    {
+        holedata = _holedata;
+    }
+}

@@ -14,6 +14,7 @@ public class CanSplit : MonoBehaviour
     Transform tf;
     Rigidbody orig;
     Subscription<NewHoleEvent> new_hole_subscription;
+    Subscription<ResetSplitEvent> reset_split_subscription;
 
     // Start is called before the first frame update
     void Awake()
@@ -21,6 +22,7 @@ public class CanSplit : MonoBehaviour
         tf = this.GetComponent<Transform>();
         orig = this.GetComponent<Rigidbody>();
         new_hole_subscription = EventBus.Subscribe<NewHoleEvent>(OnNewHole);
+        reset_split_subscription = EventBus.Subscribe<ResetSplitEvent>(OnResetSplit);
     }
 
     // Update is called once per frame
@@ -102,6 +104,22 @@ public class CanSplit : MonoBehaviour
             needtoDie = false;
 
             Destroy(secondBall1);
+        }
+    }
+
+    private void OnResetSplit(ResetSplitEvent e)
+    {
+        canSplit = e.holedata.canBallSplit;
+
+        if (canSplit)
+        {
+            isSplit = false;
+            needtoDie = false;
+
+            if (secondBall1 != null)
+            {
+                Destroy(secondBall1);
+            }
         }
     }
 }

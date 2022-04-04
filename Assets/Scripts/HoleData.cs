@@ -157,6 +157,7 @@ public class HoleData : MonoBehaviour
         Camera.main.transform.position = initialCameraPos;
         Camera.main.transform.rotation = Quaternion.identity;
         Camera.main.transform.Rotate(initalCameraRotation);
+        EventBus.Publish<ResetSplitEvent>(new ResetSplitEvent(this));
     }
 
 

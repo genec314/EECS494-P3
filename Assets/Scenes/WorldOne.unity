@@ -6516,7 +6516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8020143391789036965, guid: 1b72fc8de810947caa68d743b26cdca7, type: 3}
       propertyPath: charge
-      value: -2500
+      value: -1500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b72fc8de810947caa68d743b26cdca7, type: 3}
@@ -9498,7 +9498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8020143391789036965, guid: 1b72fc8de810947caa68d743b26cdca7, type: 3}
       propertyPath: charge
-      value: -5000
+      value: -1500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b72fc8de810947caa68d743b26cdca7, type: 3}
