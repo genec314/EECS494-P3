@@ -28,7 +28,7 @@ public class HomePlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (in_bowl_mode)
+        if (in_bowl_mode || doing_lerp)
         {
             return;
         }
@@ -74,7 +74,7 @@ public class HomePlayerController : MonoBehaviour
             SetSelectable(cur_selectable);
             EventBus.Publish(new HomeWorldExitEvent());
         }
-        else if (!in_select_mode || doing_lerp)
+        else if (!in_select_mode)
         {
             return;
         }
@@ -119,7 +119,6 @@ public class HomePlayerController : MonoBehaviour
         cur_selectable = index;
         Vector3 oldPos = transform.position;
         Vector3 newPos = selectables[index].transform.position;
-        Debug.Log(index);
         
         //back wall
         if(index <= 1)
@@ -143,7 +142,6 @@ public class HomePlayerController : MonoBehaviour
         {
             newPos.y -= 7.75f;
             newPos.z -= 40f;
-            Debug.Log(newPos);
             StartCoroutine(LerpPlayer(oldPos, newPos, transform.rotation.eulerAngles, new Vector3(0f, 180f, 0f)));
             //transform.localPosition = new Vector3(0, -7f, -40f);
             //transform.localRotation = Quaternion.Euler(0f, 180f, 0);

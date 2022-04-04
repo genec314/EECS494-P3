@@ -22,17 +22,17 @@ public class DetectKnockOver : MonoBehaviour
     void Awake()
     {
         tf = this.GetComponent<Transform>();
-        pin_renderers = GetComponentsInChildren<MeshRenderer>();
+        // pin_renderers = GetComponentsInChildren<MeshRenderer>();
 
         ready_sub = EventBus.Subscribe<BallReadyEvent>(FadeOutWhenReady);
         reset_pin_sub = EventBus.Subscribe<ResetPinsEvent>(_OnResetPins);
         startPos = transform.localPosition;
         startRot = transform.localRotation;
-        startColors = new Color[pin_renderers.Length];
+        /*startColors = new Color[pin_renderers.Length];
         for(int i = 0; i < pin_renderers.Length; i++)
         {
             startColors[i] = pin_renderers[i].material.color;
-        }
+        }*/
 
         gc = GameObject.Find("GameControl").GetComponent<GameControl>();
         audioSource = GetComponent<AudioSource>();
@@ -43,12 +43,13 @@ public class DetectKnockOver : MonoBehaviour
     void Update()
     {
         float dist = (startPos - transform.localPosition).magnitude;
-        if (!knockedOver && (tf.up.y < 0.8f || dist >= 1f))
+        if (!knockedOver && (tf.up.y < 0.8f || dist >= 3f))
         {
             knockedOver = true;
             PinKnockedOverEvent knock = new PinKnockedOverEvent(pin_id);
             EventBus.Publish(knock);
             AudioSource.PlayClipAtPoint(knockdown_sound, transform.position, 0.35f);
+            
         }
     }
 
@@ -56,10 +57,11 @@ public class DetectKnockOver : MonoBehaviour
     {
         if (knockedOver && !gc.InTutorial() && GetComponent<MeshCollider>().enabled == true)
         {
-            for (int i = 0; i < pin_renderers.Length; i++)
+            this.gameObject.SetActive(false);
+            /*for (int i = 0; i < pin_renderers.Length; i++)
             {
                 StartCoroutine(FadeOut(pin_renderers[i]));
-            }
+            }*/
         }
     }
 

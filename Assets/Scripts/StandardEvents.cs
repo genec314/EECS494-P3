@@ -57,9 +57,10 @@ public class LoadIntroEvent
 
 public class LoadNextLevelEvent
 {
-    public LoadNextLevelEvent()
+    public string world;
+    public LoadNextLevelEvent(string _world)
     {
-
+        world = _world;
     }
 }
 
@@ -230,11 +231,9 @@ public class HomeWorldExitEvent
 public class WorldUnlockedEvent
 {
     public int num;
-    public int cost;
-    public WorldUnlockedEvent(int _num, int _cost)
+    public WorldUnlockedEvent(int _num)
     {
         num = _num;
-        cost = _cost;
     }
 }
 

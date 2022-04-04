@@ -5,6 +5,9 @@ using UnityEngine;
 public class HomeWorldData : MonoBehaviour
 {
 
+    Subscription<WorldUnlockedEvent> world_unlock_sub;
+    Subscription<BallBoughtEvent> ball_bought_sub;
+
     static HomeWorldData instance;
 
     bool[] activeLanes;
@@ -22,12 +25,16 @@ public class HomeWorldData : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(this);
 
+        world_unlock_sub = EventBus.Subscribe<WorldUnlockedEvent>(UnlockWorld);
+        ball_bought_sub = EventBus.Subscribe<BallBoughtEvent>(BallBought);
+
         activeLanes = new bool[3]{ false, false, false};
 
         purchased_balls = new List<int>();
         purchased_balls.Add(0);
 
         unlocked_worlds = new List<int>();
+        unlocked_worlds.Add(0);
     }
 
     // Update is called once per frame
@@ -46,9 +53,9 @@ public class HomeWorldData : MonoBehaviour
         return purchased_balls;
     }
 
-    public void PurchaseBall(int index)
+    void BallBought(BallBoughtEvent e)
     {
-        purchased_balls.Add(index);
+        purchased_balls.Add(e.num);
     }
 
     public int GetActiveBall()
@@ -66,8 +73,8 @@ public class HomeWorldData : MonoBehaviour
         return unlocked_worlds;
     }
 
-    public void UnlockWorld(int index)
+    void UnlockWorld(WorldUnlockedEvent e)
     {
-        unlocked_worlds.Add(index);
+        unlocked_worlds.Add(e.num);
     }
 }

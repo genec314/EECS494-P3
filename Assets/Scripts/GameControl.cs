@@ -18,7 +18,7 @@ public class GameControl : MonoBehaviour
     public LevelData[] world_2_levels = new LevelData[10];
     public LevelData[] world_3_levels = new LevelData[10];
 
-    int level;
+    string levelName;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class GameControl : MonoBehaviour
         reload_subscription = EventBus.Subscribe<ReloadLevelEvent>(OnReloadLevel);
         intro_subscription = EventBus.Subscribe<LoadIntroEvent>(OnIntroLevel);
 
-        level = SceneManager.GetActiveScene().buildIndex;
+        levelName = SceneManager.GetActiveScene().name;
     }
 
     void OnDestroy()
@@ -47,7 +47,6 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     void OnIntroLevel(LoadIntroEvent e)
@@ -59,7 +58,8 @@ public class GameControl : MonoBehaviour
         }
         else
         {
-            // SceneManager.LoadScene("Intro");
+            intro_played = true;
+            // TODO: load intro/tutorial instead of homeworld when it exists
             SceneManager.LoadScene("HomeWorld");
         }
     }
@@ -97,26 +97,23 @@ public class GameControl : MonoBehaviour
     // will be deprecated in favor of having game control dictate loading new levels
     void OnNewLevel(LoadNextLevelEvent e)
     {
-        if (level + 1 == SceneManager.sceneCountInBuildSettings)
-        {
-            level = 0;
-            StartCoroutine(WaitThenLoadLevel(0));
-            return;
-        }
+        string level_to_load = e.world;
 
-        StartCoroutine(WaitThenLoadLevel(level++ + 1));
+        StartCoroutine(WaitThenLoadLevel(level_to_load));
     }
 
     void OnReloadLevel(ReloadLevelEvent e)
     {
-        WaitThenLoadLevel(level);
+        WaitThenLoadLevel(levelName);
     }
 
-    IEnumerator WaitThenLoadLevel(int level_num)
+    IEnumerator WaitThenLoadLevel(string world)
     {
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(level_num);
         EventBus.Publish<LoadLevelEvent>(new LoadLevelEvent(curr_level, curr_world));
+        Debug.Log(world);
+        levelName = world;
+        SceneManager.LoadScene(world);
     }
 
     public bool InTutorial()
