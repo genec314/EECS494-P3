@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/WorldOne.unity
     guid: 855cb2d304b5742d7ae65384f60203ed
   - enabled: 1
-    path: Assets/Scenes/TeleportLAB.unity
+    path: Assets/Scenes/WorldTwo.unity
     guid: a84e07af83600465f945684735958e8c
   m_configObjects: {}
