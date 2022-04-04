@@ -17,6 +17,7 @@ public class LifeChanger : MonoBehaviour
     {
         thrown_subscription = EventBus.Subscribe<BallThrownEvent>(DecreaseLives);
         new_hole_subscription = EventBus.Subscribe<NewHoleEvent>(NewHole);
+        reset_subscription = EventBus.Subscribe<ResetLivesEvent>(ResetLevel);
         text = GetComponentInChildren<UnityEngine.UI.Text>();
     }
 
@@ -42,7 +43,7 @@ public class LifeChanger : MonoBehaviour
         text.text = "x " + currentLives;
     }
 
-    void ResetHole(ResetLivesEvent e)
+    void ResetLevel(ResetLivesEvent e)
     {
         currentLives = e.lives;
         text.text = "x " + currentLives;
