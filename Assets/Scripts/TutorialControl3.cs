@@ -28,7 +28,7 @@ public class TutorialControl3 : MonoBehaviour
         } else if (hole4 && Input.GetKeyDown(KeyCode.F) && firstF)
         {
             firstF = false;
-            tutorialUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Press F to rejoin the split balls at any time before the end of your last shot!";
+            tutorialUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Press F to rejoin the split balls at any time before the end of your last shot!";
         } else if (!firstF && Input.GetKeyDown(KeyCode.F))
         {
             StartCoroutine(EndTutorial());
@@ -48,7 +48,9 @@ public class TutorialControl3 : MonoBehaviour
 
     IEnumerator EndTutorial()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
+        tutorialUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Use it wisely, you can only split the ball once per level!";
+        yield return new WaitForSeconds(3f);
         tutorialUI.SetActive(false);
     }
 }
