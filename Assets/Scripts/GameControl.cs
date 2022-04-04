@@ -31,6 +31,7 @@ public class GameControl : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+        Screen.SetResolution(1920, 1080, false);
 
         level_subscription = EventBus.Subscribe<LoadNextLevelEvent>(OnNewLevel);
         reload_subscription = EventBus.Subscribe<ReloadLevelEvent>(OnReloadLevel);
