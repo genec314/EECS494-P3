@@ -13,6 +13,8 @@ public class HomeWorldData : MonoBehaviour
     List<int> purchased_balls;
     List<int> unlocked_worlds;
 
+    public Material[] ball_mats;
+
     int active_ball;
     // Start is called before the first frame update
     void Awake()
@@ -57,6 +59,11 @@ public class HomeWorldData : MonoBehaviour
     public int GetActiveBall()
     {
         return active_ball;
+    }
+
+    public Material GetActiveMaterial()
+    {
+        return ball_mats[active_ball];
     }
 
     public void SetActiveBall(int index)
