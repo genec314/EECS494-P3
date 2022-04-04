@@ -91,9 +91,11 @@ public class DetectKnockOver : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
+        /*
         for(int i = 0; i < pin_renderers.Length; i++)
         {
             pin_renderers[i].material.color = startColors[i];
         }
+        */
     }
 }

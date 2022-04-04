@@ -26,7 +26,6 @@ public class HoleData : MonoBehaviour
 
     private int[] pointsOnShot = new int[3];
 
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -125,6 +124,15 @@ public class HoleData : MonoBehaviour
 
         if (nextHole == null)
         {
+            string sceneName = SceneManager.GetActiveScene().name;
+            if(sceneName == "WorldOne")
+            {
+                EventBus.Publish(new WorldUnlockedEvent(1));
+            }
+            else if(sceneName == "WorldTwo")
+            {
+                EventBus.Publish(new WorldUnlockedEvent(2));
+            }
             EventBus.Publish(new LoadNextLevelEvent("HomeWorld"));
         } else
         {
