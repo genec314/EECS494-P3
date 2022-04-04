@@ -6889,8 +6889,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialBallPos: {x: -21, y: 5, z: -15}
-  initialCameraPos: {x: -20, y: 9.5, z: -27}
-  initalCameraRotation: {x: 0, y: 0, z: 0}
+  initialCameraPos: {x: -20, y: 9.5, z: -22}
+  initalCameraRotation: {x: 20, y: 0, z: 0}
   numPins: 10
   numberOfShots: 3
   ball: {fileID: 0}

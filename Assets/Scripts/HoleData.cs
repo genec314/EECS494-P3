@@ -154,6 +154,7 @@ public class HoleData : MonoBehaviour
         EventBus.Publish<ResetPinsEvent>(new ResetPinsEvent());
         GameObject.Find("ElectricBall").transform.position = initialBallPos;
         Camera.main.transform.position = initialCameraPos;
+        Camera.main.transform.rotation = Quaternion.identity;
         Camera.main.transform.Rotate(initalCameraRotation);
     }
 
