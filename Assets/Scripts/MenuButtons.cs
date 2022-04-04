@@ -94,6 +94,6 @@ public class MenuButtons : MonoBehaviour
         Time.timeScale = 1;
         if (world_menu != null) world_menu.SetActive(false);
         if (menu_button != null) menu_button.SetActive(true);
-        SceneManager.LoadScene("Title");
+        SceneManager.LoadScene("TitleScreen");
     }
 }
