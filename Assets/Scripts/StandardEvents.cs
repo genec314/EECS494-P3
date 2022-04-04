@@ -63,10 +63,15 @@ public class LoadNextLevelEvent
     }
 }
 
+public class WorldChangeEvent
+{
+    public WorldChangeEvent() {}
+}
+
 public class LoadLevelEvent
 {
-    int level_num;
-    int world_num;
+    public int level_num;
+    public int world_num;
     public LoadLevelEvent(int _level, int _world)
     {
         level_num = _level;
@@ -76,9 +81,9 @@ public class LoadLevelEvent
 
 public class UpdateLevelDataEvent
 {
-    int level_num;
-    int world_num;
-    bool complete;
+    public int level_num;
+    public int world_num;
+    public bool complete;
 
     public UpdateLevelDataEvent(int _level, int _world, bool _complete)
     {
@@ -91,6 +96,11 @@ public class UpdateLevelDataEvent
 public class ReloadLevelEvent
 {
     public ReloadLevelEvent() {}
+}
+
+public class LoadLevelSelectEvent
+{
+    public LoadLevelSelectEvent() {}
 }
 
 public class ElectrostaticForceEvent

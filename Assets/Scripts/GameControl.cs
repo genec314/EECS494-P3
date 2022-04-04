@@ -6,20 +6,17 @@ using UnityEngine.SceneManagement;
 public class GameControl : MonoBehaviour
 {
     public static GameControl instance;
-    float first_thrown_time;
-    bool ball_thrown;
     bool intro_played = false;
     Subscription<LoadNextLevelEvent> level_subscription;
     Subscription<ReloadLevelEvent> reload_subscription;
     Subscription<LoadIntroEvent> intro_subscription;
 
-    private string levelName;
-    int curr_world; // 0 = intro, otherwise 1, 2, 3
-    int curr_level; // 0 to 9
+    int curr_world = 0; // 0 = intro, otherwise 1, 2, 3
+    int curr_level = 0; // 0 to 9
 
-    LevelData[] leveldata = new LevelData[10];
-    LevelData[] world_2_levels = new LevelData[10];
-    LevelData[] world_3_levels = new LevelData[10];
+    public LevelData[] world_1_levels = new LevelData[10];
+    public LevelData[] world_2_levels = new LevelData[10];
+    public LevelData[] world_3_levels = new LevelData[10];
 
     int level;
 
@@ -37,9 +34,9 @@ public class GameControl : MonoBehaviour
 
         level_subscription = EventBus.Subscribe<LoadNextLevelEvent>(OnNewLevel);
         reload_subscription = EventBus.Subscribe<ReloadLevelEvent>(OnReloadLevel);
+        intro_subscription = EventBus.Subscribe<LoadIntroEvent>(OnIntroLevel);
 
         level = SceneManager.GetActiveScene().buildIndex;
-        levelName = SceneManager.GetActiveScene().name;
     }
 
     void OnDestroy()
@@ -55,16 +52,49 @@ public class GameControl : MonoBehaviour
 
     void OnIntroLevel(LoadIntroEvent e)
     {
+        curr_world = 0;
         if (intro_played)
         {
-            SceneManager.LoadScene("home");
+            SceneManager.LoadScene("HomeWorld");
         }
         else
         {
-            SceneManager.LoadScene("intro");
+            // SceneManager.LoadScene("Intro");
+            SceneManager.LoadScene("HomeWorld");
         }
     }
 
+    void OnLevelUpdate(UpdateLevelDataEvent e)
+    {
+        if (e.world_num == 1)
+        {
+            world_1_levels[e.level_num].setCompleted(e.complete);
+        }
+        else if (e.world_num == 2)
+        {
+            world_2_levels[e.level_num].setCompleted(e.complete);
+        }
+        else if (e.world_num == 3)
+        {
+            world_3_levels[e.level_num].setCompleted(e.complete);
+        }
+
+        // TODO: determine the next level to unlock/load, then load it. If end of world is reached, go back to home world
+    }
+
+    // TODO: for when the player switches worlds. should handle updating world_num and loading the appropriate level select
+    void OnWorldChange()
+    {
+
+    }
+
+    // TODO: load the appropriate level select screen
+    void OnLoadLevelSelect()
+    {
+
+    }
+
+    // will be deprecated in favor of having game control dictate loading new levels
     void OnNewLevel(LoadNextLevelEvent e)
     {
         if (level + 1 == SceneManager.sceneCountInBuildSettings)
@@ -86,19 +116,18 @@ public class GameControl : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(level_num);
+        EventBus.Publish<LoadLevelEvent>(new LoadLevelEvent(curr_level, curr_world));
     }
 
     public bool InTutorial()
     {
-        return levelName == "HomeWorld";
+        return curr_world == 0;
     }
 }
 
-class LevelData {
+public class LevelData {
     bool unlocked;
     bool complete;
-    int pins;
-    int max_throws;
 
     public LevelData()
     {

@@ -8,6 +8,7 @@ public class MenuButtons : MonoBehaviour
     public GameObject settings_menu;
     public GameObject pause_menu;
     public GameObject world_menu;
+    public GameObject menu_button;
 
     // Title screen menus
     public void PlayGame()
@@ -35,18 +36,21 @@ public class MenuButtons : MonoBehaviour
     {
         Time.timeScale = 0;
         if (pause_menu != null) pause_menu.SetActive(true);
+        if (menu_button != null) menu_button.SetActive(false);
     }
 
     public void ResumeFromLevel()
     {
         Time.timeScale = 1;
         if (pause_menu != null) pause_menu.SetActive(false);
+        if (menu_button != null) menu_button.SetActive(true);
     }
 
     public void RestartLevel()
     {
         Time.timeScale = 1;
         if (pause_menu != null) pause_menu.SetActive(false);
+        if (menu_button != null) menu_button.SetActive(true);
         EventBus.Publish(new ReloadLevelEvent());
     }
 
@@ -54,6 +58,8 @@ public class MenuButtons : MonoBehaviour
     {
         Time.timeScale = 1;
         if (pause_menu != null) pause_menu.SetActive(false);
+        if (menu_button != null) menu_button.SetActive(true);
+        EventBus.Publish<LoadLevelSelectEvent>(new LoadLevelSelectEvent());
     }
 
     // World pause menu
@@ -61,12 +67,14 @@ public class MenuButtons : MonoBehaviour
     {
         Time.timeScale = 0;
         if (world_menu != null) world_menu.SetActive(true);
+        if (menu_button != null) menu_button.SetActive(false);
     }
 
     public void ResumeFromWorld()
     {
         Time.timeScale = 1;
         if (world_menu != null) world_menu.SetActive(false);
+        if (menu_button != null) menu_button.SetActive(true);
     }
 
     public void SettingsToWorld()
@@ -83,7 +91,9 @@ public class MenuButtons : MonoBehaviour
 
     public void ExitToTitle()
     {
+        Time.timeScale = 1;
         if (world_menu != null) world_menu.SetActive(false);
-        SceneManager.LoadScene("title");
+        if (menu_button != null) menu_button.SetActive(true);
+        SceneManager.LoadScene("Title");
     }
 }
