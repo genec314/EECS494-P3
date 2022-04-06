@@ -80,6 +80,10 @@ public class RollBall : MonoBehaviour
     {
         holeTransition = false;
         canMove = true;
+        meter.SetActive(false);
+        bar.SetActive(false);
+        windup = false;
+        ResetBar();
     }
 
     private void ControlBar()
