@@ -10,8 +10,6 @@ public class Move : MonoBehaviour
     float last_thrown_time;
     bool at_rest = true;
     Subscription<BallThrownEvent> thrown_subscription;
-    Subscription<ResetShotEvent> reset_shot_subscription;
-
     private bool inRepelField = false;
 
     // Start is called before the first frame update
@@ -21,7 +19,6 @@ public class Move : MonoBehaviour
         tf = this.GetComponent<Transform>();
         last_thrown_time = Time.time - 1;
         thrown_subscription = EventBus.Subscribe<BallThrownEvent>(ThrowBall);
-        reset_shot_subscription = EventBus.Subscribe<ResetShotEvent>(ResetShot);
     }
 
     void OnDestroy()
@@ -53,16 +50,6 @@ public class Move : MonoBehaviour
     {
         yield return new WaitForSeconds(ready_delay);
         EventBus.Publish<BallReadyEvent>(new BallReadyEvent());
-    }
-
-    void ResetShot(ResetShotEvent e)
-    {
-        if (e.position.x != -999)
-        {
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-            tf.position = e.position;
-        }
     }
 
     private void OnTriggerEnter(Collider other)

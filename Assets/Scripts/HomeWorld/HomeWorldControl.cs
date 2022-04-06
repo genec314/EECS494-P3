@@ -111,14 +111,13 @@ public class HomeWorldControl : MonoBehaviour
                 switch (cur_lane)
                 {
                     case 0:
-                        StartCoroutine(NextLevel(3f, "WorldOne"));
+                        StartCoroutine(NextLevel(3f, 1));
                         break;
                     case 1:
-                        StartCoroutine(NextLevel(3f, "WorldTwo"));
+                        StartCoroutine(NextLevel(3f, 2));
                         break;
                     case 2:
-                        //idk
-                        StartCoroutine(NextLevel(3f, "WorldOne"));
+                        StartCoroutine(NextLevel(3f, 3));
                         break;
                 }
                 
@@ -237,7 +236,7 @@ public class HomeWorldControl : MonoBehaviour
         EventBus.Publish(new ResetPinsEvent());
     }
 
-    IEnumerator NextLevel(float time, string level)
+    IEnumerator NextLevel(float time, int level)
     {
         yield return new WaitForSeconds(time);
         EventBus.Publish(new LoadWorldEvent(level));

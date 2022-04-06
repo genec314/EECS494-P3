@@ -6,41 +6,37 @@ public class ChangeBallPosition : MonoBehaviour
 {
     Transform tf;
     Rigidbody rb;
-    TrailRenderer tr;
 
     private float time;
 
-    Subscription<NewHoleEvent> new_hole_subscription;
+    Subscription<LevelStartEvent> start_subscription;
+    Subscription<ResetShotEvent> reset_subscription;
 
     // Start is called before the first frame update
     void Awake()
     {
         tf = this.GetComponent<Transform>();
         rb = this.GetComponent<Rigidbody>();
-        tr = this.GetComponent<TrailRenderer>();
 
-        new_hole_subscription = EventBus.Subscribe<NewHoleEvent>(NewHole);
+        start_subscription = EventBus.Subscribe<LevelStartEvent>(StartLevel);
+        reset_subscription = EventBus.Subscribe<ResetShotEvent>(ResetShot);
     }
 
-    private void NewHole(NewHoleEvent e)
+    private void StartLevel(LevelStartEvent e)
     {
-        tr.time = 0;
-        tf.position = e.nextHole.GetInitialBallPosition();
+        tf.position = e.level.GetInitialBallPosition();
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         time = Time.time;
-        StartCoroutine(TwoSeconds());
     }
 
-    IEnumerator TwoSeconds()
+    void ResetShot(ResetShotEvent e)
     {
-        while (Time.time - time < 2f)
+        if (e.position.x != -999)
         {
-            tr.time = Time.time - time;
-            yield return null;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            tf.position = e.position;
         }
-
-        tr.time = 2;
     }
-
 }

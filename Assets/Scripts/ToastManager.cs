@@ -19,17 +19,17 @@ public class ToastManager : MonoBehaviour
     public float ease_duration = 0.5f;
     public float show_duration = 1.5f;
     
-    Subscription<EndHoleEvent> complete_sub;
+    Subscription<LevelCompleteEvent> complete_sub;
     Subscription<LevelFailedEvent> fail_sub;
 
     // Start is called before the first frame update
     void Start()
     {
-        complete_sub = EventBus.Subscribe<EndHoleEvent>(OnLevelComplete);
+        complete_sub = EventBus.Subscribe<LevelCompleteEvent>(OnLevelComplete);
         fail_sub = EventBus.Subscribe<LevelFailedEvent>(OnLevelFailed);
     }
 
-    void OnLevelComplete(EndHoleEvent e)
+    void OnLevelComplete(LevelCompleteEvent e)
     {
         if (is_complete) StartCoroutine(DisplayToast());
     }

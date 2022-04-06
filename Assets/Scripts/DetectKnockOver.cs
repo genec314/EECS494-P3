@@ -11,6 +11,7 @@ public class DetectKnockOver : MonoBehaviour
     MeshRenderer[] pin_renderers;
     Subscription<BallReadyEvent> ready_sub;
     Subscription<ResetPinsEvent> reset_pin_sub;
+    Subscription<LevelStartEvent> start_sub;
     AudioSource audioSource;
 
     Vector3 startPos;
@@ -24,7 +25,9 @@ public class DetectKnockOver : MonoBehaviour
         pin_renderers = GetComponentsInChildren<MeshRenderer>();
 
         ready_sub = EventBus.Subscribe<BallReadyEvent>(FadeOutWhenReady);
-        reset_pin_sub = EventBus.Subscribe<ResetPinsEvent>(_OnResetPins);
+        reset_pin_sub = EventBus.Subscribe<ResetPinsEvent>(OnResetPins);
+        start_sub = EventBus.Subscribe<LevelStartEvent>(OnLevelStart);
+
         startPos = transform.localPosition;
         startRot = transform.localRotation;
         startColors = new Color[pin_renderers.Length];
@@ -46,8 +49,7 @@ public class DetectKnockOver : MonoBehaviour
         {
             knockedOver = true;
             EventBus.Publish(new PinKnockedOverEvent());
-            AudioSource.PlayClipAtPoint(knockdown_sound, transform.position, 0.35f);
-            
+            audioSource.Play();
         }
     }
 
@@ -77,7 +79,17 @@ public class DetectKnockOver : MonoBehaviour
         GetComponent<MeshCollider>().enabled = false;
     }
 
-    void _OnResetPins(ResetPinsEvent e)
+    void OnLevelStart(LevelStartEvent e)
+    {
+        ResetPin();
+    }
+
+    void OnResetPins(ResetPinsEvent e)
+    {
+        ResetPin();
+    }
+
+    void ResetPin()
     {
         StopAllCoroutines();
         knockedOver = false;

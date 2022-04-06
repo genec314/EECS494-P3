@@ -46,20 +46,27 @@ public class LoadIntroEvent
     public LoadIntroEvent() {}
 }
 
+// Used to tell game control to switch to a new world.
 public class LoadWorldEvent
 {
-    public string world;
-    public LoadWorldEvent(string _world)
+    public int world_num;
+    public LoadWorldEvent(int _world)
     {
-        world = _world;
+        world_num = _world;
     }
 }
 
-public class WorldChangeEvent
+// Used to tell game control which level to load. Published by level select menu
+public class SelectLevelEvent
 {
-    public WorldChangeEvent() {}
+    public int level_num;
+    public SelectLevelEvent(int _level)
+    {
+        level_num = _level;
+    }
 }
 
+// Used to tell a level to load itself. Published by GameControl
 public class LoadLevelEvent
 {
     public int level_num;
@@ -71,23 +78,10 @@ public class LoadLevelEvent
     }
 }
 
-public class UpdateLevelDataEvent
+// Used to forcibly restart the current level, used by GameControl. Published by pause menu
+public class RestartLevelEvent
 {
-    public int level_num;
-    public int world_num;
-    public bool complete;
-
-    public UpdateLevelDataEvent(int _level, int _world, bool _complete)
-    {
-        level_num = _level;
-        world_num = _world;
-        complete = _complete;
-    }
-}
-
-public class ReloadLevelEvent
-{
-    public ReloadLevelEvent() {}
+    public RestartLevelEvent() {}
 }
 
 public class LoadLevelSelectEvent
@@ -107,32 +101,25 @@ public class ElectrostaticForceEvent
     }
 }
 
-public class ResetLivesEvent
+// Used to notify that the level has ended, used by GameControl. Published by level
+public class LevelEndEvent
 {
-    public int lives;
-    public ResetLivesEvent(int _lives)
+    public bool complete;
+
+    public LevelEndEvent(bool _complete)
     {
-        lives = _lives;
+        complete = _complete;
     }
 }
 
-public class EndHoleEvent
+// Used to set all initial state needed when a level begins. Published by level
+public class LevelStartEvent
 {
-    public HoleData currentHole;
+    public HoleData level;
 
-    public EndHoleEvent(HoleData _currentHole)
+    public LevelStartEvent(HoleData _level)
     {
-        currentHole = _currentHole;
-    }
-}
-
-public class NewHoleEvent
-{
-    public HoleData nextHole;
-
-    public NewHoleEvent(HoleData _nextHole)
-    {
-        nextHole = _nextHole;
+        level = _level;
     }
 }
 
@@ -178,19 +165,28 @@ public class ResetShotEvent {
     }
 }
 
+// Used to reset pins. Published by holes and home world
 public class ResetPinsEvent
 {
     public ResetPinsEvent() {}
 }
 
+// Used for toast and other stuff that may need to happen in between a level ending and the current level restarting. Published only by GameControl
 public class LevelFailedEvent
 {
     public LevelFailedEvent() {}
 }
 
+// Used for toast and other stuff that may need to happen in between a level ending and the next level starting. Published only by GameControl
 public class LevelCompleteEvent
 {
     public LevelCompleteEvent() {}
+}
+
+// Used for toast when a world is first completed. TODO: add this
+public class WorldCompleteEvent
+{
+    public WorldCompleteEvent() {}
 }
 
 public class HomeWorldSelectEvent
@@ -227,14 +223,4 @@ public class BallBoughtEvent
         cost = _cost;
     }
 
-}
-
-public class ResetSplitEvent {
-
-    public HoleData holedata;
-
-    public ResetSplitEvent(HoleData _holedata)
-    {
-        holedata = _holedata;
-    }
 }

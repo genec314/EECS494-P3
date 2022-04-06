@@ -8,6 +8,7 @@ public class MenuButtons : MonoBehaviour
     public GameObject settings_menu;
     public GameObject pause_menu;
     public GameObject world_menu;
+    public GameObject level_select_menu;
     public GameObject menu_button;
 
     // Title screen menus
@@ -51,7 +52,7 @@ public class MenuButtons : MonoBehaviour
         Time.timeScale = 1;
         if (pause_menu != null) pause_menu.SetActive(false);
         if (menu_button != null) menu_button.SetActive(true);
-        EventBus.Publish(new ReloadLevelEvent());
+        EventBus.Publish(new RestartLevelEvent());
     }
 
     public void LevelSelect()
@@ -95,5 +96,12 @@ public class MenuButtons : MonoBehaviour
         if (world_menu != null) world_menu.SetActive(false);
         if (menu_button != null) menu_button.SetActive(true);
         SceneManager.LoadScene("TitleScreen");
+    }
+
+    // Level select exit to home
+    public void ExitToHome()
+    {
+        Time.timeScale = 1;
+        EventBus.Publish<LoadWorldEvent>(new LoadWorldEvent(0));
     }
 }

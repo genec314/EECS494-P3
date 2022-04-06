@@ -31,8 +31,8 @@ public class RollBall : MonoBehaviour
     RollBall instance;
 
     Subscription<BallReadyEvent> ready_subscription;
-    Subscription<EndHoleEvent> end_hole_subscription;
-    Subscription<NewHoleEvent> new_hole_subscription;
+    Subscription<LevelEndEvent> end_subscription;
+    Subscription<LevelStartEvent> start_subscription;
 
     // Start is called before the first frame update
     void Start()
@@ -49,8 +49,8 @@ public class RollBall : MonoBehaviour
         ResetBar();
 
         ready_subscription = EventBus.Subscribe<BallReadyEvent>(CheckForMove);
-        end_hole_subscription = EventBus.Subscribe<EndHoleEvent>(EndHole);
-        new_hole_subscription = EventBus.Subscribe<NewHoleEvent>(NewHole);
+        end_subscription = EventBus.Subscribe<LevelEndEvent>(EndLevel);
+        start_subscription = EventBus.Subscribe<LevelStartEvent>(StartLevel);
     }
 
     void OnDestroy()
@@ -70,12 +70,12 @@ public class RollBall : MonoBehaviour
         canMove = true;
     }
 
-    private void EndHole(EndHoleEvent e)
+    private void EndLevel(LevelEndEvent e)
     {
         holeTransition = true;
     }
 
-    private void NewHole(NewHoleEvent e)
+    private void StartLevel(LevelStartEvent e)
     {
         holeTransition = false;
     }

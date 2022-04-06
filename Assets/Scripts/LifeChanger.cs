@@ -10,33 +10,25 @@ public class LifeChanger : MonoBehaviour
     Text text;
 
     Subscription<BallThrownEvent> thrown_subscription;
-    Subscription<NewHoleEvent> new_hole_subscription;
-    Subscription<ResetLivesEvent> reset_subscription;
+    Subscription<LevelStartEvent> start_subscription;
 
     // Start is called before the first frame update
     void Awake()
     {
         thrown_subscription = EventBus.Subscribe<BallThrownEvent>(DecreaseLives);
-        new_hole_subscription = EventBus.Subscribe<NewHoleEvent>(NewHole);
-        reset_subscription = EventBus.Subscribe<ResetLivesEvent>(ResetLevel);
+        start_subscription = EventBus.Subscribe<LevelStartEvent>(StartLevel);
         text = GetComponentInChildren<UnityEngine.UI.Text>();
     }
 
-    private void DecreaseLives(BallThrownEvent b)
+    void DecreaseLives(BallThrownEvent b)
     {
-        currentLives --;
+        currentLives--;
         UpdateText();
     }
 
-    private void NewHole(NewHoleEvent e)
+    void StartLevel(LevelStartEvent e)
     {
-        currentLives = e.nextHole.GetNumShots();
-        UpdateText();
-    }
-
-    void ResetLevel(ResetLivesEvent e)
-    {
-        currentLives = e.lives;
+        currentLives = e.level.GetNumShots();
         UpdateText();
     }
 

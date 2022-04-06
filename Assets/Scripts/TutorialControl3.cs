@@ -11,12 +11,12 @@ public class TutorialControl3 : MonoBehaviour
     private bool hole4 = false;
     private bool firstF = true;
 
-    Subscription<NewHoleEvent> new_hole_subscription;
+    Subscription<LevelStartEvent> start_subscription;
 
     // Start is called before the first frame update
     void Awake()
     {
-        new_hole_subscription = EventBus.Subscribe<NewHoleEvent>(NewHole);
+        start_subscription = EventBus.Subscribe<LevelStartEvent>(StartLevel);
     }
 
     void Update()
@@ -35,14 +35,13 @@ public class TutorialControl3 : MonoBehaviour
         }
     }
 
-    private void NewHole(NewHoleEvent e)
+    private void StartLevel(LevelStartEvent e)
     {
-        Debug.Log(e.nextHole.GetHoleNumber());
-        if (e.nextHole.GetHoleNumber() == 4)
+        if (e.level.GetLevelNumber() == 3)
         {
             hole4 = true;
             tutorialUI.SetActive(true);
-            tutorialUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Trying shooting straight, and press F to split the ball while the ball is moving!";
+            tutorialUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Try shooting straight, and press F to split the ball while the ball is moving!";
         }
     }
 

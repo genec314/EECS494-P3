@@ -12,17 +12,18 @@ public class HoleData : MonoBehaviour
     [SerializeField] Vector3 initalCameraRotation;
     [SerializeField] int numPins;
     [SerializeField] int numShots;
-    [SerializeField] GameObject ball;
     int shots_taken = 0;
     int pins_down = 0;
-    [SerializeField] int holeNumber;
-    [SerializeField] GameObject nextHole;
+    public int worldNumber;
+    [SerializeField] int levelNumber;
     Subscription<PinKnockedOverEvent> pin_subscription;
     Subscription<BallThrownEvent> thrown_subscription;
     Subscription<ResetShotEvent> reset_shot_subscription;
     Subscription<BallReadyEvent> ball_ready_subscription;
+    Subscription<LoadLevelEvent> load_subscription;
     public bool current_hole = false;
     public bool canBallSplit = false;
+    public AudioClip ready;
 
     // Start is called before the first frame update
     void Awake()
@@ -31,12 +32,7 @@ public class HoleData : MonoBehaviour
         thrown_subscription = EventBus.Subscribe<BallThrownEvent>(IncreaseShots);
         reset_shot_subscription = EventBus.Subscribe<ResetShotEvent>(ResetShot);
         ball_ready_subscription = EventBus.Subscribe<BallReadyEvent>(BallReady);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        load_subscription = EventBus.Subscribe<LoadLevelEvent>(OnLoadLevel);
     }
 
     private void PinDown(PinKnockedOverEvent p)
@@ -50,68 +46,31 @@ public class HoleData : MonoBehaviour
         {
             if (pins_down == numPins)
             {
-                StartCoroutine(GoToNextHole());
+                EventBus.Publish<LevelEndEvent>(new LevelEndEvent(true));
             }
             else if (shots_taken == numShots)
             {
-                StartCoroutine(ResetHole());
+                EventBus.Publish<LevelEndEvent>(new LevelEndEvent(false));
             }
-        }
-    }
-    
-    IEnumerator GoToNextHole() // Make a more generalizable public function that also calls this
-    {
-        EventBus.Publish(new EndHoleEvent(this));
-
-        yield return new WaitForSeconds(3f);
-
-        current_hole = false;
-
-        if (nextHole != null)
-        {
-            nextHole.GetComponent<HoleData>().current_hole = true;
-        }
-
-        // so justTeleported = false	
-        EventBus.Publish(new TeleportEvent());
-
-        if (nextHole == null)
-        {
-            string sceneName = SceneManager.GetActiveScene().name;
-            if(sceneName == "WorldOne")
+            else
             {
-                EventBus.Publish(new WorldUnlockedEvent(1));
+                AudioSource.PlayClipAtPoint(ready, Camera.main.transform.position, 0.25f * PlayerPrefs.GetFloat("MasterVol", 1f) * PlayerPrefs.GetFloat("SoundEffectsVol", 1f));
             }
-            else if(sceneName == "WorldTwo")
-            {
-                EventBus.Publish(new WorldUnlockedEvent(2));
-            }
-            EventBus.Publish(new LoadWorldEvent("HomeWorld"));
-        } else
-        {
-            EventBus.Publish(new NewHoleEvent(nextHole.GetComponent<HoleData>()));
         }
-
-        yield return null;
     }
 
-    IEnumerator ResetHole()
+    void OnLoadLevel(LoadLevelEvent e)
     {
-        EventBus.Publish<LevelFailedEvent>(new LevelFailedEvent());
+        if (e.world_num == worldNumber && e.level_num == levelNumber) current_hole = true;
+        else current_hole = false;
 
-        yield return new WaitForSeconds(3f);
-
-        pins_down = 0;
-        shots_taken = 0;
-        EventBus.Publish<ResetPinsEvent>(new ResetPinsEvent());
-        EventBus.Publish<ResetLivesEvent>(new ResetLivesEvent(numShots));
-        GameObject.Find("ElectricBall").transform.position = initialBallPos;
-        Camera.main.transform.position = initialCameraPos;
-        Camera.main.transform.rotation = Quaternion.identity;
-        Camera.main.transform.Rotate(initalCameraRotation);
-        EventBus.Publish<ResetSplitEvent>(new ResetSplitEvent(this));
+        if (current_hole)
+        {
+            pins_down = 0;
+            shots_taken = 0;
+            EventBus.Publish<LevelStartEvent>(new LevelStartEvent(this));
+        }
     }
-
 
     private void IncreaseShots(BallThrownEvent b)
     {
@@ -151,9 +110,9 @@ public class HoleData : MonoBehaviour
         return pins_down;
     }
 
-    public int GetHoleNumber()
+    public int GetLevelNumber()
     {
-        return holeNumber;
+        return levelNumber;
     }
 
     private void ResetShot(ResetShotEvent e)

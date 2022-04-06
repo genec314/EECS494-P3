@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class BallSoundControl : MonoBehaviour
 {
-    public AudioClip ready;
     public AudioClip roll_intro;
     public AudioClip roll_loop;
+    bool paused = false;
 
     AudioSource audiosource;
-    GameControl gc;
 
     Subscription<BallThrownEvent> throw_sub;
     Subscription<BallAtRestEvent> rest_sub;
-    Subscription<BallReadyEvent> ready_sub;
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +19,20 @@ public class BallSoundControl : MonoBehaviour
         audiosource = GetComponent<AudioSource>();
         throw_sub = EventBus.Subscribe<BallThrownEvent>(OnBallThrown);
         rest_sub = EventBus.Subscribe<BallAtRestEvent>(OnBallAtRest);
-        ready_sub = EventBus.Subscribe<BallReadyEvent>(OnBallReady);
-        gc = GameObject.Find("GameControl").GetComponent<GameControl>();
+    }
+
+    void Update()
+    {
+        if (Time.timeScale == 0 && !paused)
+        {
+            paused = true;
+            audiosource.Pause();
+        }
+        else if (Time.timeScale == 1 && paused)
+        {
+            paused = false;
+            audiosource.UnPause();
+        }
     }
 
     void OnBallThrown(BallThrownEvent e)
@@ -35,14 +45,6 @@ public class BallSoundControl : MonoBehaviour
     {
         audiosource.enabled = false;
         audiosource.loop = false;
-    }
-
-    void OnBallReady(BallReadyEvent e)
-    {
-        if (!gc.InTutorial())
-        {
-            AudioSource.PlayClipAtPoint(ready, Camera.main.transform.position, 0.25f * PlayerPrefs.GetFloat("SoundEffectsVol", 1f));
-        }
     }
 
     IEnumerator PlayRollSound()

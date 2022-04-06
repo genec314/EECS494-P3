@@ -7,18 +7,24 @@ public class GameControl : MonoBehaviour
 {
     public static GameControl instance;
     bool intro_played = false;
-    Subscription<LoadWorldEvent> level_subscription;
-    Subscription<ReloadLevelEvent> reload_subscription;
+    Subscription<LoadWorldEvent> world_subscription;
+    Subscription<RestartLevelEvent> restart_subscription;
     Subscription<LoadIntroEvent> intro_subscription;
+    Subscription<LevelEndEvent> level_subscription;
+    Subscription<LoadLevelSelectEvent> level_select_sub;
 
-    int curr_world = 0; // 0 = intro, otherwise 1, 2, 3
-    int curr_level = 0; // 0 to 9
+    public int curr_world = 0; // 0 = intro, otherwise 1, 2, 3
+    public int curr_level = 0; // 0 to 9
 
+    bool world_1_visited = false;
+    bool world_2_visited = false;
+    bool world_3_visited = false;
+    bool world_1_complete = false;
+    bool world_2_complete = false;
+    bool world_3_complete = false;
     public LevelData[] world_1_levels = new LevelData[10];
     public LevelData[] world_2_levels = new LevelData[10];
     public LevelData[] world_3_levels = new LevelData[10];
-
-    string levelName;
 
     void Start()
     {
@@ -33,21 +39,18 @@ public class GameControl : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         Screen.SetResolution(1920, 1080, false);
 
-        level_subscription = EventBus.Subscribe<LoadWorldEvent>(OnWorldChange);
-        reload_subscription = EventBus.Subscribe<ReloadLevelEvent>(OnReloadLevel);
+        world_subscription = EventBus.Subscribe<LoadWorldEvent>(OnWorldChange);
+        restart_subscription = EventBus.Subscribe<RestartLevelEvent>(OnRestartLevel);
         intro_subscription = EventBus.Subscribe<LoadIntroEvent>(OnIntroLevel);
+        level_subscription = EventBus.Subscribe<LevelEndEvent>(OnLevelEnd);
+        level_select_sub = EventBus.Subscribe<LoadLevelSelectEvent>(OnLoadLevelSelect);
 
-        levelName = SceneManager.GetActiveScene().name;
+        InitializeLevelData();
     }
 
     void OnDestroy()
     {
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     void OnIntroLevel(LoadIntroEvent e)
@@ -65,60 +68,209 @@ public class GameControl : MonoBehaviour
         }
     }
 
-    void OnLevelUpdate(UpdateLevelDataEvent e)
+    void OnRestartLevel(RestartLevelEvent e)
     {
+        // if (curr_world == 1)
+        // {
+        //     SceneManager.LoadScene("WorldOne");
+        // }
+        // else if (curr_world == 2)
+        // {
+        //     SceneManager.LoadScene("WorldTwo");
+        // }
+        // else if (curr_world == 3)
+        // {
+        //     SceneManager.LoadScene("WorldThree");
+        // }
+
+        EventBus.Publish<LoadLevelEvent>(new LoadLevelEvent(curr_level, curr_world));
+    }
+
+    void OnLevelEnd(LevelEndEvent e)
+    {
+        if (e.complete)
+        {
+            StartCoroutine(HandleLevelComplete());
+        }
+        else
+        {
+            StartCoroutine(HandleLevelFail());
+        }
+    }
+
+    // For when the player switches worlds. Should handle updating world_num and loading the appropriate level select
+    void OnWorldChange(LoadWorldEvent e)
+    {
+        curr_world = e.world_num;
         if (e.world_num == 1)
         {
-            world_1_levels[e.level_num].setCompleted(e.complete);
+            if (world_1_visited)
+            {
+                SceneManager.LoadScene("WorldOneSelect");
+            }
+            else
+            {
+                curr_level = 0;
+                world_1_levels[curr_level].setUnlocked(true);
+                world_1_visited = true;
+                SceneManager.LoadScene("WorldOne");
+                LoadCurrentLevel();
+            }
         }
         else if (e.world_num == 2)
         {
-            world_2_levels[e.level_num].setCompleted(e.complete);
+            if (world_2_visited)
+            {
+                SceneManager.LoadScene("WorldTwoSelect");
+            }
+            else
+            {
+                curr_level = 0;
+                world_2_levels[curr_level].setUnlocked(true);
+                world_2_visited = true;
+                SceneManager.LoadScene("WorldTwo");
+                LoadCurrentLevel();
+            }
         }
         else if (e.world_num == 3)
         {
-            world_3_levels[e.level_num].setCompleted(e.complete);
+            if (world_3_visited)
+            {
+                SceneManager.LoadScene("WorldThreeSelect");
+            }
+            else
+            {
+                curr_level = 0;
+                world_2_levels[curr_level].setUnlocked(true);
+                world_3_visited = true;
+                SceneManager.LoadScene("WorldThree");
+                LoadCurrentLevel();
+            }
+        }
+        else
+        {
+            SceneManager.LoadScene("HomeWorld");
+        }
+    }
+
+    void OnLoadLevelSelect(LoadLevelSelectEvent e)
+    {
+        if (curr_world == 1)
+        {
+            SceneManager.LoadScene("WorldOneSelect");
+        }
+        else if (curr_world == 2)
+        {
+            SceneManager.LoadScene("WorldTwoSelect");
+        }
+        else if (curr_world == 3)
+        {
+            SceneManager.LoadScene("WorldThreeSelect");
+        }
+    }
+
+    void OnSelectLevel(SelectLevelEvent e)
+    {
+        curr_level = e.level_num;
+        LoadCurrentLevel();
+    }
+
+    IEnumerator HandleLevelComplete()
+    {
+        EventBus.Publish<LevelCompleteEvent>(new LevelCompleteEvent());
+
+        yield return new WaitForSeconds(3f);
+
+        if (curr_world == 1)
+        {
+            world_1_levels[curr_level].setCompleted(true);
+        }
+        else if (curr_world == 2)
+        {
+            world_2_levels[curr_level].setCompleted(true);
+        }
+        else if (curr_world == 3)
+        {
+            world_3_levels[curr_level].setCompleted(true);
         }
 
-        // TODO: determine the next level to unlock/load, then load it. If end of world is reached, go back to home world
+        // so justTeleported = false	
+        EventBus.Publish(new TeleportEvent());
+
+        if (curr_level < 9)
+        {
+            curr_level++;
+            if (curr_world == 1)
+            {
+                world_1_levels[curr_level].setUnlocked(true);
+            }
+            else if (curr_world == 2)
+            {
+                world_2_levels[curr_level].setUnlocked(true);
+            }
+            else if (curr_world == 3)
+            {
+                world_3_levels[curr_level].setUnlocked(true);
+            }
+            LoadCurrentLevel();
+        }
+        else
+        {
+            if (curr_world == 1 && !world_1_complete)
+            {
+                world_1_complete = true;
+                EventBus.Publish(new WorldUnlockedEvent(1));
+                EventBus.Publish<WorldCompleteEvent>(new WorldCompleteEvent());
+                yield return new WaitForSeconds(3f);
+            }
+            else if (curr_world == 2 && !world_2_complete)
+            {
+                world_2_complete = true;
+                EventBus.Publish(new WorldUnlockedEvent(2));
+                EventBus.Publish<WorldCompleteEvent>(new WorldCompleteEvent());
+                yield return new WaitForSeconds(3f);
+            }
+            else if (curr_world == 3 && !world_3_complete)
+            {
+                // TODO: completion screen?
+                world_3_complete = true;
+                EventBus.Publish<WorldUnlockedEvent>(new WorldUnlockedEvent(3));
+                EventBus.Publish<WorldCompleteEvent>(new WorldCompleteEvent());
+                yield return new WaitForSeconds(3f);
+            }
+
+            curr_world = 0;
+            EventBus.Publish(new LoadWorldEvent(0));
+        }
     }
 
-    // TODO: for when the player switches worlds. should handle updating world_num and loading the appropriate level select
-    void OnWorldChange(LoadWorldEvent e)
+    IEnumerator HandleLevelFail()
     {
-        StartCoroutine(WaitThenLoadWorld(e.world));
-    }
+        EventBus.Publish<LevelFailedEvent>(new LevelFailedEvent());
 
-    // TODO: load the appropriate level select screen
-    void OnLoadLevelSelect()
-    {
-
-    }
-
-    // will be deprecated in favor of having game control dictate loading new levels
-    void OnNewLevel()
-    {
+        yield return new WaitForSeconds(3f);
         
+        LoadCurrentLevel();
     }
 
-    void OnReloadLevel(ReloadLevelEvent e)
+    void LoadCurrentLevel()
     {
-        WaitThenLoadWorld(levelName);
-    }
-
-    IEnumerator WaitThenLoadWorld(string world)
-    {
-        yield return new WaitForSeconds(2f);
         EventBus.Publish<LoadLevelEvent>(new LoadLevelEvent(curr_level, curr_world));
-        Debug.Log(world);
-        levelName = world;
-        SceneManager.LoadScene(world);
     }
 
     public bool InTutorial()
     {
-        return levelName == "HomeWorld";
-        // return curr_world == 0;
+        return curr_world == 0;
+    }
+
+    void InitializeLevelData()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            world_1_levels[i] = new LevelData();
+            world_2_levels[i] = new LevelData();
+            world_3_levels[i] = new LevelData();
+        }
     }
 }
 
