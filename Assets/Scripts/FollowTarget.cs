@@ -14,6 +14,7 @@ public class FollowTarget : MonoBehaviour
 	Subscription<BallThrownEvent> ball_thrown_sub;
 	Subscription<BallReadyEvent> ball_ready_sub;
 	Subscription<TeleportEvent> teleport_sub;
+	Subscription<LevelStartEvent> start_sub;
 
 
 	// Use this for initialization
@@ -23,6 +24,7 @@ public class FollowTarget : MonoBehaviour
 		ball_thrown_sub = EventBus.Subscribe<BallThrownEvent>(OnBallThrown);
 		teleport_sub = EventBus.Subscribe<TeleportEvent>(OnTeleport);
 		ball_ready_sub = EventBus.Subscribe<BallReadyEvent>(OnBallReady);
+		start_sub = EventBus.Subscribe<LevelStartEvent>(OnLevelStart);
 	}
 
 	void OnDestroy()
@@ -48,6 +50,11 @@ public class FollowTarget : MonoBehaviour
 	{
 		if (following) transform.position = Vector3.Lerp(transform.position, target.position + follow_offset, ease_factor);
 		else transform.position = Vector3.Lerp(transform.position, target.position + shot_offset, ease_factor);
+	}
+
+	void OnLevelStart(LevelStartEvent e)
+	{
+		following = false;
 	}
 
 	void OnBallThrown(BallThrownEvent e)

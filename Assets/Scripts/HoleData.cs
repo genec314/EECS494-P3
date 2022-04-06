@@ -52,7 +52,7 @@ public class HoleData : MonoBehaviour
             {
                 EventBus.Publish<LevelEndEvent>(new LevelEndEvent(false));
             }
-            else
+            else if (shots_taken > 0)
             {
                 AudioSource.PlayClipAtPoint(ready, Camera.main.transform.position, 0.25f * PlayerPrefs.GetFloat("MasterVol", 1f) * PlayerPrefs.GetFloat("SoundEffectsVol", 1f));
             }

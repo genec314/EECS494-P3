@@ -73,11 +73,13 @@ public class RollBall : MonoBehaviour
     private void EndLevel(LevelEndEvent e)
     {
         holeTransition = true;
+        canMove = false;
     }
 
     private void StartLevel(LevelStartEvent e)
     {
         holeTransition = false;
+        canMove = true;
     }
 
     private void ControlBar()

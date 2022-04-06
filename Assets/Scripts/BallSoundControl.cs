@@ -12,6 +12,7 @@ public class BallSoundControl : MonoBehaviour
 
     Subscription<BallThrownEvent> throw_sub;
     Subscription<BallAtRestEvent> rest_sub;
+    Subscription<LevelStartEvent> start_sub;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class BallSoundControl : MonoBehaviour
         audiosource = GetComponent<AudioSource>();
         throw_sub = EventBus.Subscribe<BallThrownEvent>(OnBallThrown);
         rest_sub = EventBus.Subscribe<BallAtRestEvent>(OnBallAtRest);
+        start_sub = EventBus.Subscribe<LevelStartEvent>(OnLevelStart);
     }
 
     void Update()
@@ -33,6 +35,12 @@ public class BallSoundControl : MonoBehaviour
             paused = false;
             audiosource.UnPause();
         }
+    }
+
+    void OnLevelStart(LevelStartEvent e)
+    {
+        audiosource.enabled = false;
+        audiosource.loop = false;
     }
 
     void OnBallThrown(BallThrownEvent e)

@@ -10,6 +10,7 @@ public class Move : MonoBehaviour
     float last_thrown_time;
     bool at_rest = true;
     Subscription<BallThrownEvent> thrown_subscription;
+    Subscription<LevelStartEvent> start_sub;
     private bool inRepelField = false;
 
     // Start is called before the first frame update
@@ -19,6 +20,7 @@ public class Move : MonoBehaviour
         tf = this.GetComponent<Transform>();
         last_thrown_time = Time.time - 1;
         thrown_subscription = EventBus.Subscribe<BallThrownEvent>(ThrowBall);
+        start_sub = EventBus.Subscribe<LevelStartEvent>(CancelAtLevelStart);
     }
 
     void OnDestroy()
@@ -37,6 +39,11 @@ public class Move : MonoBehaviour
             EventBus.Publish<BallAtRestEvent>(new BallAtRestEvent());
             StartCoroutine(WaitThenPublishEvent());
         }
+    }
+
+    void CancelAtLevelStart(LevelStartEvent e)
+    {
+        StopAllCoroutines();
     }
 
     void ThrowBall(BallThrownEvent e)

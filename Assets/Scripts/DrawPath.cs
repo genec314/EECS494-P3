@@ -10,6 +10,7 @@ public class DrawPath : MonoBehaviour
     Transform tf;
     Subscription<BallReadyEvent> ready_sub;
     Subscription<BallThrownEvent> throw_sub;
+    Subscription<LevelStartEvent> start_sub;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class DrawPath : MonoBehaviour
 
         ready_sub = EventBus.Subscribe<BallReadyEvent>(EnableAtReady);
         throw_sub = EventBus.Subscribe<BallThrownEvent>(DisableAtThrow);
+        start_sub = EventBus.Subscribe<LevelStartEvent>(EnableAtStart);
     }
 
     // Update is called once per frame
@@ -46,6 +48,11 @@ public class DrawPath : MonoBehaviour
         
         line.positionCount = positions.Count;
         line.SetPositions(positions.ToArray());
+    }
+
+    void EnableAtStart(LevelStartEvent e)
+    {
+        line.enabled = true;
     }
 
     void EnableAtReady(BallReadyEvent e)
