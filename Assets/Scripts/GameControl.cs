@@ -64,25 +64,13 @@ public class GameControl : MonoBehaviour
         {
             intro_played = true;
             // TODO: load intro/tutorial instead of homeworld when it exists
+            // SceneManager.LoadScene("Intro");
             SceneManager.LoadScene("HomeWorld");
         }
     }
 
     void OnRestartLevel(RestartLevelEvent e)
     {
-        // if (curr_world == 1)
-        // {
-        //     SceneManager.LoadScene("WorldOne");
-        // }
-        // else if (curr_world == 2)
-        // {
-        //     SceneManager.LoadScene("WorldTwo");
-        // }
-        // else if (curr_world == 3)
-        // {
-        //     SceneManager.LoadScene("WorldThree");
-        // }
-
         EventBus.Publish<LoadLevelEvent>(new LoadLevelEvent(curr_level, curr_world));
     }
 
@@ -216,31 +204,55 @@ public class GameControl : MonoBehaviour
         }
         else
         {
-            if (curr_world == 1 && !world_1_complete)
+            if (curr_world == 1)
             {
-                world_1_complete = true;
-                EventBus.Publish(new WorldUnlockedEvent(1));
-                EventBus.Publish<WorldCompleteEvent>(new WorldCompleteEvent());
-                yield return new WaitForSeconds(3f);
+                if (!world_1_complete)
+                {
+                    world_1_complete = true;
+                    EventBus.Publish(new WorldUnlockedEvent(1));
+                    EventBus.Publish<WorldCompleteEvent>(new WorldCompleteEvent());
+                    yield return new WaitForSeconds(3f);
+                    curr_world = 0;
+                    EventBus.Publish(new LoadWorldEvent(0));
+                }
+                else
+                {
+                    EventBus.Publish<LoadLevelSelectEvent>(new LoadLevelSelectEvent());
+                }
             }
-            else if (curr_world == 2 && !world_2_complete)
+            else if (curr_world == 2)
             {
-                world_2_complete = true;
-                EventBus.Publish(new WorldUnlockedEvent(2));
-                EventBus.Publish<WorldCompleteEvent>(new WorldCompleteEvent());
-                yield return new WaitForSeconds(3f);
+                if (!world_2_complete)
+                {
+                    world_2_complete = true;
+                    EventBus.Publish(new WorldUnlockedEvent(2));
+                    EventBus.Publish<WorldCompleteEvent>(new WorldCompleteEvent());
+                    yield return new WaitForSeconds(3f);
+                    curr_world = 0;
+                    EventBus.Publish(new LoadWorldEvent(0));
+                }
+                else
+                {
+                    EventBus.Publish<LoadLevelSelectEvent>(new LoadLevelSelectEvent());
+                }
             }
-            else if (curr_world == 3 && !world_3_complete)
+            else if (curr_world == 3)
             {
-                // TODO: completion screen?
-                world_3_complete = true;
-                EventBus.Publish<WorldUnlockedEvent>(new WorldUnlockedEvent(3));
-                EventBus.Publish<WorldCompleteEvent>(new WorldCompleteEvent());
-                yield return new WaitForSeconds(3f);
+                if (!world_3_complete)
+                {
+                    // TODO: unlock some sort of "exit" in the home world that leads to completion
+                    world_3_complete = true;
+                    EventBus.Publish<WorldUnlockedEvent>(new WorldUnlockedEvent(3));
+                    EventBus.Publish<WorldCompleteEvent>(new WorldCompleteEvent());
+                    yield return new WaitForSeconds(3f);
+                    curr_world = 0;
+                    EventBus.Publish(new LoadWorldEvent(0));
+                }
+                else
+                {
+                    EventBus.Publish<LoadLevelSelectEvent>(new LoadLevelSelectEvent());
+                }
             }
-
-            curr_world = 0;
-            EventBus.Publish(new LoadWorldEvent(0));
         }
     }
 
