@@ -160,7 +160,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c358d31e424241fe9b22eafdb3420d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pin_id: 2
   fadeSpeed: 1
   knockdown_sound: {fileID: 8300000, guid: 850bb19e5bf806d4e84162f493f09e36, type: 3}
 --- !u!82 &8346876023973730850
@@ -175,7 +174,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -1810479408964791510, guid: 9e55ce8988e12f447a39b60f3cd4f359, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.035
   m_Pitch: 1
   Loop: 0
   Mute: 0
