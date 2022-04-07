@@ -11,14 +11,14 @@ public class SetSoundEffectsVolume : MonoBehaviour
     public Text text;
     void Start()
     {
-        slider.value = PlayerPrefs.GetFloat("SoundEffectsVol", 1f);
-        text.text = (int)(PlayerPrefs.GetFloat("SoundEFfectsVol", 1f) * 100) + "%";
+        slider.value = PlayerPrefs.GetFloat("SoundEffectsVol", 0.5f);
+        text.text = (int)(PlayerPrefs.GetFloat("SoundEFfectsVol", 0.5f) * 100) + "%";
     }
 
     public void SetLevel(float sliderValue)
     {
         mixer.SetFloat("SoundEffectsVol", Mathf.Log10(sliderValue) * 20);
         PlayerPrefs.SetFloat("SoundEffectsVol", sliderValue);
-        text.text = (int)(PlayerPrefs.GetFloat("SoundEFfectsVol", 1f) * 100) + "%";
+        text.text = (int)(PlayerPrefs.GetFloat("SoundEffectsVol", 0.5f) * 100) + "%";
     }
 }

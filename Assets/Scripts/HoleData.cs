@@ -54,7 +54,7 @@ public class HoleData : MonoBehaviour
             }
             else if (shots_taken > 0)
             {
-                AudioSource.PlayClipAtPoint(ready, Camera.main.transform.position, 0.25f * PlayerPrefs.GetFloat("MasterVol", 1f) * PlayerPrefs.GetFloat("SoundEffectsVol", 1f));
+                AudioSource.PlayClipAtPoint(ready, Camera.main.transform.position, 0.25f * PlayerPrefs.GetFloat("MasterVol", 0.5f) * PlayerPrefs.GetFloat("SoundEffectsVol", 0.5f));
             }
         }
     }

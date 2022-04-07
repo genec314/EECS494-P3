@@ -11,14 +11,14 @@ public class SetMasterVolume : MonoBehaviour
     public Text text;
     void Start()
     {
-        slider.value = PlayerPrefs.GetFloat("MasterVol", 1f);
-        text.text = (int)(PlayerPrefs.GetFloat("MasterVol", 1f) * 100) + "%";
+        slider.value = PlayerPrefs.GetFloat("MasterVol", 0.5f);
+        text.text = (int)(PlayerPrefs.GetFloat("MasterVol", 0.5f) * 100) + "%";
     }
 
     public void SetLevel(float sliderValue)
     {
         mixer.SetFloat("MasterVol", Mathf.Log10(sliderValue) * 20);
         PlayerPrefs.SetFloat("MasterVol", sliderValue);
-        text.text = (int)(PlayerPrefs.GetFloat("MasterVol", 1f) * 100) + "%";
+        text.text = (int)(PlayerPrefs.GetFloat("MasterVol", 0.5f) * 100) + "%";
     }
 }
