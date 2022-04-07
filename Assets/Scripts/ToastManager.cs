@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ToastManager : MonoBehaviour
 {
-    public bool is_complete = false;
-    public bool is_failed = false;
+    public RectTransform level_complete_panel;
+    public RectTransform level_failed_panel;
+    public RectTransform world_complete_panel;
 
     // The two places the toast UI panel alternates between.
     public Vector3 hidden_pos = new Vector3(20f, 200f, 0f);
@@ -21,25 +22,32 @@ public class ToastManager : MonoBehaviour
     
     Subscription<LevelCompleteEvent> complete_sub;
     Subscription<LevelFailedEvent> fail_sub;
+    Subscription<WorldCompleteEvent> world_sub;
 
     // Start is called before the first frame update
     void Start()
     {
         complete_sub = EventBus.Subscribe<LevelCompleteEvent>(OnLevelComplete);
         fail_sub = EventBus.Subscribe<LevelFailedEvent>(OnLevelFailed);
+        world_sub = EventBus.Subscribe<WorldCompleteEvent>(OnWorldComplete);
     }
 
     void OnLevelComplete(LevelCompleteEvent e)
     {
-        if (is_complete) StartCoroutine(DisplayToast());
+        StartCoroutine(DisplayToast(level_complete_panel));
     }
 
     void OnLevelFailed(LevelFailedEvent e)
     {
-        if (is_failed) StartCoroutine(DisplayToast());
+        StartCoroutine(DisplayToast(level_failed_panel));
     }
 
-    IEnumerator DisplayToast()
+    void OnWorldComplete(WorldCompleteEvent e)
+    {
+        StartCoroutine(DisplayToast(world_complete_panel));
+    }
+
+    IEnumerator DisplayToast(RectTransform panel)
     {
         // Ease In the UI panel
         float initial_time = Time.time;
@@ -49,7 +57,7 @@ public class ToastManager : MonoBehaviour
         {
             progress = (Time.time - initial_time) / ease_duration;
             float eased_progress = ease.Evaluate(progress);
-            this.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector3.LerpUnclamped(hidden_pos, visible_pos, eased_progress);
+            panel.anchoredPosition = Vector3.LerpUnclamped(hidden_pos, visible_pos, eased_progress);
 
             yield return null;
         }
@@ -64,7 +72,7 @@ public class ToastManager : MonoBehaviour
         {
             progress = (Time.time - initial_time) / ease_duration;
             float eased_progress = ease_out.Evaluate(progress);
-            this.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector3.LerpUnclamped(hidden_pos, visible_pos, 1.0f - eased_progress);
+            panel.anchoredPosition = Vector3.LerpUnclamped(hidden_pos, visible_pos, 1.0f - eased_progress);
 
             yield return null;
         }

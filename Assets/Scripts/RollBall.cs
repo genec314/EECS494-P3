@@ -22,7 +22,6 @@ public class RollBall : MonoBehaviour
 
     private bool windup = false;
     private bool startMove = false;
-    private bool holeTransition = false;
 
     bool goingUp = true;
     Vector3 top;
@@ -33,6 +32,7 @@ public class RollBall : MonoBehaviour
     Subscription<BallReadyEvent> ready_subscription;
     Subscription<LevelEndEvent> end_subscription;
     Subscription<LevelStartEvent> start_subscription;
+    Subscription<StopBarEvent> stop_sub;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +51,7 @@ public class RollBall : MonoBehaviour
         ready_subscription = EventBus.Subscribe<BallReadyEvent>(CheckForMove);
         end_subscription = EventBus.Subscribe<LevelEndEvent>(EndLevel);
         start_subscription = EventBus.Subscribe<LevelStartEvent>(StartLevel);
+        stop_sub = EventBus.Subscribe<StopBarEvent>(StopBar);
     }
 
     void OnDestroy()
@@ -62,28 +63,30 @@ public class RollBall : MonoBehaviour
     void Update()
     {
         MoveBar();
-        if (canMove && !holeTransition) ControlBar();
+        if (canMove && Time.timeScale != 0) ControlBar();
     }
 
     void CheckForMove(BallReadyEvent e)
     {
         canMove = true;
+        CancelBar();
     }
 
     private void EndLevel(LevelEndEvent e)
     {
-        holeTransition = true;
         canMove = false;
+        CancelBar();
     }
 
     private void StartLevel(LevelStartEvent e)
     {
-        holeTransition = false;
         canMove = true;
-        meter.SetActive(false);
-        bar.SetActive(false);
-        windup = false;
-        ResetBar();
+        CancelBar();
+    }
+
+    void StopBar(StopBarEvent e)
+    {
+        CancelBar();
     }
 
     private void ControlBar()
@@ -98,15 +101,10 @@ public class RollBall : MonoBehaviour
         //throw ball
         else if (windup && Input.GetKeyUp(KeyCode.Space))
         {
-            windup = false;
-
             float force = ((bar.transform.localPosition.y - bot.y)/(top.y - bot.y))*10 + 1;
             EventBus.Publish(new BallThrownEvent(power * force));
             canMove = false;
-            
-            meter.SetActive(false);
-            bar.SetActive(false);
-            ResetBar();
+            CancelBar();
         }
     }
 
@@ -148,5 +146,13 @@ public class RollBall : MonoBehaviour
         goingUp = true;
         bar.transform.localPosition = barTf;
         startMove = false;
+    }
+
+    void CancelBar()
+    {
+        meter.SetActive(false);
+        bar.SetActive(false);
+        windup = false;
+        ResetBar();
     }
 }

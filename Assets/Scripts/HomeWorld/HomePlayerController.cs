@@ -73,6 +73,7 @@ public class HomePlayerController : MonoBehaviour
             in_select_mode = true;
             SetSelectable(cur_selectable);
             EventBus.Publish(new HomeWorldExitEvent());
+            EventBus.Publish<StopBarEvent>(new StopBarEvent());
         }
         else if (!in_select_mode)
         {

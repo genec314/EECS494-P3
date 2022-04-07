@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.627451}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.64705884}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -523,6 +523,7 @@ MonoBehaviour:
   settings_menu: {fileID: 568242960}
   pause_menu: {fileID: 0}
   world_menu: {fileID: 0}
+  level_select_menu: {fileID: 0}
   menu_button: {fileID: 0}
 --- !u!4 &456379306
 Transform:
@@ -834,6 +835,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99abc04c605c49ac95932cd20570ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curr_world: 0
+  curr_level: 0
+  pin_reward: 10
 --- !u!4 &648652372
 Transform:
   m_ObjectHideFlags: 0
@@ -1370,7 +1374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6862745}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

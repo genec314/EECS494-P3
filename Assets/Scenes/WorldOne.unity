@@ -2056,6 +2056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curr_world: 0
   curr_level: 0
+  pin_reward: 10
 --- !u!4 &428837611
 Transform:
   m_ObjectHideFlags: 0
@@ -12530,6 +12531,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1957793813, guid: 4cacfc041776e5a41a214b2ca0523682, type: 3}
+      propertyPath: level_failed_panel
+      value: 
+      objectReference: {fileID: 2794407930508701738}
+    - target: {fileID: 1957793813, guid: 4cacfc041776e5a41a214b2ca0523682, type: 3}
+      propertyPath: level_complete_panel
+      value: 
+      objectReference: {fileID: 2794407930508701739}
+    - target: {fileID: 1957793813, guid: 4cacfc041776e5a41a214b2ca0523682, type: 3}
+      propertyPath: world_complete_panel
+      value: 
+      objectReference: {fileID: 2794407930508701737}
     - target: {fileID: 2794407930974466523, guid: 4cacfc041776e5a41a214b2ca0523682, type: 3}
       propertyPath: m_Name
       value: ToastUI
@@ -12620,6 +12633,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cacfc041776e5a41a214b2ca0523682, type: 3}
+--- !u!224 &2794407930508701737 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 52659368, guid: 4cacfc041776e5a41a214b2ca0523682, type: 3}
+  m_PrefabInstance: {fileID: 2794407930508701736}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &2794407930508701738 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2794407931104651513, guid: 4cacfc041776e5a41a214b2ca0523682, type: 3}
+  m_PrefabInstance: {fileID: 2794407930508701736}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &2794407930508701739 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2794407931257790031, guid: 4cacfc041776e5a41a214b2ca0523682, type: 3}
+  m_PrefabInstance: {fileID: 2794407930508701736}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3166079369585079189
 PrefabInstance:
   m_ObjectHideFlags: 0

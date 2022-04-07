@@ -16,15 +16,15 @@ public class GameControl : MonoBehaviour
     public int curr_world = 0; // 0 = intro, otherwise 1, 2, 3
     public int curr_level = 0; // 0 to 9
 
+    public int pin_reward = 10;
+
     bool world_1_visited = false;
     bool world_2_visited = false;
     bool world_3_visited = false;
     bool world_1_complete = false;
     bool world_2_complete = false;
     bool world_3_complete = false;
-    public LevelData[] world_1_levels = new LevelData[10];
-    public LevelData[] world_2_levels = new LevelData[10];
-    public LevelData[] world_3_levels = new LevelData[10];
+    public LevelData[,] level_data = new LevelData[3, 10];
 
     void Start()
     {
@@ -99,7 +99,7 @@ public class GameControl : MonoBehaviour
             else
             {
                 curr_level = 0;
-                world_1_levels[curr_level].setUnlocked(true);
+                level_data[curr_world, curr_level].setUnlocked(true);
                 world_1_visited = true;
                 SceneManager.LoadScene("WorldOne");
                 LoadCurrentLevel();
@@ -114,7 +114,7 @@ public class GameControl : MonoBehaviour
             else
             {
                 curr_level = 0;
-                world_2_levels[curr_level].setUnlocked(true);
+                level_data[curr_world, curr_level].setUnlocked(true);
                 world_2_visited = true;
                 SceneManager.LoadScene("WorldTwo");
                 LoadCurrentLevel();
@@ -129,7 +129,7 @@ public class GameControl : MonoBehaviour
             else
             {
                 curr_level = 0;
-                world_2_levels[curr_level].setUnlocked(true);
+                level_data[curr_world, curr_level].setUnlocked(true);
                 world_3_visited = true;
                 SceneManager.LoadScene("WorldThree");
                 LoadCurrentLevel();
@@ -167,20 +167,17 @@ public class GameControl : MonoBehaviour
     {
         EventBus.Publish<LevelCompleteEvent>(new LevelCompleteEvent());
 
-        yield return new WaitForSeconds(3f);
+        if (!level_data[curr_world, curr_level].isCompleted())
+        {
+            level_data[curr_world, curr_level].setCompleted(true);
+            EventBus.Publish<GainPinsEvent>(new GainPinsEvent(pin_reward));
+        }
+        else
+        {
+            EventBus.Publish<GainPinsEvent>(new GainPinsEvent(pin_reward/2));
+        }
 
-        if (curr_world == 1)
-        {
-            world_1_levels[curr_level].setCompleted(true);
-        }
-        else if (curr_world == 2)
-        {
-            world_2_levels[curr_level].setCompleted(true);
-        }
-        else if (curr_world == 3)
-        {
-            world_3_levels[curr_level].setCompleted(true);
-        }
+        yield return new WaitForSeconds(3f);
 
         // so justTeleported = false	
         EventBus.Publish(new TeleportEvent());
@@ -188,18 +185,7 @@ public class GameControl : MonoBehaviour
         if (curr_level < 9)
         {
             curr_level++;
-            if (curr_world == 1)
-            {
-                world_1_levels[curr_level].setUnlocked(true);
-            }
-            else if (curr_world == 2)
-            {
-                world_2_levels[curr_level].setUnlocked(true);
-            }
-            else if (curr_world == 3)
-            {
-                world_3_levels[curr_level].setUnlocked(true);
-            }
+            level_data[curr_world, curr_level].setUnlocked(true);
             LoadCurrentLevel();
         }
         else
@@ -277,11 +263,12 @@ public class GameControl : MonoBehaviour
 
     void InitializeLevelData()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 3; i++)
         {
-            world_1_levels[i] = new LevelData();
-            world_2_levels[i] = new LevelData();
-            world_3_levels[i] = new LevelData();
+            for (int j = 0; j < 10; j++)
+            {
+                level_data[i, j] = new LevelData();
+            }
         }
     }
 }
@@ -304,5 +291,15 @@ public class LevelData {
     public void setCompleted(bool _complete)
     {
         complete = _complete;
+    }
+
+    public bool isUnlocked()
+    {
+        return unlocked;
+    }
+
+    public bool isCompleted()
+    {
+        return complete;
     }
 }
