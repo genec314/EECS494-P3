@@ -440,7 +440,7 @@ MonoBehaviour:
   numPins: 10
   numShots: 5
   worldNumber: 2
-  levelNumber: 6
+  levelNumber: 5
   current_hole: 0
   canBallSplit: 1
   ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
@@ -828,7 +828,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &137685973
 Transform:
   m_ObjectHideFlags: 0
@@ -963,7 +963,7 @@ MonoBehaviour:
   numPins: 10
   numShots: 4
   worldNumber: 2
-  levelNumber: 5
+  levelNumber: 4
   current_hole: 0
   canBallSplit: 1
   ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
@@ -4728,7 +4728,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &753642309
 Transform:
   m_ObjectHideFlags: 0
@@ -7159,7 +7159,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1192407501
 Transform:
   m_ObjectHideFlags: 0
@@ -9772,7 +9772,7 @@ MonoBehaviour:
   numPins: 10
   numShots: 4
   worldNumber: 2
-  levelNumber: 7
+  levelNumber: 6
   current_hole: 0
   canBallSplit: 1
   ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
