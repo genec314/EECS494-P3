@@ -105,16 +105,16 @@ public class HomePlayerController : MonoBehaviour
 
     void _OnTutorialStrike(TutorialStrikeEvent e)
     {
-        transform.position = new Vector3(0, 0.5f, -20f);
-        camera.transform.localRotation = Quaternion.Euler(0, 180f, 0);
+        transform.position = GameObject.Find("Main Camera").transform.position;
+        camera.transform.localRotation = GameObject.Find("Main Camera").transform.rotation;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
 
         in_select_mode = true;
         in_bowl_mode = false;
-        SetSelectable(cur_selectable);
+        SetSelectable(cur_selectable, 1f);
     }
 
-    void SetSelectable(int index)
+    void SetSelectable(int index, float time = 0.5f)
     {
         cur_selectable = index;
         Vector3 oldPos = transform.position;
@@ -125,7 +125,7 @@ public class HomePlayerController : MonoBehaviour
         {
             newPos.y = 0.5f;
             newPos.z += 10f;
-            StartCoroutine(LerpPlayer(oldPos, newPos, transform.rotation.eulerAngles, Vector3.zero));
+            StartCoroutine(LerpPlayer(oldPos, newPos, transform.rotation.eulerAngles, new Vector3(0f, 180f, 0f), time));
             //transform.localPosition = new Vector3(0, -10f, -30f);
             //transform.localRotation = Quaternion.Euler(0f, 180f, 0);
         }
@@ -142,17 +142,17 @@ public class HomePlayerController : MonoBehaviour
         {
             newPos.y -= 7.75f;
             newPos.z -= 40f;
-            StartCoroutine(LerpPlayer(oldPos, newPos, transform.rotation.eulerAngles, new Vector3(0f, 180f, 0f)));
+            StartCoroutine(LerpPlayer(oldPos, newPos, transform.rotation.eulerAngles, Vector3.zero, time));
             //transform.localPosition = new Vector3(0, -7f, -40f);
             //transform.localRotation = Quaternion.Euler(0f, 180f, 0);
         }
     }
 
-    IEnumerator LerpPlayer(Vector3 startPos, Vector3 endPos, Vector3 oldRot, Vector3 newRot)
+    IEnumerator LerpPlayer(Vector3 startPos, Vector3 endPos, Vector3 oldRot, Vector3 newRot, float time)
     {
         doing_lerp = true;
         float elapsed = 0f;
-        while(elapsed < lerp_time)
+        while(elapsed < time)
         {
             transform.position = Vector3.Lerp(startPos, endPos, elapsed / lerp_time);
             transform.rotation = Quaternion.Euler(Vector3.Lerp(oldRot, newRot, elapsed / lerp_time));

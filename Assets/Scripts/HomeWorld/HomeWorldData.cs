@@ -74,6 +74,9 @@ public class HomeWorldData : MonoBehaviour
 
     void UnlockWorld(WorldUnlockedEvent e)
     {
-        unlocked_worlds.Add(e.num);
+        if (!unlocked_worlds.Contains(e.num))
+        {
+            unlocked_worlds.Add(e.num);
+        }
     }
 }
