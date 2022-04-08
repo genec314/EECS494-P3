@@ -12,6 +12,7 @@ public class GameControl : MonoBehaviour
     Subscription<LoadIntroEvent> intro_subscription;
     Subscription<LevelEndEvent> level_subscription;
     Subscription<LoadLevelSelectEvent> level_select_sub;
+    Subscription<SelectLevelEvent> select_level_sub;
 
     public int curr_world = 0; // 0 = intro, otherwise 1, 2, 3
     public int curr_level = 0; // 0 to 9
@@ -44,6 +45,7 @@ public class GameControl : MonoBehaviour
         intro_subscription = EventBus.Subscribe<LoadIntroEvent>(OnIntroLevel);
         level_subscription = EventBus.Subscribe<LevelEndEvent>(OnLevelEnd);
         level_select_sub = EventBus.Subscribe<LoadLevelSelectEvent>(OnLoadLevelSelect);
+        select_level_sub = EventBus.Subscribe<SelectLevelEvent>(OnSelectLevel);
 
         InitializeLevelData();
     }
@@ -94,45 +96,42 @@ public class GameControl : MonoBehaviour
         {
             if (world_1_visited)
             {
-                SceneManager.LoadScene("WorldOneSelect");
+                EventBus.Publish<LoadLevelSelectEvent>(new LoadLevelSelectEvent());
             }
             else
             {
                 curr_level = 0;
                 level_data[curr_world, curr_level].setUnlocked(true);
                 world_1_visited = true;
-                SceneManager.LoadScene("WorldOne");
-                LoadCurrentLevel();
+                StartCoroutine(LoadWorldAndLevel(curr_world));
             }
         }
         else if (e.world_num == 2)
         {
             if (world_2_visited)
             {
-                SceneManager.LoadScene("WorldTwoSelect");
+                EventBus.Publish<LoadLevelSelectEvent>(new LoadLevelSelectEvent());
             }
             else
             {
                 curr_level = 0;
                 level_data[curr_world, curr_level].setUnlocked(true);
                 world_2_visited = true;
-                SceneManager.LoadScene("WorldTwo");
-                LoadCurrentLevel();
+                StartCoroutine(LoadWorldAndLevel(curr_world));
             }
         }
         else if (e.world_num == 3)
         {
             if (world_3_visited)
             {
-                SceneManager.LoadScene("WorldThreeSelect");
+                EventBus.Publish<LoadLevelSelectEvent>(new LoadLevelSelectEvent());
             }
             else
             {
                 curr_level = 0;
                 level_data[curr_world, curr_level].setUnlocked(true);
                 world_3_visited = true;
-                SceneManager.LoadScene("WorldThree");
-                LoadCurrentLevel();
+                StartCoroutine(LoadWorldAndLevel(curr_world));
             }
         }
         else
@@ -160,7 +159,7 @@ public class GameControl : MonoBehaviour
     void OnSelectLevel(SelectLevelEvent e)
     {
         curr_level = e.level_num;
-        LoadCurrentLevel();
+        StartCoroutine(LoadWorldAndLevel(curr_world));
     }
 
     IEnumerator HandleLevelComplete()
@@ -256,9 +255,29 @@ public class GameControl : MonoBehaviour
         EventBus.Publish<LoadLevelEvent>(new LoadLevelEvent(curr_level, curr_world));
     }
 
-    public bool InTutorial()
+    public bool InHomeWorld()
     {
         return curr_world == 0;
+    }
+
+    IEnumerator LoadWorldAndLevel(int world)
+    {
+        AsyncOperation load = null;
+        if (world == 1)
+        {
+            load = SceneManager.LoadSceneAsync("WorldOne");
+        }
+        else if (world == 2)
+        {
+            load = SceneManager.LoadSceneAsync("WorldTwo");
+        }
+
+        while (!load.isDone)
+        {
+            yield return null;
+        }
+
+        LoadCurrentLevel();
     }
 
     void InitializeLevelData()

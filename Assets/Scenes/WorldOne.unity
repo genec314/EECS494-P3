@@ -6616,7 +6616,7 @@ MonoBehaviour:
   numShots: 3
   worldNumber: 1
   levelNumber: 0
-  current_hole: 1
+  current_hole: 0
   canBallSplit: 0
   ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
 --- !u!4 &1113912809
