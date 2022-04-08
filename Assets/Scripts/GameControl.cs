@@ -23,7 +23,7 @@ public class GameControl : MonoBehaviour
     bool world_2_complete = false;
     bool world_3_complete = false;
     public LevelData[] world_1_levels = new LevelData[7];
-    public LevelData[] world_2_levels = new LevelData[10];
+    public LevelData[] world_2_levels = new LevelData[7];
     public LevelData[] world_3_levels = new LevelData[10];
 
     void Start()
