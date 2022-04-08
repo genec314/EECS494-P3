@@ -21,6 +21,7 @@ public class HomeWorldControl : MonoBehaviour
     //public GameObject high_score_UI;
     public GameObject throwball_UI;
     public GameObject controls_UI;
+    public GameObject transition_UI;
 
     GameObject curr_UI;
 
@@ -291,6 +292,8 @@ public class HomeWorldControl : MonoBehaviour
     IEnumerator NextLevel(float time, int level)
     {
         yield return new WaitForSeconds(time);
+        GameObject.Find("Menu").SetActive(false);
+
         float up_duration = 1.5f;
         float elapsed = 0;
         Vector3 orig_pos = main_cam.transform.position;
@@ -317,7 +320,8 @@ public class HomeWorldControl : MonoBehaviour
             yield return null;
         }
 
-        EventBus.Publish(new LoadWorldEvent(level));
+        StartCoroutine(transition_UI.GetComponent<SceneTransition>().FadeOut(3f, level));
+        //EventBus.Publish(new LoadWorldEvent(level));
         this.enabled = false;
     }
 
