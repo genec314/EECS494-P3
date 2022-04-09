@@ -861,6 +861,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NegativeCube1
       objectReference: {fileID: 0}
+    - target: {fileID: 8020143391789036965, guid: 1b72fc8de810947caa68d743b26cdca7, type: 3}
+      propertyPath: charge
+      value: -2500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b72fc8de810947caa68d743b26cdca7, type: 3}
 --- !u!1 &806764601 stripped
@@ -1122,6 +1126,10 @@ PrefabInstance:
     - target: {fileID: 8020143391789036964, guid: 1b72fc8de810947caa68d743b26cdca7, type: 3}
       propertyPath: m_Name
       value: NegativeCube3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020143391789036965, guid: 1b72fc8de810947caa68d743b26cdca7, type: 3}
+      propertyPath: charge
+      value: -2500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b72fc8de810947caa68d743b26cdca7, type: 3}
@@ -1764,6 +1772,10 @@ PrefabInstance:
     - target: {fileID: 8020143391789036964, guid: 1b72fc8de810947caa68d743b26cdca7, type: 3}
       propertyPath: m_Name
       value: NegativeCube2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020143391789036965, guid: 1b72fc8de810947caa68d743b26cdca7, type: 3}
+      propertyPath: charge
+      value: -2500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b72fc8de810947caa68d743b26cdca7, type: 3}
@@ -2693,6 +2705,10 @@ PrefabInstance:
     - target: {fileID: 8020143391789036964, guid: 1b72fc8de810947caa68d743b26cdca7, type: 3}
       propertyPath: m_Name
       value: NegativeCube
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020143391789036965, guid: 1b72fc8de810947caa68d743b26cdca7, type: 3}
+      propertyPath: charge
+      value: -2500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b72fc8de810947caa68d743b26cdca7, type: 3}
