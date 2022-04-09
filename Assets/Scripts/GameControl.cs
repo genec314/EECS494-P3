@@ -23,7 +23,7 @@ public class GameControl : MonoBehaviour
     bool world_2_complete = false;
     bool world_3_complete = false;
     public LevelData[] world_1_levels = new LevelData[7];
-    public LevelData[] world_2_levels = new LevelData[10];
+    public LevelData[] world_2_levels = new LevelData[7];
     public LevelData[] world_3_levels = new LevelData[10];
 
     void Start()
@@ -37,7 +37,7 @@ public class GameControl : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-        Screen.SetResolution(1920, 1080, false);
+        Screen.SetResolution(1920, 1080, true);
 
         world_subscription = EventBus.Subscribe<LoadWorldEvent>(OnWorldChange);
         restart_subscription = EventBus.Subscribe<RestartLevelEvent>(OnRestartLevel);
@@ -285,7 +285,7 @@ public class GameControl : MonoBehaviour
             world_2_levels[i] = new LevelData();
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 1; i++)
         {
             world_3_levels[i] = new LevelData();
         }

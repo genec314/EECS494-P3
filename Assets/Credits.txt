@@ -1,4 +1,4 @@
-Bowling pin model - by eonik under CC attribution, YouTube channel as instructed to put in credits by author: https://www.youtube.com/channel/UCbOaPg1o8yFxjUExbnMJyCQ
+Bowling pin model - by eonik under CC Attribution, YouTube channel as instructed to put in credits by author: https://www.youtube.com/channel/UCbOaPg1o8yFxjUExbnMJyCQ
 Realistic bowling pin interactions - https://www.youtube.com/watch?v=oKYJ19CoexA&t=594s
 How to detect that a bowling pin fell over - https://answers.unity.com/questions/168443/detect-falling-over-in-bowling.html
 bowling ball rolling sound - https://www.youtube.com/watch?v=X3B1SntxO6I
@@ -18,4 +18,10 @@ Palm trees - https://sketchfab.com/3d-models/kit-palm-tree-378f04d9f7a341cc87c8f
 Water texture - https://sketchfab.com/3d-models/ocean-wave-wmaya-03f0559f6b7646ea9014e2e72f71b198
 Sand Texture - https://assetstore.unity.com/packages/2d/textures-materials/floors/yughues-free-sand-materials-12964#description
 Compass pic - https://www.dkfindout.com/us/math/coordinates/how-to-read-compass/
+<<<<<<< HEAD
 World Activated Audio - https://freesound.org/people/neopolitansixth/sounds/579628/
+=======
+Colosseum - by Shin Xiba 3D under CC Attribution license: https://sketchfab.com/3d-models/3d-roman-colosseum-4fa30a567cdd4228a663c5b46e7a8d0f
+Zweihander (Sword) - by Siesta under CC Attribution license: https://sketchfab.com/3d-models/zweihander-bde0f0351bf443f6bed68aeff84b4129
+Cranium with injuries - by Historiska unber CC Attribution license: https://sketchfab.com/3d-models/cranium-with-injuries-1089125-970dcda695fc46329f2f75357e3d0ed1
+>>>>>>> 599585ec8637132a5583b37af38a86c751a67a3f
