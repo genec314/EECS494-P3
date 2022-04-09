@@ -1790,6 +1790,63 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 20, z: 35}
   m_Center: {x: 0, y: 0, z: -12}
+--- !u!1 &406633031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 406633032}
+  - component: {fileID: 406633034}
+  - component: {fileID: 406633033}
+  m_Layer: 0
+  m_Name: ResetPlane (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &406633032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406633031}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28, y: 0, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1222938113}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &406633033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406633031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3571a80b3798a4f25b5eb1bbfdf6bbb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &406633034
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406633031}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 40, z: 30}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &413253950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2536,7 +2593,7 @@ MonoBehaviour:
   numPins: 10
   numShots: 3
   worldNumber: 1
-  levelNumber: 5
+  levelNumber: 3
   current_hole: 0
   canBallSplit: 0
   ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
@@ -2556,7 +2613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &539857517
 Transform:
   m_ObjectHideFlags: 0
@@ -2601,7 +2658,7 @@ MonoBehaviour:
   numPins: 10
   numShots: 3
   worldNumber: 1
-  levelNumber: 4
+  levelNumber: 3
   current_hole: 0
   canBallSplit: 0
   ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
@@ -3632,7 +3689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &652938627
 Transform:
   m_ObjectHideFlags: 0
@@ -7398,6 +7455,7 @@ Transform:
   - {fileID: 1488221928}
   - {fileID: 126642044}
   - {fileID: 1897806984}
+  - {fileID: 406633032}
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7419,7 +7477,7 @@ MonoBehaviour:
   numPins: 10
   numShots: 3
   worldNumber: 1
-  levelNumber: 8
+  levelNumber: 5
   current_hole: 0
   canBallSplit: 0
   ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
@@ -7846,7 +7904,7 @@ MonoBehaviour:
   numPins: 10
   numShots: 3
   worldNumber: 1
-  levelNumber: 6
+  levelNumber: 4
   current_hole: 0
   canBallSplit: 0
   ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
@@ -9440,7 +9498,7 @@ MonoBehaviour:
   numPins: 10
   numShots: 3
   worldNumber: 1
-  levelNumber: 9
+  levelNumber: 6
   current_hole: 0
   canBallSplit: 0
   ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
@@ -9674,7 +9732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1730733138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11892,7 +11950,7 @@ MonoBehaviour:
   numPins: 10
   numShots: 3
   worldNumber: 1
-  levelNumber: 3
+  levelNumber: 2
   current_hole: 0
   canBallSplit: 0
   ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}

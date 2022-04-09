@@ -25,7 +25,7 @@ public class GameControl : MonoBehaviour
     bool world_1_complete = false;
     bool world_2_complete = false;
     bool world_3_complete = false;
-    public LevelData[,] level_data = new LevelData[3, 10];
+    public LevelData[,] level_data = new LevelData[3, 7];
 
     void Start()
     {
@@ -38,7 +38,7 @@ public class GameControl : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-        Screen.SetResolution(1920, 1080, false);
+        Screen.SetResolution(1920, 1080, true);
 
         world_subscription = EventBus.Subscribe<LoadWorldEvent>(OnWorldChange);
         restart_subscription = EventBus.Subscribe<RestartLevelEvent>(OnRestartLevel);
@@ -181,8 +181,10 @@ public class GameControl : MonoBehaviour
         // so justTeleported = false	
         EventBus.Publish(new TeleportEvent());
 
-        if (curr_level < 9)
+        if (curr_level < 6 && curr_world != 3)
         {
+            // put check for end of world 3 here cause only three levels
+
             curr_level++;
             level_data[curr_world, curr_level].setUnlocked(true);
             LoadCurrentLevel();
@@ -271,6 +273,10 @@ public class GameControl : MonoBehaviour
         {
             load = SceneManager.LoadSceneAsync("WorldTwo");
         }
+        else if (world == 3)
+        {
+            load = SceneManager.LoadSceneAsync("WorldThree");
+        }
 
         while (!load.isDone)
         {
@@ -284,7 +290,7 @@ public class GameControl : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            for (int j = 0; j < 10; j++)
+            for (int j = 0; j < 7; j++)
             {
                 level_data[i, j] = new LevelData();
             }
