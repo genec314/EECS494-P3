@@ -101,7 +101,6 @@ public class MenuButtons : MonoBehaviour
     // Level select exit to home
     public void ExitToHome()
     {
-        Time.timeScale = 1;
         EventBus.Publish<LoadWorldEvent>(new LoadWorldEvent(0));
     }
 }

@@ -55,7 +55,7 @@ public class DetectKnockOver : MonoBehaviour
 
     void FadeOutWhenReady(BallReadyEvent e)
     {
-        if (knockedOver && !gc.InTutorial() && GetComponent<MeshCollider>().enabled == true)
+        if (knockedOver && !gc.InHomeWorld() && GetComponent<MeshCollider>().enabled == true)
         {
             // this.gameObject.SetActive(false);
             for (int i = 0; i < pin_renderers.Length; i++)

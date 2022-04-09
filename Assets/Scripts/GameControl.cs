@@ -12,9 +12,12 @@ public class GameControl : MonoBehaviour
     Subscription<LoadIntroEvent> intro_subscription;
     Subscription<LevelEndEvent> level_subscription;
     Subscription<LoadLevelSelectEvent> level_select_sub;
+    Subscription<SelectLevelEvent> select_level_sub;
 
     public int curr_world = 0; // 0 = intro, otherwise 1, 2, 3
     public int curr_level = 0; // 0 to 9
+
+    public int pin_reward = 10;
 
     bool world_1_visited = false;
     bool world_2_visited = false;
@@ -22,9 +25,7 @@ public class GameControl : MonoBehaviour
     bool world_1_complete = false;
     bool world_2_complete = false;
     bool world_3_complete = false;
-    public LevelData[] world_1_levels = new LevelData[10];
-    public LevelData[] world_2_levels = new LevelData[10];
-    public LevelData[] world_3_levels = new LevelData[10];
+    public LevelData[,] level_data = new LevelData[3, 10];
 
     void Start()
     {
@@ -44,6 +45,7 @@ public class GameControl : MonoBehaviour
         intro_subscription = EventBus.Subscribe<LoadIntroEvent>(OnIntroLevel);
         level_subscription = EventBus.Subscribe<LevelEndEvent>(OnLevelEnd);
         level_select_sub = EventBus.Subscribe<LoadLevelSelectEvent>(OnLoadLevelSelect);
+        select_level_sub = EventBus.Subscribe<SelectLevelEvent>(OnSelectLevel);
 
         InitializeLevelData();
     }
@@ -94,45 +96,42 @@ public class GameControl : MonoBehaviour
         {
             if (world_1_visited)
             {
-                SceneManager.LoadScene("WorldOneSelect");
+                EventBus.Publish<LoadLevelSelectEvent>(new LoadLevelSelectEvent());
             }
             else
             {
                 curr_level = 0;
-                world_1_levels[curr_level].setUnlocked(true);
+                level_data[curr_world, curr_level].setUnlocked(true);
                 world_1_visited = true;
-                SceneManager.LoadScene("WorldOne");
-                LoadCurrentLevel();
+                StartCoroutine(LoadWorldAndLevel(curr_world));
             }
         }
         else if (e.world_num == 2)
         {
             if (world_2_visited)
             {
-                SceneManager.LoadScene("WorldTwoSelect");
+                EventBus.Publish<LoadLevelSelectEvent>(new LoadLevelSelectEvent());
             }
             else
             {
                 curr_level = 0;
-                world_2_levels[curr_level].setUnlocked(true);
+                level_data[curr_world, curr_level].setUnlocked(true);
                 world_2_visited = true;
-                SceneManager.LoadScene("WorldTwo");
-                LoadCurrentLevel();
+                StartCoroutine(LoadWorldAndLevel(curr_world));
             }
         }
         else if (e.world_num == 3)
         {
             if (world_3_visited)
             {
-                SceneManager.LoadScene("WorldThreeSelect");
+                EventBus.Publish<LoadLevelSelectEvent>(new LoadLevelSelectEvent());
             }
             else
             {
                 curr_level = 0;
-                world_2_levels[curr_level].setUnlocked(true);
+                level_data[curr_world, curr_level].setUnlocked(true);
                 world_3_visited = true;
-                SceneManager.LoadScene("WorldThree");
-                LoadCurrentLevel();
+                StartCoroutine(LoadWorldAndLevel(curr_world));
             }
         }
         else
@@ -160,27 +159,24 @@ public class GameControl : MonoBehaviour
     void OnSelectLevel(SelectLevelEvent e)
     {
         curr_level = e.level_num;
-        LoadCurrentLevel();
+        StartCoroutine(LoadWorldAndLevel(curr_world));
     }
 
     IEnumerator HandleLevelComplete()
     {
         EventBus.Publish<LevelCompleteEvent>(new LevelCompleteEvent());
 
-        yield return new WaitForSeconds(3f);
+        if (!level_data[curr_world, curr_level].isCompleted())
+        {
+            level_data[curr_world, curr_level].setCompleted(true);
+            EventBus.Publish<GainPinsEvent>(new GainPinsEvent(pin_reward));
+        }
+        else
+        {
+            EventBus.Publish<GainPinsEvent>(new GainPinsEvent(pin_reward/2));
+        }
 
-        if (curr_world == 1)
-        {
-            world_1_levels[curr_level].setCompleted(true);
-        }
-        else if (curr_world == 2)
-        {
-            world_2_levels[curr_level].setCompleted(true);
-        }
-        else if (curr_world == 3)
-        {
-            world_3_levels[curr_level].setCompleted(true);
-        }
+        yield return new WaitForSeconds(3f);
 
         // so justTeleported = false	
         EventBus.Publish(new TeleportEvent());
@@ -188,18 +184,7 @@ public class GameControl : MonoBehaviour
         if (curr_level < 9)
         {
             curr_level++;
-            if (curr_world == 1)
-            {
-                world_1_levels[curr_level].setUnlocked(true);
-            }
-            else if (curr_world == 2)
-            {
-                world_2_levels[curr_level].setUnlocked(true);
-            }
-            else if (curr_world == 3)
-            {
-                world_3_levels[curr_level].setUnlocked(true);
-            }
+            level_data[curr_world, curr_level].setUnlocked(true);
             LoadCurrentLevel();
         }
         else
@@ -270,18 +255,39 @@ public class GameControl : MonoBehaviour
         EventBus.Publish<LoadLevelEvent>(new LoadLevelEvent(curr_level, curr_world));
     }
 
-    public bool InTutorial()
+    public bool InHomeWorld()
     {
         return curr_world == 0;
     }
 
+    IEnumerator LoadWorldAndLevel(int world)
+    {
+        AsyncOperation load = null;
+        if (world == 1)
+        {
+            load = SceneManager.LoadSceneAsync("WorldOne");
+        }
+        else if (world == 2)
+        {
+            load = SceneManager.LoadSceneAsync("WorldTwo");
+        }
+
+        while (!load.isDone)
+        {
+            yield return null;
+        }
+
+        LoadCurrentLevel();
+    }
+
     void InitializeLevelData()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 3; i++)
         {
-            world_1_levels[i] = new LevelData();
-            world_2_levels[i] = new LevelData();
-            world_3_levels[i] = new LevelData();
+            for (int j = 0; j < 10; j++)
+            {
+                level_data[i, j] = new LevelData();
+            }
         }
     }
 }
@@ -304,5 +310,15 @@ public class LevelData {
     public void setCompleted(bool _complete)
     {
         complete = _complete;
+    }
+
+    public bool isUnlocked()
+    {
+        return unlocked;
+    }
+
+    public bool isCompleted()
+    {
+        return complete;
     }
 }
