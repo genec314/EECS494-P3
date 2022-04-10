@@ -106,8 +106,8 @@ public class HomePlayerController : MonoBehaviour
 
     void _OnTutorialStrike(TutorialStrikeEvent e)
     {
-        transform.position = GameObject.Find("Main Camera").transform.position;
-        camera.transform.localRotation = GameObject.Find("Main Camera").transform.rotation;
+        // transform.position = GameObject.Find("Main Camera").transform.position;
+        // camera.transform.localRotation = GameObject.Find("Main Camera").transform.rotation;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
 
         in_select_mode = true;
