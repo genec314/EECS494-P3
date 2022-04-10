@@ -11,6 +11,39 @@ public class MenuButtons : MonoBehaviour
     public GameObject level_select_menu;
     public GameObject menu_button;
 
+    public bool in_level = false;
+    public bool in_world = false;
+
+    void Update()
+    {
+        if (in_level)
+        {
+            if (Input.GetKeyDown(KeyCode.P) && Time.timeScale == 1)
+            {
+                PauseFromLevel();
+            }
+            else if (Input.GetKeyDown(KeyCode.P) && Time.timeScale == 0)
+            {
+                ResumeFromLevel();
+            }
+            else if (Input.GetKeyDown(KeyCode.R) && Time.timeScale == 1)
+            {
+                RestartLevel();
+            }
+        }
+        else if (in_world)
+        {
+            if (Input.GetKeyDown(KeyCode.P) && Time.timeScale == 1)
+            {
+                PauseFromWorld();
+            }
+            else if (Input.GetKeyDown(KeyCode.P) && Time.timeScale == 0)
+            {
+                if (world_menu != null && world_menu.activeSelf) ResumeFromWorld();
+            }
+        }
+    }
+
     // Title screen menus
     public void PlayGame()
     {
@@ -101,7 +134,6 @@ public class MenuButtons : MonoBehaviour
     // Level select exit to home
     public void ExitToHome()
     {
-        Time.timeScale = 1;
         EventBus.Publish<LoadWorldEvent>(new LoadWorldEvent(0));
     }
 }

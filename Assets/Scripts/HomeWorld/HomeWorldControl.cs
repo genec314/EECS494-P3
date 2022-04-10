@@ -7,6 +7,16 @@ using TMPro;
 
 public class HomeWorldControl : MonoBehaviour
 {
+    // The two places the toast UI panel alternates between.
+    public Vector3 hidden_pos = new Vector3(0f, -200f, 0f);
+    public Vector3 visible_pos = new Vector3(0f, 0f, 0f);
+
+    // These inspector-accessible variables control how the toast UI panel moves between the hidden and visible positions.
+    public AnimationCurve ease;
+    public AnimationCurve ease_out;
+
+    // Duration controls.
+    public float ease_duration = 0.5f;
 
     Subscription<BallThrownEvent> ball_thrown_sub;
     Subscription<PinKnockedOverEvent> pin_knocked_sub;
@@ -15,7 +25,7 @@ public class HomeWorldControl : MonoBehaviour
     Subscription<HomeWorldExitEvent> exit_sub;
     Subscription<WorldUnlockedEvent> world_unlocked_sub;
 
-    public GameObject tutorial_UI;
+    public RectTransform tutorial_UI;
     public GameObject shop_UI;
     public GameObject map_UI;
     //public GameObject high_score_UI;
@@ -68,7 +78,6 @@ public class HomeWorldControl : MonoBehaviour
         player = GameObject.Find("Player");
         playerStartPos = player.transform.position;
         lastThrowPos = playerStartPos;
-        tutorial_UI = GameObject.Find("TutorialUI");
         curr_UI = throwball_UI;
 
         data = GameObject.Find("GameControl").GetComponent<HomeWorldData>();
@@ -82,9 +91,24 @@ public class HomeWorldControl : MonoBehaviour
 
         if(unlocked_worlds.Count == 2 || unlocked_worlds.Count == 3)
         {
+<<<<<<< HEAD
             StartCoroutine(TurnOnLights(unlocked_worlds.Count - 1));
         }
 
+=======
+            can_free_move = true;
+            can_shoot = false;
+            main_cam.SetActive(false);
+            fpc.SetActive(true);
+            throwball_UI.SetActive(false);
+            controls_UI.SetActive(true);
+            EventBus.Publish(new TutorialStrikeEvent());
+        }
+        else
+        {
+            StartCoroutine(EaseIn(tutorial_UI));
+        }
+>>>>>>> 26d0d511e5b79e954459842ed519e008ee914909
         pi = GameObject.Find("GameControl").GetComponent<PlayerInventory>();
     }
 
@@ -96,8 +120,8 @@ public class HomeWorldControl : MonoBehaviour
 
     void _OnBallThrown(BallThrownEvent e)
     {
-        if (this.enabled)
-            tutorial_UI.SetActive(false);
+        if (this.enabled && unlocked_worlds.Count < 1)
+            StartCoroutine(EaseOut(tutorial_UI));
     }
 
     void _OnPinKnocked(PinKnockedOverEvent e)
@@ -352,4 +376,48 @@ public class HomeWorldControl : MonoBehaviour
     {
         can_free_move = _in;
     }
+<<<<<<< HEAD
+=======
+
+    public float GetSensitivity()
+    {
+        return sensitivity;
+    }
+
+    public void SetSensitivity(float _in)
+    {
+        sensitivity = _in;
+    }
+
+    IEnumerator EaseIn(RectTransform panel)
+    {
+        // Ease In the UI panel
+        float initial_time = Time.time;
+        float progress = (Time.time - initial_time) / ease_duration;
+
+        while(progress < 1.0f)
+        {
+            progress = (Time.time - initial_time) / ease_duration;
+            float eased_progress = ease.Evaluate(progress);
+            panel.anchoredPosition = Vector3.LerpUnclamped(hidden_pos, visible_pos, eased_progress);
+
+            yield return null;
+        }
+    }
+
+    IEnumerator EaseOut(RectTransform panel)
+    {
+        // Ease Out the UI panel
+        float initial_time = Time.time;
+        float progress = 0.0f;
+        while (progress < 1.0f)
+        {
+            progress = (Time.time - initial_time) / ease_duration;
+            float eased_progress = ease_out.Evaluate(progress);
+            panel.anchoredPosition = Vector3.LerpUnclamped(hidden_pos, visible_pos, 1.0f - eased_progress);
+
+            yield return null;
+        }
+    }
+>>>>>>> 26d0d511e5b79e954459842ed519e008ee914909
 }

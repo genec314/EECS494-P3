@@ -13,12 +13,12 @@ public class PlayerInventory : MonoBehaviour
     private int num_pins = 0;
 
     Subscription<BallBoughtEvent> ball_bought_sub;
-    Subscription<PinKnockedOverEvent> pin_knock_sub;
+    Subscription<GainPinsEvent> gain_pins_sub;
     // Start is called before the first frame update
     void Start()
     {
         ball_bought_sub = EventBus.Subscribe<BallBoughtEvent>(_OnBallBought);
-        pin_knock_sub = EventBus.Subscribe<PinKnockedOverEvent>(_OnPinKnocked);
+        gain_pins_sub = EventBus.Subscribe<GainPinsEvent>(_OnGainPins);
     }
 
     // Update is called once per frame
@@ -34,9 +34,9 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    void _OnPinKnocked(PinKnockedOverEvent e)
+    void _OnGainPins(GainPinsEvent e)
     {
-        AddPins(1);
+        AddPins(e.num);
     }
 
     void _OnBallBought(BallBoughtEvent e)

@@ -204,6 +204,11 @@ public class HomeWorldExitEvent
     public HomeWorldExitEvent() {}
 }
 
+public class StopBarEvent
+{
+    public StopBarEvent() {}
+}
+
 public class WorldUnlockedEvent
 {
     public int num;
@@ -223,4 +228,14 @@ public class BallBoughtEvent
         cost = _cost;
     }
 
+}
+
+public class GainPinsEvent
+{
+    public int num;
+
+    public GainPinsEvent(int _num)
+    {
+        num = _num;
+    }
 }
