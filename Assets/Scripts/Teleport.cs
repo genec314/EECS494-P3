@@ -10,12 +10,15 @@ public class Teleport : MonoBehaviour
 
     private bool justTeleported = false;
 
+    AudioSource aS;
+
     Subscription<TeleportEvent> teleport_sub;
 
     // Start is called before the first frame update
     void Awake()
     {
         tf = this.GetComponent<Transform>();
+        aS = this.GetComponent<AudioSource>();
 
         teleport_sub = EventBus.Subscribe<TeleportEvent>(OnTeleport);
     }
@@ -28,9 +31,11 @@ public class Teleport : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("HERERE");
         if (other.CompareTag("Ball") && !justTeleported)
         {
             justTeleported = true;
+            aS.PlayOneShot(aS.clip);
 
             if (other.GetComponent<CanSplit>() != null)
             {

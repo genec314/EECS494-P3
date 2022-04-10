@@ -43,6 +43,10 @@ PrefabInstance:
       propertyPath: to
       value: 
       objectReference: {fileID: 1041907342809489919}
+    - target: {fileID: 234810786127203145, guid: 0a30229279ffb461aa3d0e0a945aa29f, type: 3}
+      propertyPath: warpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c3e0cdb3c87ce4ddab3385474573f1ce, type: 3}
     - target: {fileID: 5586350305849665035, guid: 0a30229279ffb461aa3d0e0a945aa29f, type: 3}
       propertyPath: m_Name
       value: TeleporterContainer1
@@ -127,6 +131,10 @@ PrefabInstance:
       propertyPath: to
       value: 
       objectReference: {fileID: 6445554097799063847}
+    - target: {fileID: 234810786127203145, guid: 0a30229279ffb461aa3d0e0a945aa29f, type: 3}
+      propertyPath: warpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c3e0cdb3c87ce4ddab3385474573f1ce, type: 3}
     - target: {fileID: 5586350305849665035, guid: 0a30229279ffb461aa3d0e0a945aa29f, type: 3}
       propertyPath: m_Name
       value: TeleporterContainer2
