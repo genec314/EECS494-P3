@@ -21,6 +21,7 @@ public class HomeWorldControl : MonoBehaviour
     //public GameObject high_score_UI;
     public GameObject throwball_UI;
     public GameObject controls_UI;
+    public GameObject transition_UI;
 
     GameObject curr_UI;
 
@@ -36,10 +37,11 @@ public class HomeWorldControl : MonoBehaviour
 
     private bool can_shoot = true;
     public bool can_free_move = true;
-    private float sensitivity = 500f;
 
     [SerializeField]
     public GameObject[] toActivateLanes;
+    public AudioClip activate;
+    private int[] intensities;
 
     HomeWorldData data;
     PlayerInventory pi;
@@ -71,21 +73,18 @@ public class HomeWorldControl : MonoBehaviour
 
         data = GameObject.Find("GameControl").GetComponent<HomeWorldData>();
         unlocked_worlds = data.GetUnlockedWorlds();
-        for(int i = 0; i < unlocked_worlds.Count; i++)
+
+        for(int i = 0; i < unlocked_worlds.Count - 1; i++)
         {
-            toActivateLanes[unlocked_worlds[i]].SetActive(true);            
+            toActivateLanes[unlocked_worlds[i]].SetActive(true);
         }
-        if(unlocked_worlds.Count >= 1)
+        intensities = new int[] { 5000, 6, 20 };
+
+        if(unlocked_worlds.Count == 2 || unlocked_worlds.Count == 3)
         {
-            can_free_move = true;
-            can_shoot = false;
-            main_cam.SetActive(false);
-            fpc.SetActive(true);
-            throwball_UI.SetActive(false);
-            controls_UI.SetActive(true);
-            tutorial_UI.SetActive(false);
-            EventBus.Publish(new TutorialStrikeEvent());
+            StartCoroutine(TurnOnLights(unlocked_worlds.Count - 1));
         }
+
         pi = GameObject.Find("GameControl").GetComponent<PlayerInventory>();
     }
 
@@ -111,20 +110,24 @@ public class HomeWorldControl : MonoBehaviour
                 switch (cur_lane)
                 {
                     case 0:
-                        StartCoroutine(NextLevel(3f, 1));
+                        StartCoroutine(NextLevel(1f, 1));
                         break;
                     case 1:
-                        StartCoroutine(NextLevel(3f, 2));
+                        StartCoroutine(NextLevel(1f, 2));
                         break;
                     case 2:
-                        StartCoroutine(NextLevel(3f, 3));
+                        StartCoroutine(NextLevel(1f, 3));
                         break;
                 }
                 
             }
+            else if(unlocked_worlds.Count <= 0)
+            {
+                StartCoroutine(ExitLane(true));
+            }
             else
             {
-                StartCoroutine(ExitTutorial());
+                StartCoroutine(ExitLane(false));
             }
             
         }
@@ -216,17 +219,67 @@ public class HomeWorldControl : MonoBehaviour
 
     void _OnWorldUnlocked(WorldUnlockedEvent e)
     {
-        toActivateLanes[e.num].SetActive(true);
-        unlocked_worlds.Add(e.num);
+        //toActivateLanes[e.num].SetActive(true);
+        //unlocked_worlds.Add(e.num);
+        StartCoroutine(TurnOnLights(e.num));
     }
 
-    IEnumerator ExitTutorial()
+    IEnumerator TurnOnLights(int num)
     {
-        yield return new WaitForSeconds(0.5f);
-        EventBus.Publish(new WorldUnlockedEvent(0));
-        yield return new WaitForSeconds(2f);
-        EventBus.Publish(new TutorialStrikeEvent());
+        Vector3 orig_position = main_cam.transform.localPosition;
+        Vector3 orig_rotation = main_cam.transform.localRotation.eulerAngles;
+
+        Vector3 newPos = new Vector3(0, 1, 0);
+        newPos.x += (num - 1) * 15.13f;
+        Vector3 newRot = new Vector3(-10, 0, 0);
+        float cam_duration = 0.6f;
+        float elapsed = 0;
+        GetComponent<AudioSource>().PlayOneShot(activate);
+        while(elapsed < cam_duration)
+        {
+            main_cam.transform.localPosition = Vector3.Lerp(orig_position, newPos, elapsed / cam_duration);
+            main_cam.transform.localRotation = Quaternion.Euler(Vector3.Lerp(orig_rotation, newRot, elapsed / cam_duration));
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
         
+        float duration = 3f;
+        elapsed = 0;
+
+        Light[] lights = toActivateLanes[num].GetComponentsInChildren<Light>();
+        toActivateLanes[num].SetActive(true);
+        while(elapsed < duration)
+        {
+            for(int i = 0; i < lights.Length; i++)
+            {
+                lights[i].intensity = intensities[i] * (elapsed / duration);
+            }
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1f);
+        main_cam.transform.localPosition = orig_position;
+        main_cam.transform.localRotation = Quaternion.Euler(orig_rotation);
+        AfterStrike();
+    }
+
+    IEnumerator ExitLane(bool tutorial)
+    {
+        yield return new WaitForSeconds(1f);
+        if (tutorial)
+        {
+            EventBus.Publish(new WorldUnlockedEvent(0));
+        }
+        else
+        {
+            AfterStrike();
+        }
+    }
+
+    void AfterStrike()
+    {
+        EventBus.Publish(new TutorialStrikeEvent());
         can_free_move = true;
         can_shoot = false;
         main_cam.SetActive(false);
@@ -239,7 +292,36 @@ public class HomeWorldControl : MonoBehaviour
     IEnumerator NextLevel(float time, int level)
     {
         yield return new WaitForSeconds(time);
-        EventBus.Publish(new LoadWorldEvent(level));
+        GameObject.Find("Menu").SetActive(false);
+
+        float up_duration = 1.5f;
+        float elapsed = 0;
+        Vector3 orig_pos = main_cam.transform.position;
+        Vector3 up_pos = main_cam.transform.position;
+        Vector3 orig_rot = main_cam.transform.rotation.eulerAngles;
+        up_pos.z = -25f;
+        up_pos.y = 6;
+        while(elapsed < up_duration)
+        {
+            main_cam.transform.position = Vector3.Lerp(orig_pos, up_pos, elapsed / up_duration);
+            main_cam.transform.rotation = Quaternion.Euler(Vector3.Lerp(orig_rot, Vector3.zero, elapsed / up_duration));
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        Vector3 fwd_pos = up_pos;
+        fwd_pos.z = 8;
+        elapsed = 0;
+        float fwd_duration = 0.5f;
+        while(elapsed < up_duration)
+        {
+            main_cam.transform.position = Vector3.Lerp(up_pos, fwd_pos, elapsed / fwd_duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        StartCoroutine(transition_UI.GetComponent<SceneTransition>().FadeOut(3f, level));
+        //EventBus.Publish(new LoadWorldEvent(level));
         this.enabled = false;
     }
 
@@ -269,15 +351,5 @@ public class HomeWorldControl : MonoBehaviour
     public void SetCanFreeMove(bool _in)
     {
         can_free_move = _in;
-    }
-
-    public float GetSensitivity()
-    {
-        return sensitivity;
-    }
-
-    public void SetSensitivity(float _in)
-    {
-        sensitivity = _in;
     }
 }
