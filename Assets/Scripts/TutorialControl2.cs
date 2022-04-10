@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class TutorialControl2 : MonoBehaviour
 {
@@ -45,6 +46,11 @@ public class TutorialControl2 : MonoBehaviour
     IEnumerator EndTutorial()
     {
         yield return new WaitForSeconds(1f);
+        StartCoroutine(EaseOut(tutorialUI));
+        yield return new WaitForSeconds(0.5f);
+        tutorialUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Use P to quickly access menus and R to restart a level.";
+        StartCoroutine(EaseIn(tutorialUI));
+        yield return new WaitForSeconds(3f);
         StartCoroutine(EaseOut(tutorialUI));
     }
 

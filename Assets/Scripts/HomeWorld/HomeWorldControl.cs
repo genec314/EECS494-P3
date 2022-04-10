@@ -293,6 +293,7 @@ public class HomeWorldControl : MonoBehaviour
     IEnumerator ExitLane(bool tutorial)
     {
         yield return new WaitForSeconds(1f);
+        EventBus.Publish<BallAtRestEvent>(new BallAtRestEvent());
         if (tutorial)
         {
             EventBus.Publish(new WorldUnlockedEvent(0));

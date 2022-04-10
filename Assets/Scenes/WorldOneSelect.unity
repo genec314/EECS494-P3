@@ -551,7 +551,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4fa9a203eb1743441b0503498bd65231, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86026e4bc1344574f822fb62481be0f2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -688,6 +688,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 428730949}
     m_Modifications:
+    - target: {fileID: 225153700612879319, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -374
+      objectReference: {fileID: 0}
+    - target: {fileID: 225153700612879319, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -318
+      objectReference: {fileID: 0}
+    - target: {fileID: 225153700662275345, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 225153700662275345, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 225153700662275358, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -488
+      objectReference: {fileID: 0}
+    - target: {fileID: 225153700662275358, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 205
+      objectReference: {fileID: 0}
     - target: {fileID: 225153701040785994, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -775,6 +799,54 @@ PrefabInstance:
     - target: {fileID: 225153701040785995, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
       propertyPath: m_Name
       value: LevelButtons
+      objectReference: {fileID: 0}
+    - target: {fileID: 225153701387141112, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 214
+      objectReference: {fileID: 0}
+    - target: {fileID: 225153701387141112, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -173
+      objectReference: {fileID: 0}
+    - target: {fileID: 225153701526637846, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 225153701526637846, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 88
+      objectReference: {fileID: 0}
+    - target: {fileID: 225153701639987654, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 225153701639987654, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 431
+      objectReference: {fileID: 0}
+    - target: {fileID: 225153701679282267, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: c5155456e987d46ca98fdaa750bcf9a6, type: 3}
+    - target: {fileID: 225153702209771248, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -101
+      objectReference: {fileID: 0}
+    - target: {fileID: 225153702209771248, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 225153702477336481, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -151
+      objectReference: {fileID: 0}
+    - target: {fileID: 225153702477336481, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 409
+      objectReference: {fileID: 0}
+    - target: {fileID: 225153702477336483, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
+      propertyPath: m_Interactable
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 493b60d8a3e75a5419c183a849826913, type: 3}
