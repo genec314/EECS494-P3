@@ -46,6 +46,11 @@ public class LoadIntroEvent
     public LoadIntroEvent() {}
 }
 
+public class LoadTitleEvent
+{
+    public LoadTitleEvent() {}
+}
+
 // Used to tell game control to switch to a new world.
 public class LoadWorldEvent
 {
@@ -238,4 +243,9 @@ public class GainPinsEvent
     {
         num = _num;
     }
+}
+
+public class SceneTransitionEvent
+{
+    public SceneTransitionEvent() {}
 }

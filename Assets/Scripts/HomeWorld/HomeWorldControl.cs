@@ -58,6 +58,8 @@ public class HomeWorldControl : MonoBehaviour
 
     List<int> unlocked_worlds;
     private int cur_lane = 1;
+    bool tutorial_seen = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -101,7 +103,8 @@ public class HomeWorldControl : MonoBehaviour
             controls_UI.SetActive(true);
             EventBus.Publish(new TutorialStrikeEvent());
         }
-        else
+        
+        if (!tutorial_seen)
         {
             StartCoroutine(EaseIn(tutorial_UI));
         }
@@ -116,8 +119,11 @@ public class HomeWorldControl : MonoBehaviour
 
     void _OnBallThrown(BallThrownEvent e)
     {
-        if (this.enabled && unlocked_worlds.Count < 1)
+        if (this.enabled && !tutorial_seen)
+        {
+            tutorial_seen = true;
             StartCoroutine(EaseOut(tutorial_UI));
+        }
     }
 
     void _OnPinKnocked(PinKnockedOverEvent e)
@@ -332,7 +338,8 @@ public class HomeWorldControl : MonoBehaviour
         Vector3 fwd_pos = up_pos;
         fwd_pos.z = 8;
         elapsed = 0;
-        float fwd_duration = 0.5f;
+        float fwd_duration = 0.35f;
+        EventBus.Publish(new LoadWorldEvent(level));
         while(elapsed < up_duration)
         {
             main_cam.transform.position = Vector3.Lerp(up_pos, fwd_pos, elapsed / fwd_duration);
@@ -340,8 +347,6 @@ public class HomeWorldControl : MonoBehaviour
             yield return null;
         }
 
-        StartCoroutine(transition_UI.GetComponent<SceneTransition>().FadeOut(3f, level));
-        //EventBus.Publish(new LoadWorldEvent(level));
         this.enabled = false;
     }
 

@@ -19,17 +19,10 @@ Water texture - https://sketchfab.com/3d-models/ocean-wave-wmaya-03f0559f6b7646e
 Sand Texture - https://assetstore.unity.com/packages/2d/textures-materials/floors/yughues-free-sand-materials-12964#description
 City Materials+Textures - https://assetstore.unity.com/packages/3d/environments/urban/real-new-york-city-vol-1-208247
 Skybox Pack - https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633
-<<<<<<< HEAD
 World Activated Audio - https://freesound.org/people/neopolitansixth/sounds/579628/
-=======
 Colosseum - by Shin Xiba 3D under CC Attribution license: https://sketchfab.com/3d-models/3d-roman-colosseum-4fa30a567cdd4228a663c5b46e7a8d0f
 Zweihander (Sword) - by Siesta under CC Attribution license: https://sketchfab.com/3d-models/zweihander-bde0f0351bf443f6bed68aeff84b4129
 Cranium with injuries - by Historiska unber CC Attribution license: https://sketchfab.com/3d-models/cranium-with-injuries-1089125-970dcda695fc46329f2f75357e3d0ed1
-<<<<<<< HEAD
->>>>>>> 599585ec8637132a5583b37af38a86c751a67a3f
-=======
-
 elevator music - https://www.fesliyanstudios.com/royalty-free-music/download/elevator-ride/335
 relaxing music - https://www.fesliyanstudios.com/royalty-free-music/download/tender-love/266
 more relaxing music - https://www.fesliyanstudios.com/royalty-free-music/download/warm-light/355
->>>>>>> 26d0d511e5b79e954459842ed519e008ee914909

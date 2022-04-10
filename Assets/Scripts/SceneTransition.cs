@@ -5,41 +5,18 @@ using UnityEngine.UI;
 
 public class SceneTransition : MonoBehaviour
 {
+    public Animator transition;
 
-    static SceneTransition ins;
+    Subscription<SceneTransitionEvent> transition_sub;
 
-    Image black;
     // Start is called before the first frame update
     void Start()
     {
-        if(ins != null)
-        {
-            Destroy(this.gameObject);
-        }
-        ins = this;
-        DontDestroyOnLoad(this);
-
-        black = GetComponentInChildren<Image>();
+        transition_sub = EventBus.Subscribe<SceneTransitionEvent>(DoTransition);
     }
 
-    // Update is called once per frame
-    void Update()
+    void DoTransition(SceneTransitionEvent e)
     {
-        
-    }
-
-    public IEnumerator FadeOut(float duration, int level)
-    {
-        float elapsed = 0;
-        while(elapsed < duration)
-        {
-            Color c = black.color;
-            c.a = elapsed / duration;
-            black.color = c;
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-        yield return new WaitForSeconds(1f);
-        EventBus.Publish(new LoadWorldEvent(level));
+        transition.SetTrigger("Start");
     }
 }

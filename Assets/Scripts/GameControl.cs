@@ -13,6 +13,7 @@ public class GameControl : MonoBehaviour
     Subscription<LevelEndEvent> level_subscription;
     Subscription<LoadLevelSelectEvent> level_select_sub;
     Subscription<SelectLevelEvent> select_level_sub;
+    Subscription<LoadTitleEvent> title_sub;
 
     public int curr_world = 0; // 0 = intro, otherwise 1, 2, 3
     public int curr_level = 0; // 0 to 9
@@ -30,6 +31,8 @@ public class GameControl : MonoBehaviour
     public bool tutorial_initial = false;
     public bool tutorial_hole4 = false;
     public bool tutorial_firstF = false;
+
+    public float transition_duration = 1f;
 
     void Start()
     {
@@ -50,6 +53,7 @@ public class GameControl : MonoBehaviour
         level_subscription = EventBus.Subscribe<LevelEndEvent>(OnLevelEnd);
         level_select_sub = EventBus.Subscribe<LoadLevelSelectEvent>(OnLoadLevelSelect);
         select_level_sub = EventBus.Subscribe<SelectLevelEvent>(OnSelectLevel);
+        title_sub = EventBus.Subscribe<LoadTitleEvent>(OnLoadTitle);
 
         InitializeLevelData();
     }
@@ -73,6 +77,11 @@ public class GameControl : MonoBehaviour
             // SceneManager.LoadScene("Intro");
             StartCoroutine(LoadWorldAndLevel(curr_world));
         }
+    }
+
+    void OnLoadTitle(LoadTitleEvent e)
+    {
+        StartCoroutine(LoadTitle());
     }
 
     void OnRestartLevel(RestartLevelEvent e)
@@ -257,6 +266,10 @@ public class GameControl : MonoBehaviour
 
     IEnumerator LoadWorldAndLevel(int world)
     {
+        EventBus.Publish<SceneTransitionEvent>(new SceneTransitionEvent());
+
+        yield return new WaitForSeconds(transition_duration);
+
         AsyncOperation load = null;
         if (world == 1)
         {
@@ -285,24 +298,31 @@ public class GameControl : MonoBehaviour
 
     IEnumerator LoadLevelSelect(int world)
     {
-        AsyncOperation load = null;
+        EventBus.Publish<SceneTransitionEvent>(new SceneTransitionEvent());
+
+        yield return new WaitForSeconds(transition_duration);
+
         if (world == 1)
         {
-            load = SceneManager.LoadSceneAsync("WorldOneSelect");
+            SceneManager.LoadScene("WorldOneSelect");
         }
         else if (world == 2)
         {
-            load = SceneManager.LoadSceneAsync("WorldTwoSelect");
+            SceneManager.LoadScene("WorldTwoSelect");
         }
         else if (world == 3)
         {
-            load = SceneManager.LoadSceneAsync("WorldThreeSelect");
+            SceneManager.LoadScene("WorldThreeSelect");
         }
+    }
 
-        while (!load.isDone)
-        {
-            yield return null;
-        }
+    IEnumerator LoadTitle()
+    {
+        EventBus.Publish<SceneTransitionEvent>(new SceneTransitionEvent());
+
+        yield return new WaitForSeconds(transition_duration);
+
+        SceneManager.LoadScene("TitleScreen");
     }
 
     void InitializeLevelData()

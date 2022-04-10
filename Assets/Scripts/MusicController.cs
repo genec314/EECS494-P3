@@ -7,7 +7,7 @@ public class MusicController : MonoBehaviour
 {
     public AudioClip title_clip;
     public AudioClip world_clip;
-    MusicController instance;
+    static MusicController instance;
     AudioSource audioSource;
 
     // Start is called before the first frame update
