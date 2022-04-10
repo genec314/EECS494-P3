@@ -277,7 +277,7 @@ public class GameControl : MonoBehaviour
         }
         else if (world == 2)
         {
-            load = SceneManager.LoadSceneAsync("WorldTwo");
+            load = SceneManager.LoadSceneAsync("WorldTwoSandbox");
         }
         else if (world == 3)
         {
