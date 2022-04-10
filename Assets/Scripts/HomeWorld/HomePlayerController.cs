@@ -44,21 +44,22 @@ public class HomePlayerController : MonoBehaviour
                 case 0:
                     eventType = "Shop";
                     break;
+                /*
                 case 1:
                     eventType = "Map";
                     break;
-                /*
+                
                 case 2:
                     eventType = "HighScore";
                     break;
                 */
-                case 2:
+                case 1:
                     eventType = "LeftLane";
                     break;
-                case 3:
+                case 2:
                     eventType = "MiddleLane";
                     break;
-                case 4:
+                case 3:
                     eventType = "RightLane";
                     break;
                 default:
@@ -122,7 +123,7 @@ public class HomePlayerController : MonoBehaviour
         Vector3 newPos = selectables[index].transform.position;
         
         //back wall
-        if(index <= 1)
+        if(index <= 0)
         {
             newPos.y = 0.5f;
             newPos.z += 10f;

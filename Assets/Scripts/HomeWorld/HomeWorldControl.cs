@@ -27,11 +27,11 @@ public class HomeWorldControl : MonoBehaviour
 
     public RectTransform tutorial_UI;
     public GameObject shop_UI;
-    public GameObject map_UI;
+    //public GameObject map_UI;
     //public GameObject high_score_UI;
     public GameObject throwball_UI;
     public GameObject controls_UI;
-    public GameObject transition_UI;
+    //public GameObject transition_UI;
 
     GameObject curr_UI;
 
@@ -85,9 +85,10 @@ public class HomeWorldControl : MonoBehaviour
         data = GameObject.Find("GameControl").GetComponent<HomeWorldData>();
         unlocked_worlds = data.GetUnlockedWorlds();
 
-        for(int i = 0; i < unlocked_worlds.Count - 1; i++)
+        for(int i = 0; i < unlocked_worlds.Count; i++)
         {
             toActivateLanes[unlocked_worlds[i]].SetActive(true);
+            tutorial_seen = true;
         }
         intensities = new int[] { 5000, 6, 20 };
 
@@ -179,12 +180,13 @@ public class HomeWorldControl : MonoBehaviour
                 curr_UI = shop_UI;
                 throwball_UI.SetActive(false);
                 break;
+            /*
             case "Map":
                 map_UI.SetActive(true);
                 curr_UI = map_UI;
                 throwball_UI.SetActive(false);
                 break;
-            /*
+            
             case "HighScore":
                 high_score_UI.SetActive(true);
                 curr_UI = high_score_UI;

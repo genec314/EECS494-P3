@@ -606,7 +606,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103567825}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -1.3853525, y: 0.36372757, z: 2.1727755}
+  m_LocalPosition: {x: -1.3853525, y: 0.36372757, z: 0}
   m_LocalScale: {x: 0.087916374, y: 0.13854745, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1254274162}
@@ -1964,6 +1964,7 @@ MonoBehaviour:
   tutorial_initial: 0
   tutorial_hole4: 0
   tutorial_firstF: 0
+  tutorial_ended: 0
   transition_duration: 1
 --- !u!4 &624687355
 Transform:
@@ -2698,7 +2699,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &903244637
 Transform:
   m_ObjectHideFlags: 0
@@ -2908,7 +2909,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectables:
   - {fileID: 103567825}
-  - {fileID: 903244636}
   - {fileID: 2053035987}
   - {fileID: 782691024}
   - {fileID: 1575109866}
@@ -3234,10 +3234,8 @@ MonoBehaviour:
   ease_duration: 0.5
   tutorial_UI: {fileID: 1795376381}
   shop_UI: {fileID: 2101740444}
-  map_UI: {fileID: 1234180312}
   throwball_UI: {fileID: 561609691}
   controls_UI: {fileID: 204402852}
-  transition_UI: {fileID: 0}
   fpc: {fileID: 1249526993}
   can_free_move: 1
   toActivateLanes:
@@ -3879,13 +3877,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249526993}
-  m_LocalRotation: {x: 0.2588191, y: -0, z: -0, w: 0.9659258}
+  m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
   m_LocalPosition: {x: 0, y: 3, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 46468868}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
 --- !u!20 &1249526996
 Camera:
   m_ObjectHideFlags: 0
