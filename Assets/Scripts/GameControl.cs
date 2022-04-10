@@ -29,8 +29,11 @@ public class GameControl : MonoBehaviour
     public LevelData[,] level_data = new LevelData[3, 7];
 
     public bool tutorial_initial = false;
+
+    // these three are for world 2
     public bool tutorial_hole4 = false;
-    public bool tutorial_firstF = false;
+    public bool tutorial_firstF = true;
+    public bool tutorial_ended = false;
 
     public float transition_duration = 1f;
 

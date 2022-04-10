@@ -29,23 +29,36 @@ public class TutorialControl3 : MonoBehaviour
 
     void Update()
     {
-        if (gc.tutorial_hole4 && Input.GetKeyDown(KeyCode.F) && !gc.tutorial_firstF)
+        if (gc.tutorial_hole4 && Input.GetKeyDown(KeyCode.F) && gc.tutorial_firstF)
+        {
+            gc.tutorial_firstF = false;
+            tutorialUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Press F to rejoin the split balls at any time before the end of your last shot!";
+        } else if (!gc.tutorial_firstF && Input.GetKeyDown(KeyCode.F) && gc.tutorial_hole4 && !gc.tutorial_ended)
+        {
+            gc.tutorial_ended = true;
+            StartCoroutine(EndTutorial());
+        }
+
+        /*if (gc.tutorial_hole4 && Input.GetKeyDown(KeyCode.F) && !gc.tutorial_firstF)
         {
             gc.tutorial_firstF = true;
             tutorialUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Press F to rejoin the split balls at any time before the end of your last shot!";
         } else if (gc.tutorial_firstF && Input.GetKeyDown(KeyCode.F))
         {
             StartCoroutine(EndTutorial());
-        }
+        }*/
     }
 
     private void StartLevel(LevelStartEvent e)
     {
-        if (!gc.tutorial_hole4 && e.level.GetLevelNumber() == 3)
+        if (e.level.GetLevelNumber() == 3)
         {
             gc.tutorial_hole4 = true;
             StartCoroutine(EaseIn(tutorialUI));
             tutorialUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Try shooting straight, and press F to split the ball while the ball is moving!";
+        } else
+        {
+            gc.tutorial_hole4 = false;
         }
     }
 

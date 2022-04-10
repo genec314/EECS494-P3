@@ -8127,7 +8127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   secondBall: {fileID: 2262079094571556556, guid: b4650922308bea047acfc08813c246de, type: 3}
   joinSpeed: 10
-  canSplit: 1
+  canSplit: 0
 --- !u!1 &1192407500
 GameObject:
   m_ObjectHideFlags: 0

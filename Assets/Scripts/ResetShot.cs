@@ -6,8 +6,7 @@ public class ResetShot : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Here");
-        if (other.CompareTag("Ball"))
+        if (other.CompareTag("Ball") && other.gameObject.name == "ElectricBall")
         {
             EventBus.Publish(new ResetShotEvent());
         }
