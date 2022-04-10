@@ -22,6 +22,7 @@ public class RollBall : MonoBehaviour
 
     private bool windup = false;
     private bool startMove = false;
+    bool holeTransition = false;
 
     bool goingUp = true;
     Vector3 top;
@@ -63,7 +64,7 @@ public class RollBall : MonoBehaviour
     void Update()
     {
         MoveBar();
-        if (canMove && Time.timeScale != 0) ControlBar();
+        if (canMove && !holeTransition && Time.timeScale != 0) ControlBar();
     }
 
     void CheckForMove(BallReadyEvent e)
@@ -74,13 +75,13 @@ public class RollBall : MonoBehaviour
 
     private void EndLevel(LevelEndEvent e)
     {
-        canMove = false;
+        holeTransition = true;
         CancelBar();
     }
 
     private void StartLevel(LevelStartEvent e)
     {
-        canMove = true;
+        holeTransition = false;
         CancelBar();
     }
 

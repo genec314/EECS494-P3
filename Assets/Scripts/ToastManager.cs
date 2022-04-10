@@ -17,8 +17,8 @@ public class ToastManager : MonoBehaviour
     public AnimationCurve ease_out;
 
     // Duration controls.
-    public float ease_duration = 0.5f;
-    public float show_duration = 1.5f;
+    public float ease_duration = 0.3f;
+    public float show_duration = 1.25f;
     
     Subscription<LevelCompleteEvent> complete_sub;
     Subscription<LevelFailedEvent> fail_sub;
