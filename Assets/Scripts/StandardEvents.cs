@@ -46,6 +46,11 @@ public class LoadIntroEvent
     public LoadIntroEvent() {}
 }
 
+public class LoadTitleEvent
+{
+    public LoadTitleEvent() {}
+}
+
 // Used to tell game control to switch to a new world.
 public class LoadWorldEvent
 {
@@ -204,6 +209,11 @@ public class HomeWorldExitEvent
     public HomeWorldExitEvent() {}
 }
 
+public class StopBarEvent
+{
+    public StopBarEvent() {}
+}
+
 public class WorldUnlockedEvent
 {
     public int num;
@@ -223,4 +233,19 @@ public class BallBoughtEvent
         cost = _cost;
     }
 
+}
+
+public class GainPinsEvent
+{
+    public int num;
+
+    public GainPinsEvent(int _num)
+    {
+        num = _num;
+    }
+}
+
+public class SceneTransitionEvent
+{
+    public SceneTransitionEvent() {}
 }
