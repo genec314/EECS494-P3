@@ -24,7 +24,7 @@ public class GameControl : MonoBehaviour
     bool world_3_complete = false;
     public LevelData[] world_1_levels = new LevelData[7];
     public LevelData[] world_2_levels = new LevelData[7];
-    public LevelData[] world_3_levels = new LevelData[10];
+    public LevelData[] world_3_levels = new LevelData[1];
 
     void Start()
     {
@@ -185,7 +185,7 @@ public class GameControl : MonoBehaviour
         // so justTeleported = false	
         EventBus.Publish(new TeleportEvent());
 
-        if (curr_level < 6)
+        if (curr_level < 6 && curr_world != 3)
         {
             // put check for end of world 3 here cause only three levels
 
@@ -197,10 +197,6 @@ public class GameControl : MonoBehaviour
             else if (curr_world == 2)
             {
                 world_2_levels[curr_level].setUnlocked(true);
-            }
-            else if (curr_world == 3)
-            {
-                world_3_levels[curr_level].setUnlocked(true);
             }
             LoadCurrentLevel();
         }
