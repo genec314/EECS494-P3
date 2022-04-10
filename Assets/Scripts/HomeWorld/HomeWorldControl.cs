@@ -91,11 +91,8 @@ public class HomeWorldControl : MonoBehaviour
 
         if(unlocked_worlds.Count == 2 || unlocked_worlds.Count == 3)
         {
-<<<<<<< HEAD
             StartCoroutine(TurnOnLights(unlocked_worlds.Count - 1));
-        }
-
-=======
+        
             can_free_move = true;
             can_shoot = false;
             main_cam.SetActive(false);
@@ -108,7 +105,6 @@ public class HomeWorldControl : MonoBehaviour
         {
             StartCoroutine(EaseIn(tutorial_UI));
         }
->>>>>>> 26d0d511e5b79e954459842ed519e008ee914909
         pi = GameObject.Find("GameControl").GetComponent<PlayerInventory>();
     }
 
@@ -376,18 +372,6 @@ public class HomeWorldControl : MonoBehaviour
     {
         can_free_move = _in;
     }
-<<<<<<< HEAD
-=======
-
-    public float GetSensitivity()
-    {
-        return sensitivity;
-    }
-
-    public void SetSensitivity(float _in)
-    {
-        sensitivity = _in;
-    }
 
     IEnumerator EaseIn(RectTransform panel)
     {
@@ -419,5 +403,4 @@ public class HomeWorldControl : MonoBehaviour
             yield return null;
         }
     }
->>>>>>> 26d0d511e5b79e954459842ed519e008ee914909
 }

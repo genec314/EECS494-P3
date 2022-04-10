@@ -1961,13 +1961,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curr_world: 0
   curr_level: 0
-<<<<<<< HEAD
-=======
   pin_reward: 10
   tutorial_initial: 0
   tutorial_hole4: 0
   tutorial_firstF: 0
->>>>>>> 26d0d511e5b79e954459842ed519e008ee914909
 --- !u!4 &624687355
 Transform:
   m_ObjectHideFlags: 0
@@ -3997,7 +3994,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
 --- !u!1 &1307633688
 GameObject:
   m_ObjectHideFlags: 0
@@ -4111,8 +4107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0386b073c16c764d9c1d8966690c762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-=======
->>>>>>> 26d0d511e5b79e954459842ed519e008ee914909
 --- !u!1 &1332307544
 GameObject:
   m_ObjectHideFlags: 0
