@@ -70,7 +70,6 @@ public class RollBall : MonoBehaviour
     void CheckForMove(BallReadyEvent e)
     {
         canMove = true;
-        CancelBar();
     }
 
     private void EndLevel(LevelEndEvent e)
