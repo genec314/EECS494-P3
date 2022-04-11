@@ -36,7 +36,7 @@ public class MusicController : MonoBehaviour
             if (audioSource.clip != title_clip)
             {
                 audioSource.clip = title_clip;
-                audioSource.volume = 0.25f;
+                audioSource.volume = 0.5f;
                 audioSource.Play();
             }
         }
@@ -45,7 +45,7 @@ public class MusicController : MonoBehaviour
             if (audioSource.clip != world_clip)
             {
                 audioSource.clip = world_clip;
-                audioSource.volume = 0.5f;
+                audioSource.volume = 0.32f;
                 audioSource.Play();
             }
         }
