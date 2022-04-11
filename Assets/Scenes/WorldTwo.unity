@@ -958,7 +958,7 @@ MonoBehaviour:
   world_menu: {fileID: 0}
   level_select_menu: {fileID: 0}
   menu_button: {fileID: 548106913}
-  in_level: 0
+  in_level: 1
   in_world: 0
 --- !u!1 &137685972
 GameObject:
