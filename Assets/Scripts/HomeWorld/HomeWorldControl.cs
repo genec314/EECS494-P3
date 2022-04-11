@@ -95,19 +95,17 @@ public class HomeWorldControl : MonoBehaviour
         if(unlocked_worlds.Count == 2 || unlocked_worlds.Count == 3)
         {
             StartCoroutine(TurnOnLights(unlocked_worlds.Count - 1));
-        
-            can_free_move = true;
-            can_shoot = false;
-            main_cam.SetActive(false);
-            fpc.SetActive(true);
-            throwball_UI.SetActive(false);
-            controls_UI.SetActive(true);
-            EventBus.Publish(new TutorialStrikeEvent());
+     
+
         }
         
-        if (!tutorial_seen)
+        else if (!tutorial_seen)
         {
             StartCoroutine(EaseIn(tutorial_UI));
+        }
+        else
+        {
+            AfterStrike();
         }
         pi = GameObject.Find("GameControl").GetComponent<PlayerInventory>();
     }
