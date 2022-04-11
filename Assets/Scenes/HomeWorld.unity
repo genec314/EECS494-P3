@@ -1966,6 +1966,7 @@ MonoBehaviour:
   tutorial_firstF: 0
   tutorial_ended: 0
   transition_duration: 1
+  unlock_all_levels: 0
 --- !u!4 &624687355
 Transform:
   m_ObjectHideFlags: 0
@@ -3367,14 +3368,18 @@ PrefabInstance:
     - target: {fileID: 1339506149277437845, guid: 722df9bdba6aef448a1ff3aae2c2d422, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 65a718c992f4d964db99db2dd47abc51, type: 3}
+      objectReference: {fileID: 21300000, guid: fd999e49165d79545a2ce39f5ed90f06, type: 3}
     - target: {fileID: 1339506149277437867, guid: 722df9bdba6aef448a1ff3aae2c2d422, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1339506149277437867, guid: 722df9bdba6aef448a1ff3aae2c2d422, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.5
+      value: 1.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339506149277437867, guid: 722df9bdba6aef448a1ff3aae2c2d422, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1830926813172911532, guid: 722df9bdba6aef448a1ff3aae2c2d422, type: 3}
       propertyPath: m_IsActive
