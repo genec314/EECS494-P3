@@ -34,17 +34,17 @@ public class ToastManager : MonoBehaviour
 
     void OnLevelComplete(LevelCompleteEvent e)
     {
-        StartCoroutine(DisplayToast(level_complete_panel));
+        if (level_complete_panel != null) StartCoroutine(DisplayToast(level_complete_panel));
     }
 
     void OnLevelFailed(LevelFailedEvent e)
     {
-        StartCoroutine(DisplayToast(level_failed_panel));
+        if (level_failed_panel != null) StartCoroutine(DisplayToast(level_failed_panel));
     }
 
     void OnWorldComplete(WorldCompleteEvent e)
     {
-        StartCoroutine(DisplayToast(world_complete_panel));
+        if (world_complete_panel != null) StartCoroutine(DisplayToast(world_complete_panel));
     }
 
     IEnumerator DisplayToast(RectTransform panel)

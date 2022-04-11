@@ -107,7 +107,7 @@ public class GameControl : MonoBehaviour
     // For when the player switches worlds. Should handle updating world_num and loading the appropriate level select
     void OnWorldChange(LoadWorldEvent e)
     {
-        curr_world = e.world_num;
+        curr_world = e.world_num - 1;
         if (e.world_num == 1)
         {
             if (world_1_visited)
@@ -138,17 +138,17 @@ public class GameControl : MonoBehaviour
         }
         else if (e.world_num == 3)
         {
-            if (world_3_visited)
-            {
-                EventBus.Publish<LoadLevelSelectEvent>(new LoadLevelSelectEvent());
-            }
-            else
-            {
+            // if (world_3_visited)
+            // {
+            //     EventBus.Publish<LoadLevelSelectEvent>(new LoadLevelSelectEvent());
+            // }
+            // else
+            // {
                 curr_level = 0;
                 level_data[curr_world, curr_level].setUnlocked(true);
-                world_3_visited = true;
+                // world_3_visited = true;
                 StartCoroutine(LoadWorldAndLevel(curr_world));
-            }
+            // }
         }
         else
         {
@@ -203,7 +203,7 @@ public class GameControl : MonoBehaviour
                     world_1_complete = true;
                     EventBus.Publish(new WorldUnlockedEvent(1));
                     EventBus.Publish<WorldCompleteEvent>(new WorldCompleteEvent());
-                    yield return new WaitForSeconds(2.5f);
+                    yield return new WaitForSeconds(3f);
                     curr_world = 0;
                     EventBus.Publish(new LoadWorldEvent(0));
                 }
@@ -219,7 +219,7 @@ public class GameControl : MonoBehaviour
                     world_2_complete = true;
                     EventBus.Publish(new WorldUnlockedEvent(2));
                     EventBus.Publish<WorldCompleteEvent>(new WorldCompleteEvent());
-                    yield return new WaitForSeconds(2.5f);
+                    yield return new WaitForSeconds(3f);
                     curr_world = 0;
                     EventBus.Publish(new LoadWorldEvent(0));
                 }
@@ -236,7 +236,7 @@ public class GameControl : MonoBehaviour
                     world_3_complete = true;
                     EventBus.Publish<WorldUnlockedEvent>(new WorldUnlockedEvent(3));
                     EventBus.Publish<WorldCompleteEvent>(new WorldCompleteEvent());
-                    yield return new WaitForSeconds(2.5f);
+                    yield return new WaitForSeconds(3f);
                     curr_world = 0;
                     EventBus.Publish(new LoadWorldEvent(0));
                 }
@@ -280,7 +280,7 @@ public class GameControl : MonoBehaviour
         }
         else if (world == 2)
         {
-            load = SceneManager.LoadSceneAsync("WorldTwoSandbox");
+            load = SceneManager.LoadSceneAsync("WorldTwo");
         }
         else if (world == 3)
         {

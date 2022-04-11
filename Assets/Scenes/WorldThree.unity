@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3578,7 +3578,7 @@ MonoBehaviour:
   world_menu: {fileID: 0}
   level_select_menu: {fileID: 0}
   menu_button: {fileID: 1998003543}
-  in_level: 0
+  in_level: 1
   in_world: 0
 --- !u!224 &1150535620
 RectTransform:
@@ -5661,6 +5661,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 918081742, guid: 4cacfc041776e5a41a214b2ca0523682, type: 3}
+      propertyPath: m_text
+      value: Grand Arena Complete!
+      objectReference: {fileID: 0}
     - target: {fileID: 2794407930974466523, guid: 4cacfc041776e5a41a214b2ca0523682, type: 3}
       propertyPath: m_Name
       value: ToastUI

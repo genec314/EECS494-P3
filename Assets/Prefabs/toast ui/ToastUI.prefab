@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 52659368}
+  - component: {fileID: 2794407930508701741}
   m_Layer: 5
   m_Name: WorldCompleteToast
   m_TagString: Untagged
@@ -34,9 +35,76 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 20, y: 200}
+  m_AnchoredPosition: {x: 20, y: 300}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2794407930508701741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52659367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efa69a4a6160cbe4b90be5035e234ebe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level_complete_panel: {fileID: 0}
+  level_failed_panel: {fileID: 0}
+  world_complete_panel: {fileID: 52659368}
+  hidden_pos: {x: 20, y: 300, z: 0}
+  visible_pos: {x: 20, y: -500, z: 0}
+  ease:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ease_out:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ease_duration: 0.4
+  show_duration: 1.5
 --- !u!1 &305403001
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,7 +140,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 500}
+  m_SizeDelta: {x: 1500, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &305403004
 CanvasRenderer:
@@ -177,7 +245,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: World Complete!
+  m_text: Magnet Oasis Complete!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 894bfc8f0191145978f595679b116bfa, type: 2}
   m_sharedMaterial: {fileID: -4278305067126604119, guid: 894bfc8f0191145978f595679b116bfa, type: 2}
@@ -204,8 +272,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -361,8 +429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa69a4a6160cbe4b90be5035e234ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level_complete_panel: {fileID: 0}
-  level_failed_panel: {fileID: 0}
+  level_complete_panel: {fileID: 2794407931257790031}
+  level_failed_panel: {fileID: 2794407931104651513}
   world_complete_panel: {fileID: 0}
   hidden_pos: {x: 20, y: 200, z: 0}
   visible_pos: {x: 20, y: -200, z: 0}
@@ -414,8 +482,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  ease_duration: 0.5
-  show_duration: 1.5
+  ease_duration: 0.3
+  show_duration: 1.25
 --- !u!1 &2794407931104651512
 GameObject:
   m_ObjectHideFlags: 0
