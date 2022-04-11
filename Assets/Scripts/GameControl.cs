@@ -176,7 +176,14 @@ public class GameControl : MonoBehaviour
         }
         else
         {
-            EventBus.Publish<GainPinsEvent>(new GainPinsEvent(pin_reward/2));
+            if (curr_world == 3)
+            {
+                EventBus.Publish<GainPinsEvent>(new GainPinsEvent(pin_reward));
+            }
+            else
+            {
+                EventBus.Publish<GainPinsEvent>(new GainPinsEvent(pin_reward/2));
+            }
         }
 
         yield return new WaitForSeconds(2.5f);
