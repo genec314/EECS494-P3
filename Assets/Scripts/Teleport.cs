@@ -31,7 +31,6 @@ public class Teleport : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("HERERE");
         if (other.CompareTag("Ball") && !justTeleported)
         {
             justTeleported = true;
@@ -62,6 +61,12 @@ public class Teleport : MonoBehaviour
         if (e.t1 != null)
         {
             justTeleported = true;
+
+            if (e.t1 != tf && e.t1 != to)
+            {
+                justTeleported = false;
+            }
+
             return;
         }
 
