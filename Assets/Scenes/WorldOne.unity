@@ -2178,6 +2178,7 @@ MonoBehaviour:
   tutorial_firstF: 0
   tutorial_ended: 0
   transition_duration: 1
+  unlock_all_levels: 0
 --- !u!4 &428837611
 Transform:
   m_ObjectHideFlags: 0

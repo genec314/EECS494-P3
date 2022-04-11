@@ -26,7 +26,7 @@ public class GameControl : MonoBehaviour
     bool world_1_complete = false;
     bool world_2_complete = false;
     bool world_3_complete = false;
-    public LevelData[,] level_data = new LevelData[3, 7];
+    public LevelData[,] level_data = new LevelData[4, 7];
 
     public bool tutorial_initial = false;
 
@@ -36,6 +36,8 @@ public class GameControl : MonoBehaviour
     public bool tutorial_ended = false;
 
     public float transition_duration = 1f;
+
+    public bool unlock_all_levels = false;
 
     void Start()
     {
@@ -107,7 +109,7 @@ public class GameControl : MonoBehaviour
     // For when the player switches worlds. Should handle updating world_num and loading the appropriate level select
     void OnWorldChange(LoadWorldEvent e)
     {
-        curr_world = e.world_num - 1;
+        curr_world = e.world_num;
         if (e.world_num == 1)
         {
             if (world_1_visited)
@@ -330,11 +332,18 @@ public class GameControl : MonoBehaviour
 
     void InitializeLevelData()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < 7; j++)
             {
-                level_data[i, j] = new LevelData();
+                if (!unlock_all_levels)
+                {
+                    level_data[i, j] = new LevelData();
+                }
+                else
+                {
+                    level_data[i, j] = new LevelData(true, true);
+                }
             }
         }
     }
@@ -348,6 +357,12 @@ public class LevelData {
     {
         unlocked = false;
         complete = false;
+    }
+
+    public LevelData(bool _unlocked, bool _complete)
+    {
+        unlocked = _unlocked;
+        complete = _complete;
     }
 
     public void setUnlocked(bool _unlocked)

@@ -14,6 +14,10 @@ public class MenuButtons : MonoBehaviour
     public bool in_level = false;
     public bool in_world = false;
 
+    bool holeTransition = false;
+    Subscription<LevelEndEvent> end_subscription;
+    Subscription<LevelStartEvent> start_subscription;
+
     void Update()
     {
         if (in_level)
@@ -26,7 +30,7 @@ public class MenuButtons : MonoBehaviour
             {
                 ResumeFromLevel();
             }
-            else if (Input.GetKeyDown(KeyCode.R) && Time.timeScale == 1)
+            else if (Input.GetKeyDown(KeyCode.R) && Time.timeScale == 1 && !holeTransition)
             {
                 RestartLevel();
             }
@@ -42,6 +46,16 @@ public class MenuButtons : MonoBehaviour
                 if (world_menu != null && world_menu.activeSelf) ResumeFromWorld();
             }
         }
+    }
+
+    private void EndLevel(LevelEndEvent e)
+    {
+        holeTransition = true;
+    }
+
+    private void StartLevel(LevelStartEvent e)
+    {
+        holeTransition = false;
     }
 
     // Title screen menus
