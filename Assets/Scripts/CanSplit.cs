@@ -15,12 +15,15 @@ public class CanSplit : MonoBehaviour
     Rigidbody orig;
     Subscription<LevelStartEvent> start_subscription;
 
+    Material material;
+
     // Start is called before the first frame update
     void Awake()
     {
         tf = this.GetComponent<Transform>();
         orig = this.GetComponent<Rigidbody>();
         start_subscription = EventBus.Subscribe<LevelStartEvent>(OnLevelStart);
+        material = this.GetComponent<MeshRenderer>().material;
     }
 
     // Update is called once per frame
@@ -49,6 +52,7 @@ public class CanSplit : MonoBehaviour
                 canSplit = false;
                 Vector3 vel = orig.velocity;
                 secondBall1 = Instantiate(secondBall);
+                secondBall1.GetComponent<MeshRenderer>().material = material;
                 secondBall1.transform.position = transform.position;
                 // StartCoroutine(ChangeToBallLayer(secondBall1));
                 Rigidbody rb = secondBall1.GetComponent<Rigidbody>();

@@ -50,7 +50,7 @@ public class TutorialControl2 : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         tutorialUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Use P to quickly access menus and R to restart a level.";
         StartCoroutine(EaseIn(tutorialUI));
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         StartCoroutine(EaseOut(tutorialUI));
     }
 
