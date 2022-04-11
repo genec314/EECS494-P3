@@ -29,4 +29,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WorldTwoSelect.unity
     guid: b1795842391628546914a8a82700dd7e
+  - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: 43d7550051d742c4cb9f67e29e09ff49
+  - enabled: 1
+    path: Assets/Scenes/Complete.unity
+    guid: a36505d756403ca47be521092bf9b5a0
   m_configObjects: {}
