@@ -1889,7 +1889,7 @@ MonoBehaviour:
   numPins: 20
   numShots: 25
   worldNumber: 3
-  levelNumber: 1
+  levelNumber: 0
   current_hole: 1
   canBallSplit: 1
   ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}

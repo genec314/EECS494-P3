@@ -4274,8 +4274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f1234cf9e7ed1b4896f8a8408394fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBallPos: {x: 58, y: 1, z: 70}
-  initialCameraPos: {x: 58, y: 5.5, z: 80}
+  initialBallPos: {x: 58, y: 1, z: 72}
+  initialCameraPos: {x: 58, y: 5.5, z: 82}
   initalCameraRotation: {x: 20, y: 180, z: 0}
   numPins: 10
   numShots: 3
@@ -5704,7 +5704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7369402294265762461, guid: 23742027f43d1475f8e220ce40ebd6eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7369402294265762461, guid: 23742027f43d1475f8e220ce40ebd6eb, type: 3}
       propertyPath: m_LocalPosition.z
