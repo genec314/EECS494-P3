@@ -22,7 +22,6 @@ public class GameControl : MonoBehaviour
 
     bool world_1_visited = false;
     bool world_2_visited = false;
-    bool world_3_visited = false;
     bool world_1_complete = false;
     bool world_2_complete = false;
     bool world_3_complete = false;
@@ -78,9 +77,7 @@ public class GameControl : MonoBehaviour
         else
         {
             intro_played = true;
-            // TODO: load intro/tutorial instead of homeworld when it exists
-            // SceneManager.LoadScene("Intro");
-            StartCoroutine(LoadWorldAndLevel(curr_world));
+            StartCoroutine(LoadIntro());
         }
     }
 
@@ -140,17 +137,9 @@ public class GameControl : MonoBehaviour
         }
         else if (e.world_num == 3)
         {
-            // if (world_3_visited)
-            // {
-            //     EventBus.Publish<LoadLevelSelectEvent>(new LoadLevelSelectEvent());
-            // }
-            // else
-            // {
-                curr_level = 0;
-                level_data[curr_world, curr_level].setUnlocked(true);
-                // world_3_visited = true;
-                StartCoroutine(LoadWorldAndLevel(curr_world));
-            // }
+            curr_level = 0;
+            level_data[curr_world, curr_level].setUnlocked(true);
+            StartCoroutine(LoadWorldAndLevel(curr_world));
         }
         else
         {
@@ -206,7 +195,6 @@ public class GameControl : MonoBehaviour
                     EventBus.Publish(new WorldUnlockedEvent(1));
                     EventBus.Publish<WorldCompleteEvent>(new WorldCompleteEvent());
                     yield return new WaitForSeconds(3f);
-                    curr_world = 0;
                     EventBus.Publish(new LoadWorldEvent(0));
                 }
                 else
@@ -222,7 +210,6 @@ public class GameControl : MonoBehaviour
                     EventBus.Publish(new WorldUnlockedEvent(2));
                     EventBus.Publish<WorldCompleteEvent>(new WorldCompleteEvent());
                     yield return new WaitForSeconds(3f);
-                    curr_world = 0;
                     EventBus.Publish(new LoadWorldEvent(0));
                 }
                 else
@@ -234,17 +221,14 @@ public class GameControl : MonoBehaviour
             {
                 if (!world_3_complete)
                 {
-                    // TODO: unlock some sort of "exit" in the home world that leads to completion
                     world_3_complete = true;
-                    EventBus.Publish<WorldUnlockedEvent>(new WorldUnlockedEvent(3));
                     EventBus.Publish<WorldCompleteEvent>(new WorldCompleteEvent());
                     yield return new WaitForSeconds(3f);
-                    curr_world = 0;
-                    EventBus.Publish(new LoadWorldEvent(0));
+                    StartCoroutine(LoadComplete());
                 }
                 else
                 {
-                    EventBus.Publish<LoadLevelSelectEvent>(new LoadLevelSelectEvent());
+                    EventBus.Publish(new LoadWorldEvent(0));
                 }
             }
         }
@@ -315,10 +299,15 @@ public class GameControl : MonoBehaviour
         {
             SceneManager.LoadScene("WorldTwoSelect");
         }
-        else if (world == 3)
-        {
-            SceneManager.LoadScene("WorldThreeSelect");
-        }
+    }
+
+    IEnumerator LoadIntro()
+    {
+        EventBus.Publish<SceneTransitionEvent>(new SceneTransitionEvent());
+
+        yield return new WaitForSeconds(transition_duration);
+
+        SceneManager.LoadScene("Intro");
     }
 
     IEnumerator LoadTitle()
@@ -328,6 +317,15 @@ public class GameControl : MonoBehaviour
         yield return new WaitForSeconds(transition_duration);
 
         SceneManager.LoadScene("TitleScreen");
+    }
+
+    IEnumerator LoadComplete()
+    {
+        EventBus.Publish<SceneTransitionEvent>(new SceneTransitionEvent());
+
+        yield return new WaitForSeconds(transition_duration);
+
+        SceneManager.LoadScene("Complete");
     }
 
     void InitializeLevelData()

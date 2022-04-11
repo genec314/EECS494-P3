@@ -31,7 +31,7 @@ public class MusicController : MonoBehaviour
     void Update()
     {
         string scene_name = SceneManager.GetActiveScene().name;
-        if (scene_name == "TitleScreen" || scene_name == "HomeWorld")
+        if (scene_name == "TitleScreen" || scene_name == "HomeWorld" || scene_name == "Intro" || scene_name == "Complete")
         {
             if (audioSource.clip != title_clip)
             {

@@ -2069,7 +2069,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Welcome to my bowling alley! Hold Space to Shoot!
+  m_text: Think you have what it takes to become the new Emperor?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 894bfc8f0191145978f595679b116bfa, type: 2}
   m_sharedMaterial: {fileID: -4278305067126604119, guid: 894bfc8f0191145978f595679b116bfa, type: 2}

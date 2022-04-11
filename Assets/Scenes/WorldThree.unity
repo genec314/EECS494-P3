@@ -1889,8 +1889,8 @@ MonoBehaviour:
   numPins: 20
   numShots: 25
   worldNumber: 3
-  levelNumber: 1
-  current_hole: 1
+  levelNumber: 0
+  current_hole: 0
   canBallSplit: 1
   ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
 --- !u!4 &637628348
@@ -3288,6 +3288,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 712551823102842720, guid: ca5c98b2bf34750468b7725660dee306, type: 3}
+      propertyPath: m_Text
+      value: Return Home
+      objectReference: {fileID: 0}
     - target: {fileID: 712551823516066289, guid: ca5c98b2bf34750468b7725660dee306, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -3306,7 +3310,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 712551823516066289, guid: ca5c98b2bf34750468b7725660dee306, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LevelSelect
+      value: ExitToHome
       objectReference: {fileID: 0}
     - target: {fileID: 712551823516066289, guid: ca5c98b2bf34750468b7725660dee306, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

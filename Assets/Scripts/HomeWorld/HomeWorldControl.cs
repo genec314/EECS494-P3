@@ -101,7 +101,7 @@ public class HomeWorldControl : MonoBehaviour
         
         else if (!tutorial_seen)
         {
-            StartCoroutine(EaseIn(tutorial_UI));
+            StartCoroutine(StartTutorial());
         }
         else
         {
@@ -351,32 +351,16 @@ public class HomeWorldControl : MonoBehaviour
         this.enabled = false;
     }
 
-    IEnumerator ResetScene()
+    IEnumerator StartTutorial()
     {
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(0);
-        this.enabled = true;
-        tutorial_UI.GetComponentInChildren<TextMeshProUGUI>().text = "Welcome to my bowling alley! Hold Space to Shoot!";
-    }
-
-    public bool CanShoot()
-    {
-        return can_shoot;
-    }
-
-    public void SetCanShoot(bool _in)
-    {
-        can_shoot = _in;
-    }
-
-    public bool CanFreeMove()
-    {
-        return can_free_move;
-    }
-
-    public void SetCanFreeMove(bool _in)
-    {
-        can_free_move = _in;
+        Debug.Log("Got here");
+        tutorial_UI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Think you have what it takes to become the new Emperor?";
+        StartCoroutine(EaseIn(tutorial_UI));
+        yield return new WaitForSeconds(3.5f);
+        StartCoroutine(EaseOut(tutorial_UI));
+        yield return new WaitForSeconds(0.5f);
+        tutorial_UI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Prove it by getting a strike! Use space to shoot.";
+        StartCoroutine(EaseIn(tutorial_UI));
     }
 
     IEnumerator EaseIn(RectTransform panel)

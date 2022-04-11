@@ -24,7 +24,7 @@ public class PlayerInventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "TitleScreen")
+        if (SceneManager.GetActiveScene().name == "TitleScreen" || SceneManager.GetActiveScene().name == "Intro")
         {
             if (UI.activeSelf) UI.SetActive(false);
         }
