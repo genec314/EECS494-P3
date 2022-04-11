@@ -165,7 +165,14 @@ public class GameControl : MonoBehaviour
         if (!level_data[curr_world, curr_level].isCompleted())
         {
             level_data[curr_world, curr_level].setCompleted(true);
-            EventBus.Publish<GainPinsEvent>(new GainPinsEvent(pin_reward));
+            if (curr_world == 3)
+            {
+                EventBus.Publish<GainPinsEvent>(new GainPinsEvent(1000));
+            }
+            else
+            {
+                EventBus.Publish<GainPinsEvent>(new GainPinsEvent(pin_reward));
+            }
         }
         else
         {

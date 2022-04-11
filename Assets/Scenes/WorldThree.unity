@@ -5665,13 +5665,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 918081741, guid: 4cacfc041776e5a41a214b2ca0523682, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 850
+      objectReference: {fileID: 0}
     - target: {fileID: 918081742, guid: 4cacfc041776e5a41a214b2ca0523682, type: 3}
       propertyPath: m_text
-      value: Grand Arena Complete!
+      value: The Grand Arena Complete!
       objectReference: {fileID: 0}
     - target: {fileID: 2794407930508701741, guid: 4cacfc041776e5a41a214b2ca0523682, type: 3}
       propertyPath: show_duration
-      value: 1.7
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 2794407930974466523, guid: 4cacfc041776e5a41a214b2ca0523682, type: 3}
       propertyPath: m_Name
