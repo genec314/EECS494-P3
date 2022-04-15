@@ -12,6 +12,7 @@ public class HomeWorldData : MonoBehaviour
 
     List<int> purchased_balls;
     List<int> unlocked_worlds;
+    List<int> unlocked_animations;
 
     public Material[] ball_mats;
 
@@ -33,6 +34,7 @@ public class HomeWorldData : MonoBehaviour
         purchased_balls.Add(0);
 
         unlocked_worlds = new List<int>();
+        unlocked_animations = new List<int>();
     }
 
     // Update is called once per frame
@@ -78,5 +80,19 @@ public class HomeWorldData : MonoBehaviour
         {
             unlocked_worlds.Add(e.num);
         }
+    }
+
+    public void UnlockAnimation(int num)
+    {
+        if (!unlocked_animations.Contains(num))
+        {
+            unlocked_animations.Add(num);
+
+        }
+    }
+
+    public List<int> GetUnlockedAnimations()
+    {
+        return unlocked_animations;
     }
 }

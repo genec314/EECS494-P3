@@ -47,7 +47,6 @@ public class DetectKnockOver : MonoBehaviour
         float dist = (startPos - transform.localPosition).magnitude;
         if (!knockedOver && (tf.up.y < 0.8f || dist >= 3f))
         {
-            Debug.Log("Knocked");
             knockedOver = true;
             EventBus.Publish(new PinKnockedOverEvent());
             audioSource.Play();
