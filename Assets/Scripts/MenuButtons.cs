@@ -18,6 +18,12 @@ public class MenuButtons : MonoBehaviour
     Subscription<LevelEndEvent> end_subscription;
     Subscription<LevelStartEvent> start_subscription;
 
+    void Start()
+    {
+        end_subscription = EventBus.Subscribe<LevelEndEvent>(EndLevel);
+        start_subscription = EventBus.Subscribe<LevelStartEvent>(StartLevel);
+    }
+
     void Update()
     {
         if (in_level)

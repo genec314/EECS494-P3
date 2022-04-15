@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using TMPro;
 
 public class SetMasterVolume : MonoBehaviour
 {
     public AudioMixer mixer;
     public Slider slider;
-    public Text text;
+    public TextMeshProUGUI text;
     void Start()
     {
         slider.value = PlayerPrefs.GetFloat("MasterVol", 0.5f);

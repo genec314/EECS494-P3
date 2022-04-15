@@ -11,13 +11,19 @@ public class LevelController : MonoBehaviour
     bool completed = false;
     GameControl gc;
     Button button;
+    Image image;
+    Text text;
 
     // Start is called before the first frame update
     void Start()
     {
         gc = GameObject.Find("GameControl").GetComponent<GameControl>();
         button = GetComponent<Button>();
+        image = GetComponent<Image>();
+        text = GetComponentInChildren<Text>();
         button.interactable = false;
+        image.enabled = false;
+        text.enabled = false;
     }
 
     // Update is called once per frame
@@ -26,16 +32,9 @@ public class LevelController : MonoBehaviour
         if (!unlocked && gc.level_data[world, level].isUnlocked()) {
             unlocked = true;
             button.interactable = true;
+            image.enabled = true;
+            text.enabled = true;
         }
-
-        if (!completed && gc.level_data[world, level].isCompleted()) {
-            completed = true;
-        }
-    }
-
-    void ChangeToCompleted()
-    {
-        
     }
 
     public void LoadLevel()
