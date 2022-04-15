@@ -57,6 +57,7 @@ public class HomeWorldControl : MonoBehaviour
     PlayerInventory pi;
 
     List<int> unlocked_worlds;
+    List<int> unlocked_animations;
     private int cur_lane = 1;
     bool tutorial_seen = false;
 
@@ -84,7 +85,7 @@ public class HomeWorldControl : MonoBehaviour
 
         data = GameObject.Find("GameControl").GetComponent<HomeWorldData>();
         unlocked_worlds = data.GetUnlockedWorlds();
-
+        unlocked_animations = data.GetUnlockedAnimations();
         for(int i = 0; i < unlocked_worlds.Count; i++)
         {
             toActivateLanes[unlocked_worlds[i]].SetActive(true);
@@ -92,11 +93,9 @@ public class HomeWorldControl : MonoBehaviour
         }
         intensities = new int[] { 5000, 6, 20 };
 
-        if(unlocked_worlds.Count == 2 || unlocked_worlds.Count == 3)
+        if(unlocked_worlds.Count > unlocked_animations.Count)
         {
             StartCoroutine(TurnOnLights(unlocked_worlds.Count - 1));
-     
-
         }
         
         else if (!tutorial_seen)
@@ -252,6 +251,7 @@ public class HomeWorldControl : MonoBehaviour
 
     IEnumerator TurnOnLights(int num)
     {
+        data.UnlockAnimation(num);
         Vector3 orig_position = main_cam.transform.localPosition;
         Vector3 orig_rotation = main_cam.transform.localRotation.eulerAngles;
 
