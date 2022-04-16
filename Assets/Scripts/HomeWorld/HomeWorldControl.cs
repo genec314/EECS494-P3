@@ -361,7 +361,7 @@ public class HomeWorldControl : MonoBehaviour
     {
         Debug.Log("Got here");
         tutorial_pins.SetActive(true);
-        tutorial_UI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Think you have what it takes to become the new Emperor?";
+        tutorial_UI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Think you have what it takes to become the new Emperor?";
         StartCoroutine(EaseIn(tutorial_UI));
         yield return new WaitForSeconds(2.5f);
         StartCoroutine(Tutorial2());
@@ -372,7 +372,7 @@ public class HomeWorldControl : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         StartCoroutine(EaseOut(tutorial_UI));
         yield return new WaitForSeconds(0.5f);
-        tutorial_UI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Prove it by getting a strike! Use space to shoot.";
+        tutorial_UI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Prove it by getting a strike! Use space to shoot.";
         StartCoroutine(EaseIn(tutorial_UI));
     }
 
