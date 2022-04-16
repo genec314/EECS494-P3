@@ -41,3 +41,7 @@ pause button - https://assetstore.unity.com/packages/tools/gui/pause-button-kit-
 circle wipe - https://www.youtube.com/watch?v=p60ISYgo8xA
 bowling ball transition - https://www.clipartmax.com/middle/m2i8K9A0Z5Z5H7N4_clipart-bowling-ball-sprite/
 fire hydrant - by jvouillon under CC Attribution License - https://sketchfab.com/3d-models/fire-hydrant-7f9164e6018c4ec7a3585bbf6e6d70df
+beach chair - by stealth86 under CC Attribution License - https://sketchfab.com/3d-models/beach-chair-57e9477018d244378302070a8738b566
+seashells - by TraianDumbrava under CC Attribution License - https://sketchfab.com/3d-models/seashell-410be9cdc3d84f6a9f139189309b4891
+Construction Crane - by REWA54 under CC Attribution License - https://sketchfab.com/3d-models/site-crane-construction-low-poly-6c9441209597462d8122a74296d8feb8
+Sand Castle - by patrakeevasveta under CC Attribution License - https://sketchfab.com/3d-models/sand-castle-day-19-0379b3c84e7944dab7537a0799375ee4
