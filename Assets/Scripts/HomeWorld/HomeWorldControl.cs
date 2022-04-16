@@ -32,6 +32,8 @@ public class HomeWorldControl : MonoBehaviour
     public GameObject throwball_UI;
     public GameObject controls_UI;
     //public GameObject transition_UI;
+    public GameObject tutorial_pins;
+    public GameObject[] toActivatePins;
 
     GameObject curr_UI;
 
@@ -89,6 +91,7 @@ public class HomeWorldControl : MonoBehaviour
         for(int i = 0; i < unlocked_worlds.Count; i++)
         {
             toActivateLanes[unlocked_worlds[i]].SetActive(true);
+            toActivatePins[unlocked_worlds[i]].SetActive(true);
             tutorial_seen = true;
         }
         intensities = new int[] { 5000, 6, 20 };
@@ -117,11 +120,12 @@ public class HomeWorldControl : MonoBehaviour
 
     void _OnBallThrown(BallThrownEvent e)
     {
-        /*if (this.enabled && !tutorial_seen)
+        if (!tutorial_seen)
         {
             tutorial_seen = true;
+            StopAllCoroutines();
             StartCoroutine(EndTutorial());
-        }*/
+        }
     }
 
     void _OnPinKnocked(PinKnockedOverEvent e)
@@ -129,13 +133,6 @@ public class HomeWorldControl : MonoBehaviour
         pins_down++;
         if(pins_down >= 10)
         {
-
-            if (this.enabled && !tutorial_seen)
-            {
-                tutorial_seen = true;
-                StartCoroutine(EndTutorial());
-            }
-
             if (unlocked_worlds.Contains(cur_lane))
             {
                 switch (cur_lane)
@@ -278,7 +275,7 @@ public class HomeWorldControl : MonoBehaviour
         
         float duration = 3f;
         elapsed = 0;
-
+        toActivatePins[num].SetActive(true);
         Light[] lights = toActivateLanes[num].GetComponentsInChildren<Light>();
         toActivateLanes[num].SetActive(true);
         while(elapsed < duration)
@@ -320,6 +317,7 @@ public class HomeWorldControl : MonoBehaviour
         fpc.SetActive(true);
         throwball_UI.SetActive(false);
         controls_UI.SetActive(true);
+        if (unlocked_worlds.Count < 2) tutorial_pins.SetActive(false);
         EventBus.Publish(new ResetPinsEvent());
     }
 
@@ -362,9 +360,16 @@ public class HomeWorldControl : MonoBehaviour
     IEnumerator StartTutorial()
     {
         Debug.Log("Got here");
+        tutorial_pins.SetActive(true);
         tutorial_UI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Think you have what it takes to become the new Emperor?";
         StartCoroutine(EaseIn(tutorial_UI));
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2.5f);
+        StartCoroutine(Tutorial2());
+    }
+
+    IEnumerator Tutorial2()
+    {
+        yield return new WaitForSeconds(2.5f);
         StartCoroutine(EaseOut(tutorial_UI));
         yield return new WaitForSeconds(0.5f);
         tutorial_UI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Prove it by getting a strike! Use space to shoot.";
@@ -373,7 +378,7 @@ public class HomeWorldControl : MonoBehaviour
 
     IEnumerator EndTutorial()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         StartCoroutine(EaseOut(tutorial_UI));
     }
 
