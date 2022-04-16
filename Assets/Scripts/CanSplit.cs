@@ -23,7 +23,6 @@ public class CanSplit : MonoBehaviour
         tf = this.GetComponent<Transform>();
         orig = this.GetComponent<Rigidbody>();
         start_subscription = EventBus.Subscribe<LevelStartEvent>(OnLevelStart);
-        material = this.GetComponent<MeshRenderer>().material;
     }
 
     // Update is called once per frame
@@ -52,6 +51,7 @@ public class CanSplit : MonoBehaviour
                 canSplit = false;
                 Vector3 vel = orig.velocity;
                 secondBall1 = Instantiate(secondBall);
+                material = this.GetComponent<MeshRenderer>().material;
                 secondBall1.GetComponent<MeshRenderer>().material = material;
                 secondBall1.transform.position = transform.position;
                 // StartCoroutine(ChangeToBallLayer(secondBall1));

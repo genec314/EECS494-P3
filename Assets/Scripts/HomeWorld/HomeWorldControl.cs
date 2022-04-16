@@ -117,11 +117,11 @@ public class HomeWorldControl : MonoBehaviour
 
     void _OnBallThrown(BallThrownEvent e)
     {
-        if (this.enabled && !tutorial_seen)
+        /*if (this.enabled && !tutorial_seen)
         {
             tutorial_seen = true;
             StartCoroutine(EndTutorial());
-        }
+        }*/
     }
 
     void _OnPinKnocked(PinKnockedOverEvent e)
@@ -129,6 +129,13 @@ public class HomeWorldControl : MonoBehaviour
         pins_down++;
         if(pins_down >= 10)
         {
+
+            if (this.enabled && !tutorial_seen)
+            {
+                tutorial_seen = true;
+                StartCoroutine(EndTutorial());
+            }
+
             if (unlocked_worlds.Contains(cur_lane))
             {
                 switch (cur_lane)

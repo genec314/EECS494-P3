@@ -40,3 +40,4 @@ blur shader - https://stackoverflow.com/questions/29030321/unity3d-blur-the-back
 pause button - https://assetstore.unity.com/packages/tools/gui/pause-button-kit-67203
 circle wipe - https://www.youtube.com/watch?v=p60ISYgo8xA
 bowling ball transition - https://www.clipartmax.com/middle/m2i8K9A0Z5Z5H7N4_clipart-bowling-ball-sprite/
+fire hydrant - by jvouillon under CC Attribution License - https://sketchfab.com/3d-models/fire-hydrant-7f9164e6018c4ec7a3585bbf6e6d70df
