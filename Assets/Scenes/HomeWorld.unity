@@ -2050,8 +2050,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1760781233}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2067,7 +2066,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53ec9085da07d8048a78c631186edbfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UI: {fileID: 1760781232}
 --- !u!114 &624687357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9580,16 +9578,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759198004}
   m_CullTransparentMesh: 1
---- !u!1 &1760781232 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7589661772474211407, guid: a5df0c7f38700c04b94b3c26b820c78c, type: 3}
-  m_PrefabInstance: {fileID: 7589661773945159679}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &1760781233 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7589661772474211406, guid: a5df0c7f38700c04b94b3c26b820c78c, type: 3}
-  m_PrefabInstance: {fileID: 7589661773945159679}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1795376380
 GameObject:
   m_ObjectHideFlags: 0
@@ -10573,8 +10561,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 624687355}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7589661772474211403, guid: a5df0c7f38700c04b94b3c26b820c78c, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 2035566196}
     - target: {fileID: 7589661772474211406, guid: a5df0c7f38700c04b94b3c26b820c78c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -10585,7 +10577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7589661772474211406, guid: a5df0c7f38700c04b94b3c26b820c78c, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7589661772474211406, guid: a5df0c7f38700c04b94b3c26b820c78c, type: 3}
       propertyPath: m_AnchorMax.x

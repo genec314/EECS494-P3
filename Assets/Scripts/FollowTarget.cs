@@ -33,7 +33,6 @@ public class FollowTarget : MonoBehaviour
 		EventBus.Unsubscribe<BallReadyEvent>(ball_ready_sub);
 	}
 
-	// Update is called once per frame
 	void LateUpdate()
 	{
 		UpdateOffsets();
@@ -50,6 +49,11 @@ public class FollowTarget : MonoBehaviour
 	{
 		if (following) transform.position = Vector3.Lerp(transform.position, target.position + follow_offset, ease_factor);
 		else transform.position = Vector3.Lerp(transform.position, target.position + shot_offset, ease_factor);
+		
+		// Vector3 velocity = Vector3.zero;
+
+		// if (following) transform.position = Vector3.SmoothDamp(transform.position, target.position + follow_offset, ref velocity, ease_factor);
+		// else transform.position = Vector3.SmoothDamp(transform.position, target.position + shot_offset, ref velocity, ease_factor);
 	}
 
 	void OnLevelStart(LevelStartEvent e)

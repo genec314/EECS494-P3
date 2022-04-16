@@ -23,7 +23,6 @@ public class HoleData : MonoBehaviour
     Subscription<LoadLevelEvent> load_subscription;
     public bool current_hole = false;
     public bool canBallSplit = false;
-    public AudioClip ready;
 
     // Start is called before the first frame update
     void Awake()
@@ -54,7 +53,7 @@ public class HoleData : MonoBehaviour
             }
             else if (shots_taken > 0)
             {
-                AudioSource.PlayClipAtPoint(ready, Camera.main.transform.position, 0.25f * PlayerPrefs.GetFloat("MasterVol", 0.5f) * PlayerPrefs.GetFloat("SoundEffectsVol", 0.5f));
+                EventBus.Publish<ReadySoundEvent>(new ReadySoundEvent());
             }
         }
     }

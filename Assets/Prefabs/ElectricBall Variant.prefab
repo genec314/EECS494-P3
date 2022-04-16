@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 487161533, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: ready_delay
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 487161534, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
       value: 0

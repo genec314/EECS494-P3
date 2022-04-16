@@ -88,7 +88,7 @@ public class GameControl : MonoBehaviour
 
     void OnRestartLevel(RestartLevelEvent e)
     {
-        EventBus.Publish<LoadLevelEvent>(new LoadLevelEvent(curr_level, curr_world));
+        StartCoroutine(HandleLevelRestart());
     }
 
     void OnLevelEnd(LevelEndEvent e)
@@ -158,6 +158,13 @@ public class GameControl : MonoBehaviour
         StartCoroutine(LoadWorldAndLevel(curr_world));
     }
 
+    IEnumerator HandleLevelRestart()
+    {
+        EventBus.Publish<LevelRestartTransitionEvent>(new LevelRestartTransitionEvent());
+        yield return new WaitForSeconds(0.25f);
+        LoadCurrentLevel();
+    }
+
     IEnumerator HandleLevelComplete()
     {
         EventBus.Publish<LevelCompleteEvent>(new LevelCompleteEvent());
@@ -186,14 +193,16 @@ public class GameControl : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.5f);
 
         // so justTeleported = false	
         EventBus.Publish(new TeleportEvent());
 
         if (curr_level < 6 && curr_world != 3)
         {
-            // put check for end of world 3 here cause only three levels
+            EventBus.Publish<LevelTransitionEvent>(new LevelTransitionEvent());
+
+            yield return new WaitForSeconds(0.5f);
 
             curr_level++;
             level_data[curr_world, curr_level].setUnlocked(true);
@@ -208,7 +217,7 @@ public class GameControl : MonoBehaviour
                     world_1_complete = true;
                     EventBus.Publish(new WorldUnlockedEvent(1));
                     EventBus.Publish<WorldCompleteEvent>(new WorldCompleteEvent());
-                    yield return new WaitForSeconds(3f);
+                    yield return new WaitForSeconds(2.5f);
                     EventBus.Publish(new LoadWorldEvent(0));
                 }
                 else
@@ -223,7 +232,7 @@ public class GameControl : MonoBehaviour
                     world_2_complete = true;
                     EventBus.Publish(new WorldUnlockedEvent(2));
                     EventBus.Publish<WorldCompleteEvent>(new WorldCompleteEvent());
-                    yield return new WaitForSeconds(3f);
+                    yield return new WaitForSeconds(2.5f);
                     EventBus.Publish(new LoadWorldEvent(0));
                 }
                 else
@@ -237,7 +246,7 @@ public class GameControl : MonoBehaviour
                 {
                     world_3_complete = true;
                     EventBus.Publish<WorldCompleteEvent>(new WorldCompleteEvent());
-                    yield return new WaitForSeconds(3f);
+                    yield return new WaitForSeconds(2.5f);
                     StartCoroutine(LoadComplete());
                 }
                 else
@@ -252,7 +261,11 @@ public class GameControl : MonoBehaviour
     {
         EventBus.Publish<LevelFailedEvent>(new LevelFailedEvent());
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
+
+        EventBus.Publish<LevelRestartTransitionEvent>(new LevelRestartTransitionEvent());
+
+        yield return new WaitForSeconds(0.25f);
         
         LoadCurrentLevel();
     }

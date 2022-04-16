@@ -249,3 +249,18 @@ public class SceneTransitionEvent
 {
     public SceneTransitionEvent() {}
 }
+
+public class LevelTransitionEvent
+{
+    public LevelTransitionEvent() {}
+}
+
+public class LevelRestartTransitionEvent
+{
+    public LevelRestartTransitionEvent() {}
+}
+
+public class ReadySoundEvent
+{
+    public ReadySoundEvent() {}
+}

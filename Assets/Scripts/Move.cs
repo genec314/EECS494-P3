@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    public float ready_delay = 2f;
+    public float ready_delay = 1.5f;
     Rigidbody rb;
     Transform tf;
     float last_thrown_time;

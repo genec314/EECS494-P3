@@ -320,6 +320,7 @@ public class HomeWorldControl : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         GameObject.Find("Menu").SetActive(false);
+        GameObject.Find("InventoryUI").SetActive(false);
 
         float up_duration = 1.5f;
         float elapsed = 0;

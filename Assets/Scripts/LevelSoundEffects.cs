@@ -8,6 +8,7 @@ public class LevelSoundEffects : MonoBehaviour
     public AudioClip level_fail_sound;
     public AudioClip world_complete_sound;
     public AudioClip select_level_sound;
+    public AudioClip ready_sound;
     static LevelSoundEffects instance;
 
     AudioSource audioSource;
@@ -15,6 +16,7 @@ public class LevelSoundEffects : MonoBehaviour
     Subscription<LevelCompleteEvent> complete_sub;
     Subscription<LevelFailedEvent> fail_sub;
     Subscription<WorldCompleteEvent> world_sub;
+    Subscription<ReadySoundEvent> ready_sub;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +35,7 @@ public class LevelSoundEffects : MonoBehaviour
         complete_sub = EventBus.Subscribe<LevelCompleteEvent>(OnWorldComplete);
         fail_sub = EventBus.Subscribe<LevelFailedEvent>(OnLevelFailed);
         world_sub = EventBus.Subscribe<WorldCompleteEvent>(OnWorldComplete);
+        ready_sub = EventBus.Subscribe<ReadySoundEvent>(OnReady);
     }
 
     void Update()
@@ -55,6 +58,12 @@ public class LevelSoundEffects : MonoBehaviour
     void OnWorldComplete(WorldCompleteEvent e)
     {
         audioSource.clip = world_complete_sound;
+        audioSource.Play();
+    }
+
+    void OnReady(ReadySoundEvent e)
+    {
+        audioSource.clip = ready_sound;
         audioSource.Play();
     }
 }
