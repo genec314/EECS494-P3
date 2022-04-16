@@ -120,7 +120,7 @@ public class HomeWorldControl : MonoBehaviour
         if (this.enabled && !tutorial_seen)
         {
             tutorial_seen = true;
-            StartCoroutine(EaseOut(tutorial_UI));
+            StartCoroutine(EndTutorial());
         }
     }
 
@@ -356,11 +356,17 @@ public class HomeWorldControl : MonoBehaviour
         Debug.Log("Got here");
         tutorial_UI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Think you have what it takes to become the new Emperor?";
         StartCoroutine(EaseIn(tutorial_UI));
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(5f);
         StartCoroutine(EaseOut(tutorial_UI));
         yield return new WaitForSeconds(0.5f);
         tutorial_UI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Prove it by getting a strike! Use space to shoot.";
         StartCoroutine(EaseIn(tutorial_UI));
+    }
+
+    IEnumerator EndTutorial()
+    {
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(EaseOut(tutorial_UI));
     }
 
     IEnumerator EaseIn(RectTransform panel)

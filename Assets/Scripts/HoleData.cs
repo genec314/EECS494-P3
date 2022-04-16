@@ -15,7 +15,7 @@ public class HoleData : MonoBehaviour
     int shots_taken = 0;
     int pins_down = 0;
     public int worldNumber;
-    [SerializeField] int levelNumber;
+    public int levelNumber;
     Subscription<PinKnockedOverEvent> pin_subscription;
     Subscription<BallThrownEvent> thrown_subscription;
     Subscription<ResetShotEvent> reset_shot_subscription;
