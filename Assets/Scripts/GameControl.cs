@@ -36,8 +36,6 @@ public class GameControl : MonoBehaviour
 
     public float transition_duration = 1f;
 
-    public bool unlock_all_levels = false;
-
     void Start()
     {
         if (instance == null)
@@ -361,14 +359,7 @@ public class GameControl : MonoBehaviour
         {
             for (int j = 0; j < 7; j++)
             {
-                if (!unlock_all_levels)
-                {
-                    level_data[i, j] = new LevelData();
-                }
-                else
-                {
-                    level_data[i, j] = new LevelData(true, true);
-                }
+                level_data[i, j] = new LevelData();
             }
         }
     }
