@@ -125,7 +125,8 @@ public class HomePlayerController : MonoBehaviour
         //back wall
         if(index <= 0)
         {
-            newPos.y = 0.5f;
+            newPos.y = 0.5706694f;
+            newPos.x = 0f;
             newPos.z += 10f;
             StartCoroutine(LerpPlayer(oldPos, newPos, transform.rotation.eulerAngles, new Vector3(0f, 180f, 0f), time));
             //transform.localPosition = new Vector3(0, -10f, -30f);
