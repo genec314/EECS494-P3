@@ -589,7 +589,6 @@ MonoBehaviour:
   levelNumber: 5
   current_hole: 0
   canBallSplit: 1
-  ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
 --- !u!1001 &67257223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1020,7 +1019,6 @@ MonoBehaviour:
   levelNumber: 9
   current_hole: 0
   canBallSplit: 1
-  ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
 --- !u!4 &138434484 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2720707651249921775, guid: 20277d58b398f4546b01ebf4b8a7edb4, type: 3}
@@ -1209,7 +1207,6 @@ MonoBehaviour:
   levelNumber: 4
   current_hole: 0
   canBallSplit: 1
-  ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
 --- !u!1001 &157333468
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2710,13 +2707,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327498403}
-  m_LocalRotation: {x: 0.17364818, y: 0.000000014901161, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: 16.4, y: 7, z: -20}
+  m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
+  m_LocalPosition: {x: 24, y: 7, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
 --- !u!1 &334423781
 GameObject:
   m_ObjectHideFlags: 0
@@ -4244,7 +4241,6 @@ MonoBehaviour:
   levelNumber: 1
   current_hole: 0
   canBallSplit: 0
-  ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
 --- !u!1 &591873618
 GameObject:
   m_ObjectHideFlags: 0
@@ -4283,7 +4279,6 @@ MonoBehaviour:
   levelNumber: 3
   current_hole: 0
   canBallSplit: 1
-  ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
 --- !u!4 &591873620
 Transform:
   m_ObjectHideFlags: 0
@@ -5424,7 +5419,6 @@ MonoBehaviour:
   levelNumber: 8
   current_hole: 0
   canBallSplit: 1
-  ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
 --- !u!1 &754611372
 GameObject:
   m_ObjectHideFlags: 0
@@ -6237,7 +6231,6 @@ MonoBehaviour:
   levelNumber: 2
   current_hole: 0
   canBallSplit: 0
-  ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
 --- !u!1001 &923560516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8186,7 +8179,6 @@ MonoBehaviour:
   levelNumber: 4
   current_hole: 0
   canBallSplit: 1
-  ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
 --- !u!4 &1202208569 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4245336269096597611, guid: c5be58a0a7d5b4495992523c7a65c493, type: 3}
@@ -10194,7 +10186,6 @@ MonoBehaviour:
   levelNumber: 0
   current_hole: 1
   canBallSplit: 0
-  ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
 --- !u!1 &1573208973
 GameObject:
   m_ObjectHideFlags: 0
@@ -11144,7 +11135,6 @@ MonoBehaviour:
   levelNumber: 6
   current_hole: 0
   canBallSplit: 1
-  ready: {fileID: 8300000, guid: cf6185f6927a9d14686b370eb8b5d230, type: 3}
 --- !u!1001 &1683988213
 PrefabInstance:
   m_ObjectHideFlags: 0
