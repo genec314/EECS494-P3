@@ -15,6 +15,7 @@ public class UpdateInventoryUI : MonoBehaviour
         inventory = GameObject.Find("GameControl").GetComponent<PlayerInventory>();
         ball_bought_sub = EventBus.Subscribe<BallBoughtEvent>(_OnBallBought);
         gain_pins_sub = EventBus.Subscribe<GainPinsEvent>(_OnGainPins);
+        UpdateUI();
     }
 
     void _OnGainPins(GainPinsEvent e)
