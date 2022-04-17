@@ -34,6 +34,18 @@ public class HoleData : MonoBehaviour
         load_subscription = EventBus.Subscribe<LoadLevelEvent>(OnLoadLevel);
     }
 
+    void Update()
+    {
+        if (current_hole)
+        {
+            if (pins_down == numPins)
+            {
+                current_hole = false;
+                StartCoroutine(CompleteLevel());
+            }
+        }
+    }
+
     private void PinDown(PinKnockedOverEvent p)
     {
         if (current_hole) pins_down++;
@@ -43,13 +55,10 @@ public class HoleData : MonoBehaviour
     {
         if (current_hole)
         {
-            if (pins_down == numPins)
-            {
-                EventBus.Publish<LevelEndEvent>(new LevelEndEvent(true));
-            }
-            else if (shots_taken == numShots)
+            if (pins_down != numPins && shots_taken == numShots)
             {
                 EventBus.Publish<LevelEndEvent>(new LevelEndEvent(false));
+                current_hole = false;
             }
             else if (shots_taken > 0)
             {
@@ -69,6 +78,12 @@ public class HoleData : MonoBehaviour
             shots_taken = 0;
             EventBus.Publish<LevelStartEvent>(new LevelStartEvent(this));
         }
+    }
+
+    IEnumerator CompleteLevel()
+    {
+        yield return new WaitForSeconds(0.5f);
+        EventBus.Publish<LevelEndEvent>(new LevelEndEvent(true));
     }
 
     private void IncreaseShots(BallThrownEvent b)
