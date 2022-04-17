@@ -23,9 +23,8 @@ World Activated Audio - https://freesound.org/people/neopolitansixth/sounds/5796
 Colosseum - by Shin Xiba 3D under CC Attribution license: https://sketchfab.com/3d-models/3d-roman-colosseum-4fa30a567cdd4228a663c5b46e7a8d0f
 Zweihander (Sword) - by Siesta under CC Attribution license: https://sketchfab.com/3d-models/zweihander-bde0f0351bf443f6bed68aeff84b4129
 Cranium with injuries - by Historiska unber CC Attribution license: https://sketchfab.com/3d-models/cranium-with-injuries-1089125-970dcda695fc46329f2f75357e3d0ed1
-elevator music - https://www.fesliyanstudios.com/royalty-free-music/download/elevator-ride/335
-relaxing music - https://www.fesliyanstudios.com/royalty-free-music/download/tender-love/266
-more relaxing music - https://www.fesliyanstudios.com/royalty-free-music/download/warm-light/355
+title/home world elevator music - https://www.fesliyanstudios.com/royalty-free-music/download/elevator-ride/335
+world 1 music - https://www.fesliyanstudios.com/royalty-free-music/download/warm-light/355
 warp sound - by LloydEvans09 under CC Attribution license: https://freesound.org/people/LloydEvans09/sounds/185849/
 billboards - by tobyporter under CC Attribution license: https://sketchfab.com/3d-models/billboard-model-free-download-087e0e4c913e4895aa4c1ce4798b42bb
 catman pose 2 - by sodiemhoffmann under CC Attribution License: https://sketchfab.com/3d-models/catman-pose-2-6705361b1895419e8643a7719725324d
@@ -45,3 +44,7 @@ beach chair - by stealth86 under CC Attribution License - https://sketchfab.com/
 seashells - by TraianDumbrava under CC Attribution License - https://sketchfab.com/3d-models/seashell-410be9cdc3d84f6a9f139189309b4891
 Construction Crane - by REWA54 under CC Attribution License - https://sketchfab.com/3d-models/site-crane-construction-low-poly-6c9441209597462d8122a74296d8feb8
 Sand Castle - by patrakeevasveta under CC Attribution License - https://sketchfab.com/3d-models/sand-castle-day-19-0379b3c84e7944dab7537a0799375ee4
+world 2 music motivating - https://www.fesliyanstudios.com/royalty-free-music/download/feeling-free/1558
+world 3 music motivating - https://www.fesliyanstudios.com/royalty-free-music/download/go-beyond/1136
+cheer sound - https://www.youtube.com/watch?v=yLNALmt6KFs
+writing sound - https://www.youtube.com/watch?v=63TKIpnkDXw

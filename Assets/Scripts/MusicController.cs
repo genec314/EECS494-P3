@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class MusicController : MonoBehaviour
 {
     public AudioClip title_clip;
-    public AudioClip world_clip;
+    public AudioClip world_1_clip;
+    public AudioClip world_2_clip;
+    public AudioClip world_3_clip;
     static MusicController instance;
     AudioSource audioSource;
 
@@ -31,23 +33,43 @@ public class MusicController : MonoBehaviour
     void Update()
     {
         string scene_name = SceneManager.GetActiveScene().name;
-        if (scene_name == "TitleScreen" || scene_name == "HomeWorld" || scene_name == "Intro" || scene_name == "Complete")
+        if (scene_name == "TitleScreen" || scene_name == "HomeWorld")
         {
             if (audioSource.clip != title_clip)
             {
                 audioSource.clip = title_clip;
-                audioSource.volume = 0.5f;
+                audioSource.Play();
+            }
+        }
+        else if (scene_name == "WorldOne" || scene_name == "WorldOneSelect")
+        {
+            if (audioSource.clip != world_1_clip)
+            {
+                audioSource.clip = world_1_clip;
+                audioSource.Play();
+            }
+        }
+        else if (scene_name == "WorldTwo" || scene_name == "WorldTwoSelect")
+        {
+            if (audioSource.clip != world_2_clip)
+            {
+                audioSource.clip = world_2_clip;
+                audioSource.Play();
+            }
+        }
+        else if (scene_name == "WorldThree")
+        {
+            if (audioSource.clip != world_3_clip)
+            {
+                audioSource.clip = world_3_clip;
                 audioSource.Play();
             }
         }
         else
         {
-            if (audioSource.clip != world_clip)
-            {
-                audioSource.clip = world_clip;
-                audioSource.volume = 0.32f;
-                audioSource.Play();
-            }
+            // Intro, Complete
+            audioSource.clip = null;
+            audioSource.Stop();
         }
     }
 }

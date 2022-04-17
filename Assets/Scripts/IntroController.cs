@@ -7,10 +7,12 @@ public class IntroController : MonoBehaviour
     public CanvasGroup intro1;
     public CanvasGroup intro2;
     public CanvasGroup intro3;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         StartCoroutine(ShowIntro());
     }
 
@@ -24,13 +26,16 @@ public class IntroController : MonoBehaviour
 
     IEnumerator ShowIntro()
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
+        audioSource.Play();
         StartCoroutine(Fade(intro1, 1f, 1f));
         yield return new WaitForSeconds(3f);
         StartCoroutine(Fade(intro2, 1f, 1f));
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         StartCoroutine(Fade(intro3, 1f, 1f));
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
+        audioSource.Stop();
+        yield return new WaitForSeconds(3f);
         EventBus.Publish<LoadWorldEvent>(new LoadWorldEvent(0));
     }
 
