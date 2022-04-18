@@ -7,8 +7,8 @@ public class Flyover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(13.4899998f, 2.52999997f, 11.9399996f);
-        transform.rotation = Quaternion.Euler(7f, 150f, 0f);
+        //transform.position = new Vector3(13.4899998f, 2.52999997f, 11.9399996f);
+        //transform.rotation = Quaternion.Euler(7f, 150f, 0f);
         //transform.position = new Vector3(18.7800007f, 3.06999993f, -15.1000004f);
         //transform.rotation = Quaternion.Euler(20f, 0, 0);
         //transform.position = new Vector3(150, 28.5300007f, 75);
@@ -17,6 +17,9 @@ public class Flyover : MonoBehaviour
 
         //transform.position = new Vector3(15.6f, 5f, 31.1f);
         //transform.rotation = Quaternion.Euler(20f, 180f, 0);
+        transform.position = new Vector3(0, 22.5f, 151f);
+        transform.rotation = Quaternion.Euler(20, 0, 0);
+        StartCoroutine(Lerpy4());
     }
 
     // Update is called once per frame
@@ -38,7 +41,6 @@ public class Flyover : MonoBehaviour
             pos.z -= 15f * Time.deltaTime;
             transform.position = pos;
             elapsed += Time.deltaTime;
-            Debug.Log(elapsed);
             yield return null;
         }
     }
@@ -54,7 +56,6 @@ public class Flyover : MonoBehaviour
             pos.y += 15f * Time.deltaTime;
             transform.position = pos;
             elapsed += Time.deltaTime;
-            Debug.Log(elapsed);
             yield return null;
         }
     }
@@ -70,7 +71,29 @@ public class Flyover : MonoBehaviour
             pos.z += 18f * Time.deltaTime;
             transform.position = pos;
             elapsed += Time.deltaTime;
-            Debug.Log(elapsed);
+            yield return null;
+        }
+    }
+
+    IEnumerator Lerpy4()
+    {
+
+        yield return new WaitForSeconds(5f);
+        float duration = 25f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            Vector3 pos = transform.position;
+            pos.z -= 24f * Time.deltaTime;
+            pos.y += 6f * Time.deltaTime;
+            transform.position = pos;
+
+            Vector3 rot = transform.rotation.eulerAngles;
+            rot.x += 3f * Time.deltaTime;
+            transform.rotation = Quaternion.Euler(rot);
+
+            elapsed += Time.deltaTime;
             yield return null;
         }
     }
