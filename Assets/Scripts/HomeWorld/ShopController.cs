@@ -103,7 +103,7 @@ public class ShopController : MonoBehaviour
     void ChangeActiveBall(int index)
     {
         check.gameObject.SetActive(true);
-        check.transform.SetParent(balls[cur_ball].transform);
+        check.transform.SetParent(balls[index].transform);
         check.transform.localPosition = new Vector3(130, 0, 0);
 
         MeshRenderer ball = GameObject.Find("Player").GetComponent<MeshRenderer>();
