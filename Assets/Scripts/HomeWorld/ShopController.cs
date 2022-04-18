@@ -62,7 +62,6 @@ public class ShopController : MonoBehaviour
         }
 
         ChangeActiveBall(hwd.GetActiveBall());
-        this.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
