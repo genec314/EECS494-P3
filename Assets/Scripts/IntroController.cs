@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class IntroController : MonoBehaviour
 {
+    public CanvasGroup exit;
     public CanvasGroup intro1;
+    public FadeInTextLetterByLetter intro1_text;
     public CanvasGroup intro2;
+    public CanvasGroup intro2_world1;
+    public CanvasGroup intro2_world2;
+    public CanvasGroup intro2_world3;
+    public FadeInTextLetterByLetter intro2_text;
     public CanvasGroup intro3;
+    public FadeInTextLetterByLetter intro3_text;
+    public Animator anim;
     AudioSource audioSource;
+    Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        cam = Camera.main;
         StartCoroutine(ShowIntro());
     }
 
@@ -26,16 +36,51 @@ public class IntroController : MonoBehaviour
 
     IEnumerator ShowIntro()
     {
-        yield return new WaitForSeconds(0.5f);
+        cam.transform.position = new Vector3(0f, 1.2f, -10f);
+        yield return new WaitForSeconds(1f);
+        
         audioSource.Play();
-        StartCoroutine(Fade(intro1, 1f, 1f));
-        yield return new WaitForSeconds(3f);
-        StartCoroutine(Fade(intro2, 1f, 1f));
-        yield return new WaitForSeconds(3f);
-        StartCoroutine(Fade(intro3, 1f, 1f));
-        yield return new WaitForSeconds(3f);
-        audioSource.Stop();
-        yield return new WaitForSeconds(3f);
+        StartCoroutine(Fade(exit, 1f, 1f));
+        intro1.alpha = 1;
+        intro1_text.Fade();
+        yield return new WaitForSeconds(6f);
+
+        anim.SetTrigger("Start");
+        yield return new WaitForSeconds(1f);
+        intro1.alpha = 0;
+        exit.alpha = 0;
+        cam.transform.position = new Vector3(100f, 1.2f, -10f);
+        yield return new WaitForSeconds(0.5f);
+        anim.SetTrigger("End");
+        yield return new WaitForSeconds(1f);
+
+        audioSource.Play();
+        intro2.alpha = 1;
+        intro2_text.Fade();
+        yield return new WaitForSeconds(1.5f);
+        StartCoroutine(Fade(intro2_world1, 1f, 1f));
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(Fade(intro2_world2, 1f, 1f));
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(Fade(intro2_world3, 1f, 1f));
+        yield return new WaitForSeconds(8f);
+
+        anim.SetTrigger("Start");
+        yield return new WaitForSeconds(1f);
+        cam.transform.position = new Vector3(200f, 1.2f, -10f);
+        intro2.alpha = 0;
+        intro2_world1.alpha = 0;
+        intro2_world2.alpha = 0;
+        intro2_world3.alpha = 0;
+        yield return new WaitForSeconds(0.5f);
+        anim.SetTrigger("End");
+        yield return new WaitForSeconds(1f);
+
+        audioSource.Play();
+        intro3.alpha = 1;
+        intro3_text.Fade();
+        yield return new WaitForSeconds(6f);
+
         EventBus.Publish<LoadWorldEvent>(new LoadWorldEvent(0));
     }
 

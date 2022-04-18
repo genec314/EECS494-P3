@@ -1705,7 +1705,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187114539}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &187114545
 Camera:
   m_ObjectHideFlags: 0
@@ -6459,7 +6459,6 @@ MonoBehaviour:
   tutorial_firstF: 1
   tutorial_ended: 0
   transition_duration: 1
-  unlock_all_levels: 0
 --- !u!4 &648652372
 Transform:
   m_ObjectHideFlags: 0

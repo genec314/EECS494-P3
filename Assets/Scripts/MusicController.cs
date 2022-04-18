@@ -68,8 +68,13 @@ public class MusicController : MonoBehaviour
         else
         {
             // Intro, Complete
-            audioSource.clip = null;
-            audioSource.Stop();
+            // audioSource.clip = null;
+            // audioSource.Stop();
+            if (audioSource.clip != title_clip)
+            {
+                audioSource.clip = title_clip;
+                audioSource.Play();
+            }
         }
     }
 }

@@ -45,7 +45,7 @@ public class IntroFlyover : MonoBehaviour
             pos.x += 5f * Time.deltaTime;
             transform.position = pos;
             elapsed += Time.deltaTime;
-            Debug.Log(elapsed);
+            // Debug.Log(elapsed);
             yield return null;
         }
     }
@@ -61,7 +61,7 @@ public class IntroFlyover : MonoBehaviour
             pos.y += 6f * Time.deltaTime;
             transform.position = pos;
             elapsed += Time.deltaTime;
-            Debug.Log(elapsed);
+            // Debug.Log(elapsed);
             yield return null;
         }
     }
