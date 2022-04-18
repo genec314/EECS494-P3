@@ -17,9 +17,11 @@ public class Flyover : MonoBehaviour
 
         //transform.position = new Vector3(15.6f, 5f, 31.1f);
         //transform.rotation = Quaternion.Euler(20f, 180f, 0);
-        transform.position = new Vector3(0, 22.5f, 151f);
-        transform.rotation = Quaternion.Euler(20, 0, 0);
-        StartCoroutine(Lerpy4());
+        //transform.position = new Vector3(0, 22.5f, 151f);
+        //transform.rotation = Quaternion.Euler(20, 0, 0);
+        //StartCoroutine(Lerpy4());
+        transform.position = new Vector3(0, 38.2000008f, -23.7999992f);
+        transform.rotation = Quaternion.Euler(19.2f, 0, 0);
     }
 
     // Update is called once per frame
