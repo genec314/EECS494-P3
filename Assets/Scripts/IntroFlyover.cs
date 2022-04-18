@@ -21,14 +21,14 @@ public class IntroFlyover : MonoBehaviour
             StartCoroutine(LerpWorldOne());
             yield return new WaitForSeconds(14f);
             transition.SetTrigger("Start");
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.25f);
             transition.SetTrigger("End");
             transform.position = new Vector3(1024, 7, -20);
             transform.localEulerAngles = new Vector3(45, 0, 0);
             StartCoroutine(LerpWorldTwo());
             yield return new WaitForSeconds(14f);
             transition.SetTrigger("Start");
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.25f);
             transition.SetTrigger("End");
         }
     }
