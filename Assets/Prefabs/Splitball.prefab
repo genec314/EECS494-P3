@@ -55,6 +55,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 487161535, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 487161535, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -1810479408964791510, guid: 9e55ce8988e12f447a39b60f3cd4f359, type: 2}
+    - target: {fileID: 487161536, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 487161538, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -67,6 +79,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b75a38301b0f44ff2b45e121b66db18c, type: 2}
+    - target: {fileID: 4148546843224160583, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Drag
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4148546843224160583, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4148546843224160583, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8508937397985018120, guid: 32c1c8c23c27331409cca0267864a894, type: 3}
       propertyPath: m_RootOrder
       value: 0
