@@ -20,6 +20,7 @@ public class FollowTarget : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
+		Application.targetFrameRate = 60;
 		UpdateOffsets();
 		ball_thrown_sub = EventBus.Subscribe<BallThrownEvent>(OnBallThrown);
 		teleport_sub = EventBus.Subscribe<TeleportEvent>(OnTeleport);
@@ -33,10 +34,26 @@ public class FollowTarget : MonoBehaviour
 		EventBus.Unsubscribe<BallReadyEvent>(ball_ready_sub);
 	}
 
-	void LateUpdate()
+	void Update()
 	{
+		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        {
+            transform.RotateAround(target.transform.position, Vector3.up, -75 * Time.deltaTime);
+        } else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        {
+            transform.RotateAround(target.transform.position, Vector3.up, 75 * Time.deltaTime);
+        }
+
+        target.transform.forward = transform.forward;
+		
 		UpdateOffsets();
 		Follow();
+	}
+
+	void LateUpdate()
+	{
+		// UpdateOffsets();
+		// Follow();
 	}
 
 	void UpdateOffsets()
@@ -47,13 +64,20 @@ public class FollowTarget : MonoBehaviour
 
 	void Follow()
 	{
-		if (following) transform.position = Vector3.Lerp(transform.position, target.position + follow_offset, ease_factor);
-		else transform.position = Vector3.Lerp(transform.position, target.position + shot_offset, ease_factor);
+		// if (following) transform.position = Vector3.Lerp(transform.position, target.position + follow_offset, ease_factor);
+		// else transform.position = Vector3.Lerp(transform.position, target.position + shot_offset, ease_factor);
 		
 		// Vector3 velocity = Vector3.zero;
 
 		// if (following) transform.position = Vector3.SmoothDamp(transform.position, target.position + follow_offset, ref velocity, ease_factor);
 		// else transform.position = Vector3.SmoothDamp(transform.position, target.position + shot_offset, ref velocity, ease_factor);
+
+		Vector3 desired_position;
+
+		if (following) desired_position = target.position + follow_offset;
+		else desired_position = target.position + shot_offset;
+
+		transform.position += (desired_position - transform.position) * ease_factor * Application.targetFrameRate * Time.deltaTime;
 	}
 
 	void OnLevelStart(LevelStartEvent e)

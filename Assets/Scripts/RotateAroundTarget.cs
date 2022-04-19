@@ -16,14 +16,14 @@ public class RotateAroundTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-        {
-            transform.RotateAround(target.transform.position, Vector3.up, -75 * Time.deltaTime);
-        } else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-        {
-            transform.RotateAround(target.transform.position, Vector3.up, 75 * Time.deltaTime);
-        }
+        // if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        // {
+        //     transform.RotateAround(target.transform.position, Vector3.up, -75 * Time.deltaTime);
+        // } else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        // {
+        //     transform.RotateAround(target.transform.position, Vector3.up, 75 * Time.deltaTime);
+        // }
 
-        target.transform.forward = tf.transform.forward;
+        // target.transform.forward = tf.transform.forward;
     }
 }
