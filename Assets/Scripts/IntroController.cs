@@ -58,11 +58,11 @@ public class IntroController : MonoBehaviour
         intro2.alpha = 1;
         intro2_text.Fade();
         yield return new WaitForSeconds(1.5f);
-        StartCoroutine(Fade(intro2_world1, 1f, 1f));
+        StartCoroutine(Fade(intro2_world1, 1f, 0.5f));
         yield return new WaitForSeconds(1f);
-        StartCoroutine(Fade(intro2_world2, 1f, 1f));
+        StartCoroutine(Fade(intro2_world2, 1f, 0.5f));
         yield return new WaitForSeconds(1f);
-        StartCoroutine(Fade(intro2_world3, 1f, 1f));
+        StartCoroutine(Fade(intro2_world3, 1f, 0.5f));
         yield return new WaitForSeconds(8f);
 
         anim.SetTrigger("Start");

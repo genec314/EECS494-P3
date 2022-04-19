@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class MusicController : MonoBehaviour
 {
     public AudioClip title_clip;
+    public AudioClip intro_clip;
     public AudioClip world_1_clip;
     public AudioClip world_2_clip;
     public AudioClip world_3_clip;
+    public AudioClip complete_clip;
     static MusicController instance;
     AudioSource audioSource;
 
@@ -41,6 +43,14 @@ public class MusicController : MonoBehaviour
                 audioSource.Play();
             }
         }
+        else if (scene_name == "Intro")
+        {
+            if (audioSource.clip != intro_clip)
+            {
+                audioSource.clip = intro_clip;
+                audioSource.Play();
+            }
+        }
         else if (scene_name == "WorldOne" || scene_name == "WorldOneSelect")
         {
             if (audioSource.clip != world_1_clip)
@@ -67,12 +77,10 @@ public class MusicController : MonoBehaviour
         }
         else
         {
-            // Intro, Complete
-            // audioSource.clip = null;
-            // audioSource.Stop();
-            if (audioSource.clip != title_clip)
+            // Complete
+            if (audioSource.clip != complete_clip)
             {
-                audioSource.clip = title_clip;
+                audioSource.clip = complete_clip;
                 audioSource.Play();
             }
         }

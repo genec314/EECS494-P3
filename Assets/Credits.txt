@@ -50,3 +50,5 @@ cheer sound - https://www.youtube.com/watch?v=yLNALmt6KFs
 writing sound - https://www.youtube.com/watch?v=63TKIpnkDXw
 throne - by ronchoqa under CC Attribution License - https://sketchfab.com/3d-models/throne-chair-7c37befafbed42058935870e71018232
 fade in script - http://theflyingkeyboard.net/unity/unity-ui-c-fade-in-text-letter-by-letter/
+intro msuic - https://www.fesliyanstudios.com/royalty-free-music/download/an-adventure-ahead/1565
+completion music - Noah Meyers (freelancer)
