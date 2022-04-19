@@ -15,6 +15,9 @@ public class IntroController : MonoBehaviour
     public CanvasGroup intro3;
     public FadeInTextLetterByLetter intro3_text;
     public Animator anim;
+    public AudioSource world1_source;
+    public AudioSource world2_source;
+    public AudioSource world3_source;
     AudioSource audioSource;
     Camera cam;
 
@@ -58,10 +61,13 @@ public class IntroController : MonoBehaviour
         intro2.alpha = 1;
         intro2_text.Fade();
         yield return new WaitForSeconds(1.5f);
+        world1_source.Play();
         StartCoroutine(Fade(intro2_world1, 1f, 0.5f));
         yield return new WaitForSeconds(1f);
+        world2_source.Play();
         StartCoroutine(Fade(intro2_world2, 1f, 0.5f));
         yield return new WaitForSeconds(1f);
+        world3_source.Play();
         StartCoroutine(Fade(intro2_world3, 1f, 0.5f));
         yield return new WaitForSeconds(8f);
 
