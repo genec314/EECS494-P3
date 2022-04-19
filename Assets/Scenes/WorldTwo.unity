@@ -4851,7 +4851,7 @@ MonoBehaviour:
   numShots: 3
   worldNumber: 2
   levelNumber: 3
-  current_hole: 1
+  current_hole: 0
   hole_end: 0
   canBallSplit: 1
 --- !u!4 &591873620
