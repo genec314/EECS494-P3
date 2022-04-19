@@ -23544,7 +23544,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2097526681}
-  - component: {fileID: 2097526680}
   - component: {fileID: 2097526679}
   - component: {fileID: 2097526678}
   m_Layer: 0
@@ -23668,18 +23667,6 @@ MonoBehaviour:
   world_2_clip: {fileID: 8300000, guid: d9f57ac03a69b6a4aa1ac281c5d3d8bf, type: 3}
   world_3_clip: {fileID: 8300000, guid: 2357c9ae032f1de44aef788429c08782, type: 3}
   complete_clip: {fileID: 8300000, guid: 33f030abe857b414aa15306c0ec0e209, type: 3}
---- !u!114 &2097526680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097526677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 561474849fb81fa4aa10296d8ef35c56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2097526681
 Transform:
   m_ObjectHideFlags: 0
