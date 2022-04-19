@@ -57,10 +57,10 @@ public class CanSplit : MonoBehaviour
                 // StartCoroutine(ChangeToBallLayer(secondBall1));
                 Rigidbody rb = secondBall1.GetComponent<Rigidbody>();
                 //rb = GetComponent<Rigidbody>();
-                rb.velocity = vel.magnitude * (tf.forward.normalized - tf.right.normalized);
+                rb.velocity = vel.magnitude * (Camera.main.transform.forward.normalized - Camera.main.transform.right.normalized);
                 
                 //transform.position = transform.position + new Vector3(3, 0, 0);
-                orig.velocity = vel.magnitude * (tf.forward.normalized + tf.right.normalized);
+                orig.velocity = vel.magnitude * (Camera.main.transform.forward.normalized + Camera.main.transform.right.normalized);
             }
         }
     }

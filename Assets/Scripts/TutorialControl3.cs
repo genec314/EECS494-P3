@@ -7,6 +7,9 @@ public class TutorialControl3 : MonoBehaviour
 {
     public RectTransform tutorialUI;
 
+    private bool f = false;
+    private bool inEase = false;
+
     // The two places the toast UI panel alternates between.
     public Vector3 hidden_pos = new Vector3(0f, -200f, 0f);
     public Vector3 visible_pos = new Vector3(0f, 0f, 0f);
@@ -29,13 +32,14 @@ public class TutorialControl3 : MonoBehaviour
 
     void Update()
     {
-        if (gc.tutorial_hole4 && Input.GetKeyDown(KeyCode.F) && gc.tutorial_firstF)
+        if (gc.tutorial_hole4 && Input.GetKeyDown(KeyCode.F) && !f)
         {
-            gc.tutorial_firstF = false;
+            // gc.tutorial_firstF = false;
+            f = true;
             tutorialUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Press F to rejoin the split balls at any time before the end of your last shot!";
-        } else if (!gc.tutorial_firstF && Input.GetKeyDown(KeyCode.F) && gc.tutorial_hole4 && !gc.tutorial_ended)
+        } else if (f && Input.GetKeyDown(KeyCode.F) && gc.tutorial_hole4)
         {
-            gc.tutorial_ended = true;
+            f = false;
             StartCoroutine(EndTutorial());
         }
 
@@ -59,6 +63,7 @@ public class TutorialControl3 : MonoBehaviour
         } else
         {
             gc.tutorial_hole4 = false;
+            StartCoroutine(EaseOut(tutorialUI));
         }
     }
 
@@ -91,16 +96,21 @@ public class TutorialControl3 : MonoBehaviour
 
     IEnumerator EaseOut(RectTransform panel)
     {
-        // Ease Out the UI panel
-        float initial_time = Time.time;
-        float progress = 0.0f;
-        while (progress < 1.0f)
+        if (!inEase)
         {
-            progress = (Time.time - initial_time) / ease_duration;
-            float eased_progress = ease_out.Evaluate(progress);
-            panel.anchoredPosition = Vector3.LerpUnclamped(hidden_pos, visible_pos, 1.0f - eased_progress);
+            inEase = true;
+            // Ease Out the UI panel
+            float initial_time = Time.time;
+            float progress = 0.0f;
+            while (progress < 1.0f)
+            {
+                progress = (Time.time - initial_time) / ease_duration;
+                float eased_progress = ease_out.Evaluate(progress);
+                panel.anchoredPosition = Vector3.LerpUnclamped(hidden_pos, visible_pos, 1.0f - eased_progress);
 
-            yield return null;
+                yield return null;
+                inEase = false;
+            }
         }
     }
 }
