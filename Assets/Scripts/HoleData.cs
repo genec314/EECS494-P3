@@ -22,6 +22,7 @@ public class HoleData : MonoBehaviour
     Subscription<BallReadyEvent> ball_ready_subscription;
     Subscription<LoadLevelEvent> load_subscription;
     public bool current_hole = false;
+    public bool hole_end = false;
     public bool canBallSplit = false;
 
     // Start is called before the first frame update
@@ -36,11 +37,11 @@ public class HoleData : MonoBehaviour
 
     void Update()
     {
-        if (current_hole)
+        if (current_hole && !hole_end)
         {
             if (pins_down == numPins)
             {
-                current_hole = false;
+                hole_end = true;
                 StartCoroutine(CompleteLevel());
             }
         }
@@ -53,12 +54,12 @@ public class HoleData : MonoBehaviour
 
     private void BallReady(BallReadyEvent e)
     {
-        if (current_hole)
+        if (current_hole && !hole_end)
         {
             if (pins_down != numPins && shots_taken == numShots)
             {
                 EventBus.Publish<LevelEndEvent>(new LevelEndEvent(false));
-                current_hole = false;
+                hole_end = true;
             }
             else if (shots_taken > 0)
             {
@@ -71,6 +72,8 @@ public class HoleData : MonoBehaviour
     {
         if (e.world_num == worldNumber && e.level_num == levelNumber) current_hole = true;
         else current_hole = false;
+
+        hole_end = false;
 
         if (current_hole)
         {

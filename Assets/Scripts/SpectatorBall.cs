@@ -53,7 +53,7 @@ public class SpectatorBall : MonoBehaviour
     }
     IEnumerator StopJumping()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
         jumping = false;
     }
 

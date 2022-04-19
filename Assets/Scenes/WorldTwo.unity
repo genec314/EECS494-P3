@@ -588,6 +588,7 @@ MonoBehaviour:
   worldNumber: 2
   levelNumber: 5
   current_hole: 0
+  hole_end: 0
   canBallSplit: 1
 --- !u!1001 &67257223
 PrefabInstance:
@@ -1018,6 +1019,7 @@ MonoBehaviour:
   worldNumber: 2
   levelNumber: 9
   current_hole: 0
+  hole_end: 0
   canBallSplit: 1
 --- !u!4 &138434484 stripped
 Transform:
@@ -1207,6 +1209,7 @@ MonoBehaviour:
   worldNumber: 2
   levelNumber: 4
   current_hole: 0
+  hole_end: 0
   canBallSplit: 1
 --- !u!1001 &157333468
 PrefabInstance:
@@ -4748,6 +4751,7 @@ MonoBehaviour:
   worldNumber: 2
   levelNumber: 1
   current_hole: 0
+  hole_end: 0
   canBallSplit: 0
 --- !u!1001 &569001209
 PrefabInstance:
@@ -4848,6 +4852,7 @@ MonoBehaviour:
   worldNumber: 2
   levelNumber: 3
   current_hole: 0
+  hole_end: 0
   canBallSplit: 1
 --- !u!4 &591873620
 Transform:
@@ -6174,6 +6179,7 @@ MonoBehaviour:
   worldNumber: 2
   levelNumber: 8
   current_hole: 0
+  hole_end: 0
   canBallSplit: 1
 --- !u!1 &754611372
 GameObject:
@@ -7291,6 +7297,7 @@ MonoBehaviour:
   worldNumber: 2
   levelNumber: 2
   current_hole: 0
+  hole_end: 0
   canBallSplit: 0
 --- !u!1001 &923560516
 PrefabInstance:
@@ -9301,6 +9308,7 @@ MonoBehaviour:
   worldNumber: 2
   levelNumber: 4
   current_hole: 0
+  hole_end: 0
   canBallSplit: 1
 --- !u!4 &1202208569 stripped
 Transform:
@@ -11465,6 +11473,7 @@ MonoBehaviour:
   worldNumber: 2
   levelNumber: 0
   current_hole: 0
+  hole_end: 0
   canBallSplit: 0
 --- !u!1 &1573208973
 GameObject:
@@ -12414,6 +12423,7 @@ MonoBehaviour:
   worldNumber: 2
   levelNumber: 6
   current_hole: 0
+  hole_end: 0
   canBallSplit: 1
 --- !u!1001 &1683988213
 PrefabInstance:

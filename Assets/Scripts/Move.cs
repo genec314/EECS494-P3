@@ -44,6 +44,9 @@ public class Move : MonoBehaviour
     void CancelAtLevelStart(LevelStartEvent e)
     {
         StopAllCoroutines();
+        at_rest = true;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
 
     void ThrowBall(BallThrownEvent e)
