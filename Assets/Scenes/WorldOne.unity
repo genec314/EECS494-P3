@@ -6779,7 +6779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3de295b8576d4e139a93ed430d7e16a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  to: {x: 48, y: 3, z: -55.5}
+  to: {x: 48, y: 2.5, z: -55.5}
   localto: {x: 0, y: 0, z: 0}
   useLocal: 0
   time: 2
@@ -10730,7 +10730,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4170733765206873763, guid: 0c899d4f74fb3489e9c684ec99668bc3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4170733765206873763, guid: 0c899d4f74fb3489e9c684ec99668bc3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11759,7 +11759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3de295b8576d4e139a93ed430d7e16a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  to: {x: 38, y: 3, z: -45.5}
+  to: {x: 38, y: 2.5, z: -45.5}
   localto: {x: 0, y: 0, z: 0}
   useLocal: 0
   time: 2
@@ -15428,7 +15428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4170733765206873763, guid: 0c899d4f74fb3489e9c684ec99668bc3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4170733765206873763, guid: 0c899d4f74fb3489e9c684ec99668bc3, type: 3}
       propertyPath: m_LocalPosition.z
