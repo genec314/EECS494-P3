@@ -44,7 +44,7 @@ public class FollowTarget : MonoBehaviour
             transform.RotateAround(target.transform.position, Vector3.up, 75 * Time.deltaTime);
         }
 
-        target.transform.forward = transform.forward;
+		if (!following) target.transform.forward = transform.forward;
 		
 		UpdateOffsets();
 		Follow();
