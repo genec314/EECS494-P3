@@ -26,31 +26,28 @@ public class DrawPath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (line.enabled)
+        RaycastHit[] hits;
+        Vector3 globalForward = Vector3.ProjectOnPlane(tf.forward, Vector3.up);
+        hits = Physics.RaycastAll(tf.position, globalForward, length, ~pinsLayer);
+
+        List<Vector3> positions = new List<Vector3>();
+        positions.Add(transform.position);
+
+        if (hits.Length == 0)
         {
-            RaycastHit[] hits;
-            Vector3 globalForward = Vector3.ProjectOnPlane(tf.forward, Vector3.up);
-            hits = Physics.RaycastAll(tf.position, globalForward, length, ~pinsLayer);
-
-            List<Vector3> positions = new List<Vector3>();
-            positions.Add(transform.position);
-
-            if (hits.Length == 0)
-            {
-                positions.Add(transform.position + length * globalForward);
-            }
-            else
-            {
-                for (int i = 0; i < hits.Length; i++)
-                {
-                    RaycastHit hit = hits[i];
-                    positions.Add(hit.point);
-                }
-            }
-            
-            line.positionCount = positions.Count;
-            line.SetPositions(positions.ToArray());
+            positions.Add(transform.position + length * globalForward);
         }
+        else
+        {
+            for (int i = 0; i < hits.Length; i++)
+            {
+                RaycastHit hit = hits[i];
+                positions.Add(hit.point);
+            }
+        }
+        
+        line.positionCount = positions.Count;
+        line.SetPositions(positions.ToArray());
     }
 
     void EnableAtStart(LevelStartEvent e)
@@ -70,7 +67,7 @@ public class DrawPath : MonoBehaviour
 
     IEnumerator DelayedEnable()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.25f);
         line.enabled = true;
     }
 }
