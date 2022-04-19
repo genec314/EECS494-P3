@@ -34,7 +34,7 @@ public class GameControl : MonoBehaviour
     public bool tutorial_firstF = true;
     public bool tutorial_ended = false;
 
-    public float transition_duration = 1f;
+    public float transition_duration = 1.25f;
 
     void Start()
     {

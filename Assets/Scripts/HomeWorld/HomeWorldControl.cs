@@ -94,7 +94,7 @@ public class HomeWorldControl : MonoBehaviour
             toActivatePins[unlocked_worlds[i]].SetActive(true);
             tutorial_seen = true;
         }
-        intensities = new int[] { 5000, 6, 20 };
+        intensities = new int[] { 5000, 2, 40 };
 
         if(unlocked_worlds.Count > unlocked_animations.Count)
         {
@@ -286,6 +286,11 @@ public class HomeWorldControl : MonoBehaviour
             }
             elapsed += Time.deltaTime;
             yield return null;
+        }
+        
+        for(int i = 0; i < lights.Length; i++)
+        {
+            lights[i].intensity = intensities[i];
         }
 
         yield return new WaitForSeconds(1f);
